@@ -46,9 +46,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // d3.json('/shots').then( res => console.log(res));
   const getLebronShots = () => (
-    fetch('/shots')
+    axios('/shots')
   )
 
-  getLebronShots().then( res=> console.log(res))
+  
+
+  getLebronShots().then( res => console.log(d3.json(res)))
   // console.log('Hello')
 });

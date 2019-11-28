@@ -37016,11 +37016,11 @@ document.addEventListener("DOMContentLoaded", function () {
   console.log('Hello'); // d3.json('/shots').then( res => console.log(res));
 
   var getLebronShots = function getLebronShots() {
-    return fetch('/shots');
+    return axios__WEBPACK_IMPORTED_MODULE_0___default()('/shots');
   };
 
   getLebronShots().then(function (res) {
-    return console.log(res);
+    return console.log(d3.json(res));
   }); // console.log('Hello')
 });
 
