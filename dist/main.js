@@ -17585,10 +17585,10 @@ utils.intFromLE = intFromLE;
 /*!********************************************!*\
   !*** ./node_modules/elliptic/package.json ***!
   \********************************************/
-/*! exports provided: _from, _id, _inBundle, _integrity, _location, _phantomChildren, _requested, _requiredBy, _resolved, _shasum, _spec, _where, author, bugs, bundleDependencies, dependencies, deprecated, description, devDependencies, files, homepage, keywords, license, main, name, repository, scripts, version, default */
+/*! exports provided: _args, _development, _from, _id, _inBundle, _integrity, _location, _phantomChildren, _requested, _requiredBy, _resolved, _spec, _where, author, bugs, dependencies, description, devDependencies, files, homepage, keywords, license, main, name, repository, scripts, version, default */
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"_from\":\"elliptic@^6.0.0\",\"_id\":\"elliptic@6.5.2\",\"_inBundle\":false,\"_integrity\":\"sha512-f4x70okzZbIQl/NSRLkI/+tteV/9WqL98zx+SQ69KbXxmVrmjwsNUPn/gYJJ0sHvEak24cZgHIPegRePAtA/xw==\",\"_location\":\"/elliptic\",\"_phantomChildren\":{},\"_requested\":{\"type\":\"range\",\"registry\":true,\"raw\":\"elliptic@^6.0.0\",\"name\":\"elliptic\",\"escapedName\":\"elliptic\",\"rawSpec\":\"^6.0.0\",\"saveSpec\":null,\"fetchSpec\":\"^6.0.0\"},\"_requiredBy\":[\"/browserify-sign\",\"/create-ecdh\"],\"_resolved\":\"https://registry.npmjs.org/elliptic/-/elliptic-6.5.2.tgz\",\"_shasum\":\"05c5678d7173c049d8ca433552224a495d0e3762\",\"_spec\":\"elliptic@^6.0.0\",\"_where\":\"/Users/christrinh/Desktop/aA/nba-stat-crunch/node_modules/browserify-sign\",\"author\":{\"name\":\"Fedor Indutny\",\"email\":\"fedor@indutny.com\"},\"bugs\":{\"url\":\"https://github.com/indutny/elliptic/issues\"},\"bundleDependencies\":false,\"dependencies\":{\"bn.js\":\"^4.4.0\",\"brorand\":\"^1.0.1\",\"hash.js\":\"^1.0.0\",\"hmac-drbg\":\"^1.0.0\",\"inherits\":\"^2.0.1\",\"minimalistic-assert\":\"^1.0.0\",\"minimalistic-crypto-utils\":\"^1.0.0\"},\"deprecated\":false,\"description\":\"EC cryptography\",\"devDependencies\":{\"brfs\":\"^1.4.3\",\"coveralls\":\"^3.0.8\",\"grunt\":\"^1.0.4\",\"grunt-browserify\":\"^5.0.0\",\"grunt-cli\":\"^1.2.0\",\"grunt-contrib-connect\":\"^1.0.0\",\"grunt-contrib-copy\":\"^1.0.0\",\"grunt-contrib-uglify\":\"^1.0.1\",\"grunt-mocha-istanbul\":\"^3.0.1\",\"grunt-saucelabs\":\"^9.0.1\",\"istanbul\":\"^0.4.2\",\"jscs\":\"^3.0.7\",\"jshint\":\"^2.10.3\",\"mocha\":\"^6.2.2\"},\"files\":[\"lib\"],\"homepage\":\"https://github.com/indutny/elliptic\",\"keywords\":[\"EC\",\"Elliptic\",\"curve\",\"Cryptography\"],\"license\":\"MIT\",\"main\":\"lib/elliptic.js\",\"name\":\"elliptic\",\"repository\":{\"type\":\"git\",\"url\":\"git+ssh://git@github.com/indutny/elliptic.git\"},\"scripts\":{\"jscs\":\"jscs benchmarks/*.js lib/*.js lib/**/*.js lib/**/**/*.js test/index.js\",\"jshint\":\"jscs benchmarks/*.js lib/*.js lib/**/*.js lib/**/**/*.js test/index.js\",\"lint\":\"npm run jscs && npm run jshint\",\"test\":\"npm run lint && npm run unit\",\"unit\":\"istanbul test _mocha --reporter=spec test/index.js\",\"version\":\"grunt dist && git add dist/\"},\"version\":\"6.5.2\"}");
+module.exports = JSON.parse("{\"_args\":[[\"elliptic@6.5.2\",\"/Users/christrinh/Desktop/aA/NBA-Shot-Crunch\"]],\"_development\":true,\"_from\":\"elliptic@6.5.2\",\"_id\":\"elliptic@6.5.2\",\"_inBundle\":false,\"_integrity\":\"sha512-f4x70okzZbIQl/NSRLkI/+tteV/9WqL98zx+SQ69KbXxmVrmjwsNUPn/gYJJ0sHvEak24cZgHIPegRePAtA/xw==\",\"_location\":\"/elliptic\",\"_phantomChildren\":{},\"_requested\":{\"type\":\"version\",\"registry\":true,\"raw\":\"elliptic@6.5.2\",\"name\":\"elliptic\",\"escapedName\":\"elliptic\",\"rawSpec\":\"6.5.2\",\"saveSpec\":null,\"fetchSpec\":\"6.5.2\"},\"_requiredBy\":[\"/browserify-sign\",\"/create-ecdh\"],\"_resolved\":\"https://registry.npmjs.org/elliptic/-/elliptic-6.5.2.tgz\",\"_spec\":\"6.5.2\",\"_where\":\"/Users/christrinh/Desktop/aA/NBA-Shot-Crunch\",\"author\":{\"name\":\"Fedor Indutny\",\"email\":\"fedor@indutny.com\"},\"bugs\":{\"url\":\"https://github.com/indutny/elliptic/issues\"},\"dependencies\":{\"bn.js\":\"^4.4.0\",\"brorand\":\"^1.0.1\",\"hash.js\":\"^1.0.0\",\"hmac-drbg\":\"^1.0.0\",\"inherits\":\"^2.0.1\",\"minimalistic-assert\":\"^1.0.0\",\"minimalistic-crypto-utils\":\"^1.0.0\"},\"description\":\"EC cryptography\",\"devDependencies\":{\"brfs\":\"^1.4.3\",\"coveralls\":\"^3.0.8\",\"grunt\":\"^1.0.4\",\"grunt-browserify\":\"^5.0.0\",\"grunt-cli\":\"^1.2.0\",\"grunt-contrib-connect\":\"^1.0.0\",\"grunt-contrib-copy\":\"^1.0.0\",\"grunt-contrib-uglify\":\"^1.0.1\",\"grunt-mocha-istanbul\":\"^3.0.1\",\"grunt-saucelabs\":\"^9.0.1\",\"istanbul\":\"^0.4.2\",\"jscs\":\"^3.0.7\",\"jshint\":\"^2.10.3\",\"mocha\":\"^6.2.2\"},\"files\":[\"lib\"],\"homepage\":\"https://github.com/indutny/elliptic\",\"keywords\":[\"EC\",\"Elliptic\",\"curve\",\"Cryptography\"],\"license\":\"MIT\",\"main\":\"lib/elliptic.js\",\"name\":\"elliptic\",\"repository\":{\"type\":\"git\",\"url\":\"git+ssh://git@github.com/indutny/elliptic.git\"},\"scripts\":{\"jscs\":\"jscs benchmarks/*.js lib/*.js lib/**/*.js lib/**/**/*.js test/index.js\",\"jshint\":\"jscs benchmarks/*.js lib/*.js lib/**/*.js lib/**/**/*.js test/index.js\",\"lint\":\"npm run jscs && npm run jshint\",\"test\":\"npm run lint && npm run unit\",\"unit\":\"istanbul test _mocha --reporter=spec test/index.js\",\"version\":\"grunt dist && git add dist/\"},\"version\":\"6.5.2\"}");
 
 /***/ }),
 
@@ -23844,10 +23844,10 @@ function identity (value) {
 /*!*********************************************!*\
   !*** ./node_modules/pg-native/package.json ***!
   \*********************************************/
-/*! exports provided: _from, _id, _inBundle, _integrity, _location, _phantomChildren, _requested, _requiredBy, _resolved, _shasum, _spec, _where, author, bugs, bundleDependencies, dependencies, deprecated, description, devDependencies, homepage, keywords, license, main, name, repository, scripts, version, default */
+/*! exports provided: _args, _from, _id, _inBundle, _integrity, _location, _phantomChildren, _requested, _requiredBy, _resolved, _spec, _where, author, bugs, dependencies, description, devDependencies, homepage, keywords, license, main, name, repository, scripts, version, default */
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"_from\":\"pg-native\",\"_id\":\"pg-native@3.0.0\",\"_inBundle\":false,\"_integrity\":\"sha512-qZZyywXJ8O4lbiIN7mn6vXIow1fd3QZFqzRe+uET/SZIXvCa3HBooXQA4ZU8EQX8Ae6SmaYtDGLp5DwU+8vrfg==\",\"_location\":\"/pg-native\",\"_phantomChildren\":{\"core-util-is\":\"1.0.2\",\"inherits\":\"2.0.3\",\"pg-int8\":\"1.0.1\",\"postgres-bytea\":\"1.0.0\",\"postgres-date\":\"1.0.4\",\"postgres-interval\":\"1.2.0\"},\"_requested\":{\"type\":\"tag\",\"registry\":true,\"raw\":\"pg-native\",\"name\":\"pg-native\",\"escapedName\":\"pg-native\",\"rawSpec\":\"\",\"saveSpec\":null,\"fetchSpec\":\"latest\"},\"_requiredBy\":[\"#USER\",\"/\"],\"_resolved\":\"https://registry.npmjs.org/pg-native/-/pg-native-3.0.0.tgz\",\"_shasum\":\"20c64e651e20b28f5c060b3823522d1c8c4429c3\",\"_spec\":\"pg-native\",\"_where\":\"/Users/christrinh/Desktop/aA/nba-stat-crunch\",\"author\":{\"name\":\"Brian M. Carlson\"},\"bugs\":{\"url\":\"https://github.com/brianc/node-pg-native/issues\"},\"bundleDependencies\":false,\"dependencies\":{\"libpq\":\"^1.7.0\",\"pg-types\":\"^1.12.1\",\"readable-stream\":\"1.0.31\"},\"deprecated\":false,\"description\":\"A slightly nicer interface to Postgres over node-libpq\",\"devDependencies\":{\"async\":\"^0.9.0\",\"concat-stream\":\"^1.4.6\",\"eslint\":\"4.2.0\",\"eslint-config-standard\":\"10.2.1\",\"eslint-plugin-import\":\"2.7.0\",\"eslint-plugin-node\":\"5.1.0\",\"eslint-plugin-promise\":\"3.5.0\",\"eslint-plugin-standard\":\"3.0.1\",\"generic-pool\":\"^2.1.1\",\"lodash\":\"^2.4.1\",\"mocha\":\"3.4.2\",\"okay\":\"^0.3.0\",\"pg\":\"*\",\"semver\":\"^4.1.0\"},\"homepage\":\"https://github.com/brianc/node-pg-native\",\"keywords\":[\"postgres\",\"pg\",\"libpq\"],\"license\":\"MIT\",\"main\":\"index.js\",\"name\":\"pg-native\",\"repository\":{\"type\":\"git\",\"url\":\"git://github.com/brianc/node-pg-native.git\"},\"scripts\":{\"test\":\"mocha && eslint .\"},\"version\":\"3.0.0\"}");
+module.exports = JSON.parse("{\"_args\":[[\"pg-native@3.0.0\",\"/Users/christrinh/Desktop/aA/NBA-Shot-Crunch\"]],\"_from\":\"pg-native@3.0.0\",\"_id\":\"pg-native@3.0.0\",\"_inBundle\":false,\"_integrity\":\"sha512-qZZyywXJ8O4lbiIN7mn6vXIow1fd3QZFqzRe+uET/SZIXvCa3HBooXQA4ZU8EQX8Ae6SmaYtDGLp5DwU+8vrfg==\",\"_location\":\"/pg-native\",\"_phantomChildren\":{\"core-util-is\":\"1.0.2\",\"inherits\":\"2.0.3\",\"pg-int8\":\"1.0.1\",\"postgres-bytea\":\"1.0.0\",\"postgres-date\":\"1.0.4\",\"postgres-interval\":\"1.2.0\"},\"_requested\":{\"type\":\"version\",\"registry\":true,\"raw\":\"pg-native@3.0.0\",\"name\":\"pg-native\",\"escapedName\":\"pg-native\",\"rawSpec\":\"3.0.0\",\"saveSpec\":null,\"fetchSpec\":\"3.0.0\"},\"_requiredBy\":[\"/\"],\"_resolved\":\"https://registry.npmjs.org/pg-native/-/pg-native-3.0.0.tgz\",\"_spec\":\"3.0.0\",\"_where\":\"/Users/christrinh/Desktop/aA/NBA-Shot-Crunch\",\"author\":{\"name\":\"Brian M. Carlson\"},\"bugs\":{\"url\":\"https://github.com/brianc/node-pg-native/issues\"},\"dependencies\":{\"libpq\":\"^1.7.0\",\"pg-types\":\"^1.12.1\",\"readable-stream\":\"1.0.31\"},\"description\":\"A slightly nicer interface to Postgres over node-libpq\",\"devDependencies\":{\"async\":\"^0.9.0\",\"concat-stream\":\"^1.4.6\",\"eslint\":\"4.2.0\",\"eslint-config-standard\":\"10.2.1\",\"eslint-plugin-import\":\"2.7.0\",\"eslint-plugin-node\":\"5.1.0\",\"eslint-plugin-promise\":\"3.5.0\",\"eslint-plugin-standard\":\"3.0.1\",\"generic-pool\":\"^2.1.1\",\"lodash\":\"^2.4.1\",\"mocha\":\"3.4.2\",\"okay\":\"^0.3.0\",\"pg\":\"*\",\"semver\":\"^4.1.0\"},\"homepage\":\"https://github.com/brianc/node-pg-native\",\"keywords\":[\"postgres\",\"pg\",\"libpq\"],\"license\":\"MIT\",\"main\":\"index.js\",\"name\":\"pg-native\",\"repository\":{\"type\":\"git\",\"url\":\"git://github.com/brianc/node-pg-native.git\"},\"scripts\":{\"test\":\"mocha && eslint .\"},\"version\":\"3.0.0\"}");
 
 /***/ }),
 
@@ -28963,10 +28963,10 @@ if (true)
 /*!**************************************!*\
   !*** ./node_modules/pg/package.json ***!
   \**************************************/
-/*! exports provided: _from, _id, _inBundle, _integrity, _location, _phantomChildren, _requested, _requiredBy, _resolved, _shasum, _spec, _where, author, bugs, bundleDependencies, dependencies, deprecated, description, devDependencies, engines, files, homepage, keywords, license, main, minNativeVersion, name, repository, scripts, version, default */
+/*! exports provided: _args, _from, _id, _inBundle, _integrity, _location, _phantomChildren, _requested, _requiredBy, _resolved, _spec, _where, author, bugs, dependencies, description, devDependencies, engines, files, homepage, keywords, license, main, minNativeVersion, name, repository, scripts, version, default */
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"_from\":\"pg\",\"_id\":\"pg@7.14.0\",\"_inBundle\":false,\"_integrity\":\"sha512-TLsdOWKFu44vHdejml4Uoo8h0EwCjdIj9Z9kpz7pA5i8iQxOTwVb1+Fy+X86kW5AXKxQpYpYDs4j/qPDbro/lg==\",\"_location\":\"/pg\",\"_phantomChildren\":{},\"_requested\":{\"type\":\"tag\",\"registry\":true,\"raw\":\"pg\",\"name\":\"pg\",\"escapedName\":\"pg\",\"rawSpec\":\"\",\"saveSpec\":null,\"fetchSpec\":\"latest\"},\"_requiredBy\":[\"#USER\",\"/\"],\"_resolved\":\"https://registry.npmjs.org/pg/-/pg-7.14.0.tgz\",\"_shasum\":\"f46727845ad19c2670a7e8151063a670338b6057\",\"_spec\":\"pg\",\"_where\":\"/Users/christrinh/Desktop/aA/nba-stat-crunch\",\"author\":{\"name\":\"Brian Carlson\",\"email\":\"brian.m.carlson@gmail.com\"},\"bugs\":{\"url\":\"https://github.com/brianc/node-postgres/issues\"},\"bundleDependencies\":false,\"dependencies\":{\"buffer-writer\":\"2.0.0\",\"packet-reader\":\"1.0.0\",\"pg-connection-string\":\"0.1.3\",\"pg-pool\":\"^2.0.7\",\"pg-types\":\"^2.1.0\",\"pgpass\":\"1.x\",\"semver\":\"4.3.2\"},\"deprecated\":false,\"description\":\"PostgreSQL client - pure javascript & libpq with the same API\",\"devDependencies\":{\"async\":\"0.9.0\",\"bluebird\":\"3.5.2\",\"co\":\"4.6.0\",\"eslint\":\"^6.0.1\",\"eslint-config-standard\":\"^13.0.1\",\"eslint-plugin-import\":\"^2.18.1\",\"eslint-plugin-node\":\"^9.1.0\",\"eslint-plugin-promise\":\"^4.2.1\",\"eslint-plugin-standard\":\"^4.0.0\",\"pg-copy-streams\":\"0.3.0\"},\"engines\":{\"node\":\">= 4.5.0\"},\"files\":[\"lib\",\"SPONSORS.md\"],\"homepage\":\"http://github.com/brianc/node-postgres\",\"keywords\":[\"database\",\"libpq\",\"pg\",\"postgre\",\"postgres\",\"postgresql\",\"rdbms\"],\"license\":\"MIT\",\"main\":\"./lib\",\"minNativeVersion\":\"2.0.0\",\"name\":\"pg\",\"repository\":{\"type\":\"git\",\"url\":\"git://github.com/brianc/node-postgres.git\"},\"scripts\":{\"test\":\"make test-all\"},\"version\":\"7.14.0\"}");
+module.exports = JSON.parse("{\"_args\":[[\"pg@7.14.0\",\"/Users/christrinh/Desktop/aA/NBA-Shot-Crunch\"]],\"_from\":\"pg@7.14.0\",\"_id\":\"pg@7.14.0\",\"_inBundle\":false,\"_integrity\":\"sha512-TLsdOWKFu44vHdejml4Uoo8h0EwCjdIj9Z9kpz7pA5i8iQxOTwVb1+Fy+X86kW5AXKxQpYpYDs4j/qPDbro/lg==\",\"_location\":\"/pg\",\"_phantomChildren\":{},\"_requested\":{\"type\":\"version\",\"registry\":true,\"raw\":\"pg@7.14.0\",\"name\":\"pg\",\"escapedName\":\"pg\",\"rawSpec\":\"7.14.0\",\"saveSpec\":null,\"fetchSpec\":\"7.14.0\"},\"_requiredBy\":[\"/\"],\"_resolved\":\"https://registry.npmjs.org/pg/-/pg-7.14.0.tgz\",\"_spec\":\"7.14.0\",\"_where\":\"/Users/christrinh/Desktop/aA/NBA-Shot-Crunch\",\"author\":{\"name\":\"Brian Carlson\",\"email\":\"brian.m.carlson@gmail.com\"},\"bugs\":{\"url\":\"https://github.com/brianc/node-postgres/issues\"},\"dependencies\":{\"buffer-writer\":\"2.0.0\",\"packet-reader\":\"1.0.0\",\"pg-connection-string\":\"0.1.3\",\"pg-pool\":\"^2.0.7\",\"pg-types\":\"^2.1.0\",\"pgpass\":\"1.x\",\"semver\":\"4.3.2\"},\"description\":\"PostgreSQL client - pure javascript & libpq with the same API\",\"devDependencies\":{\"async\":\"0.9.0\",\"bluebird\":\"3.5.2\",\"co\":\"4.6.0\",\"eslint\":\"^6.0.1\",\"eslint-config-standard\":\"^13.0.1\",\"eslint-plugin-import\":\"^2.18.1\",\"eslint-plugin-node\":\"^9.1.0\",\"eslint-plugin-promise\":\"^4.2.1\",\"eslint-plugin-standard\":\"^4.0.0\",\"pg-copy-streams\":\"0.3.0\"},\"engines\":{\"node\":\">= 4.5.0\"},\"files\":[\"lib\",\"SPONSORS.md\"],\"homepage\":\"http://github.com/brianc/node-postgres\",\"keywords\":[\"database\",\"libpq\",\"pg\",\"postgre\",\"postgres\",\"postgresql\",\"rdbms\"],\"license\":\"MIT\",\"main\":\"./lib\",\"minNativeVersion\":\"2.0.0\",\"name\":\"pg\",\"repository\":{\"type\":\"git\",\"url\":\"git://github.com/brianc/node-postgres.git\"},\"scripts\":{\"test\":\"make test-all\"},\"version\":\"7.14.0\"}");
 
 /***/ }),
 
@@ -36987,6 +36987,27 @@ var courtContainer = {
   width: 800,
   height: 600
 };
+
+var Pool = __webpack_require__(/*! pg */ "./node_modules/pg/lib/index.js").Pool;
+
+var pool = new Pool({
+  user: 'chris',
+  host: 'localhost',
+  database: 'nba-shots-db_development',
+  password: 'password',
+  port: 5432
+}); //LEBRONS SEASON SHOTS FOR 2016-17 AND
+
+var getShots = function getShots(request, response) {
+  pool.query("SELECT * FROM Shots WHERE season='2016-17' AND player_nba_id='2544' ", function (error, results) {
+    if (error) {
+      throw error;
+    }
+
+    response.status(200).json(results.rows);
+  });
+};
+
 document.addEventListener("DOMContentLoaded", function () {
   var chartContainer = document.getElementById('chart-container');
   var chart = d3.select(chartContainer).append('svg').attr("width", courtContainer.width).attr("height", courtContainer.height).attr('fill', 'blue');
@@ -36995,8 +37016,7 @@ document.addEventListener("DOMContentLoaded", function () {
   console.log('Hello'); // d3.json('/shots').then( res => console.log(res));
 
   var getLebronShots = function getLebronShots() {
-    debugger;
-    axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/shots');
+    return fetch('/shots');
   };
 
   getLebronShots().then(function (res) {
@@ -37013,8 +37033,7 @@ document.addEventListener("DOMContentLoaded", function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-var Pool = __webpack_require__(/*! pg */ "./node_modules/pg/lib/index.js").Pool; // const {Client} = require('pg')
-
+var Pool = __webpack_require__(/*! pg */ "./node_modules/pg/lib/index.js").Pool;
 
 var pool = new Pool({
   user: 'chris',

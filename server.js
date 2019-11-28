@@ -1,6 +1,7 @@
 const path = require('path')
 const express = require('express');
 const bodyParser = require('body-parser');
+const db = require('./src/queries');
 // import webpack from 'webpack';
 // import webpackDevMiddleware from 'webpack-dev-middleware';
 // import config from './webpack.config';
@@ -15,7 +16,7 @@ const app = express(),
             HTML_FILE = path.join(DIST_DIR, 'index.html')
 
 app.use(express.static(DIST_DIR))
-app.get('*', (req, res) => {
+app.get('/', (req, res) => {
     res.sendFile(HTML_FILE)
 })
 
@@ -47,18 +48,18 @@ app.use(
   })
 )
 
-app.get('/', (req, res) => {
-  res.json({ info: 'Node.js, express, and Postgres API'})
-})
+// app.get('/', (req, res) => {
+//   res.json({ info: 'Node.js, express, and Postgres API'})
+// })
 
 app.listen(port, () => {
   console.log(`App running on port ${port}.`)
 })
 
 app.use("/players", players);
-app.use("/shots", shots);
+// app.use("/shots", shots);
 
-// app.get('/shots', db.getShots)
+app.get('/shots', db.getShots)
 
 // app.get(`/shots/${playerId}`, db.getPlayerShotsBySeason(playerId, season))
 // lebron = '2544'

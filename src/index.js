@@ -9,6 +9,27 @@ const courtContainer = {
   height: 600
 }
 
+const Pool = require('pg').Pool
+
+const pool = new Pool({
+  user: 'chris',
+  host: 'localhost',
+  database: 'nba-shots-db_development',
+  password: 'password',
+  port: 5432,
+});
+
+//LEBRONS SEASON SHOTS FOR 2016-17 AND
+
+const getShots = (request, response) => {
+  pool.query("SELECT * FROM Shots WHERE season='2016-17' AND player_nba_id='2544' ", (error, results) => {
+    if (error) {
+      throw error
+    }
+    response.status(200).json(results.rows)
+  })
+};
+
 document.addEventListener("DOMContentLoaded", () => {
 
   let chartContainer = document.getElementById('chart-container')
@@ -24,11 +45,10 @@ document.addEventListener("DOMContentLoaded", () => {
   console.log('Hello')
 
   // d3.json('/shots').then( res => console.log(res));
-  const getLebronShots = () => {
-    debugger
-    axios.get('/shots')
-  }
+  const getLebronShots = () => (
+    fetch('/shots')
+  )
 
-  getLebronShots().then(res => console.log(res))
+  getLebronShots().then( res=> console.log(res))
   // console.log('Hello')
 });
