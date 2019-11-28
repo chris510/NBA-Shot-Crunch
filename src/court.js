@@ -99,14 +99,14 @@ class Court {
     .attr('y', 330)
     .attr('width', 29.5)
     .attr('height', 140)
-    .attr('fill', 'blue');
+    // .attr('fill', 'blue');
 
   this.chart.append('rect')
     .attr('x', 470.5)
     .attr('y', 330)
     .attr('width', 29)
     .attr('height', 140)
-    .attr('fill', 'blue');
+    // .attr('fill', 'blue');
   }
 }
 

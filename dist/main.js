@@ -36953,8 +36953,9 @@ function () {
 
       this.chart.append('rect').attr('x', 246.5).attr('y', 430).attr('width', 7).attr('height', 5).attr('fill', 'white'); // cover left-side arc
 
-      this.chart.append('rect').attr('x', 0).attr('y', 330).attr('width', 29.5).attr('height', 140).attr('fill', 'blue');
-      this.chart.append('rect').attr('x', 470.5).attr('y', 330).attr('width', 29).attr('height', 140).attr('fill', 'blue');
+      this.chart.append('rect').attr('x', 0).attr('y', 330).attr('width', 29.5).attr('height', 140); // .attr('fill', 'blue');
+
+      this.chart.append('rect').attr('x', 470.5).attr('y', 330).attr('width', 29).attr('height', 140); // .attr('fill', 'blue');
     }
   }]);
 
@@ -36976,52 +36977,39 @@ module.exports = Court;
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _shots__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./shots */ "./src/shots.js");
 
 
 var Court = __webpack_require__(/*! ./court */ "./src/court.js");
 
-var db = __webpack_require__(/*! ./queries */ "./src/queries.js"); // Court Container 
+var db = __webpack_require__(/*! ./queries */ "./src/queries.js");
 
+ // Court Container 
 
 var courtContainer = {
   width: 800,
   height: 600
 };
-
-var Pool = __webpack_require__(/*! pg */ "./node_modules/pg/lib/index.js").Pool;
-
-var pool = new Pool({
-  user: 'chris',
-  host: 'localhost',
-  database: 'nba-shots-db_development',
-  password: 'password',
-  port: 5432
-}); //LEBRONS SEASON SHOTS FOR 2016-17 AND
-
-var getShots = function getShots(request, response) {
-  pool.query("SELECT * FROM Shots WHERE season='2016-17' AND player_nba_id='2544' ", function (error, results) {
-    if (error) {
-      throw error;
-    }
-
-    response.status(200).json(results.rows);
-  });
-};
-
 document.addEventListener("DOMContentLoaded", function () {
   var chartContainer = document.getElementById('chart-container');
-  var chart = d3.select(chartContainer).append('svg').attr("width", courtContainer.width).attr("height", courtContainer.height).attr('fill', 'blue');
+  var chart = d3.select(chartContainer).append('svg').attr("width", courtContainer.width).attr("height", courtContainer.height); // .attr('fill', 'blue');
+
   var court = new Court(chart);
   court.render();
-  console.log('Hello'); // d3.json('/shots').then( res => console.log(res));
+  console.log('Hello'); // const getLebronShots = () => (
+  //   axios('/shots')
+  // )
+  // let poop;
+  // const setVariable = (result) => {
+  //   return result.data
+  // };
+  // let data = getLebronShots().then(setVariable)
+  // data.then(res => poop = res);
+  // console.log("wait")
+  // console.log(getLebronShots())
 
-  var getLebronShots = function getLebronShots() {
-    return axios__WEBPACK_IMPORTED_MODULE_0___default()('/shots');
-  };
-
-  getLebronShots().then(function (res) {
-    return console.log(d3.json(res));
-  }); // console.log('Hello')
+  var shots = new _shots__WEBPACK_IMPORTED_MODULE_1__["default"](chart);
+  shots.parseShots();
 });
 
 /***/ }),
@@ -37067,6 +37055,89 @@ module.exports = {
   getShots: getShots,
   getPlayerShotsBySeason: getPlayerShotsBySeason
 };
+
+/***/ }),
+
+/***/ "./src/shots.js":
+/*!**********************!*\
+  !*** ./src/shots.js ***!
+  \**********************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var fs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! fs */ "./node_modules/node-libs-browser/mock/empty.js");
+/* harmony import */ var fs__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(fs__WEBPACK_IMPORTED_MODULE_1__);
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+
+
+var CONSTANTS = {
+  ROWS: 50,
+  COLS: 47,
+  WIDTH: 550,
+  HEIGHT: 470,
+  SHOT_OPACITY: "0.7"
+};
+
+var Shots =
+/*#__PURE__*/
+function () {
+  function Shots(svg) {
+    _classCallCheck(this, Shots);
+
+    this.svg = svg;
+    this.parseShots = this.parseShots.bind(this);
+  }
+
+  _createClass(Shots, [{
+    key: "parseShots",
+    value: function parseShots() {
+      var _this = this;
+
+      axios__WEBPACK_IMPORTED_MODULE_0___default()('/shots').then(function (res) {
+        var parsed = res.data;
+        parsed.forEach(function (shot) {
+          var shotOutcome = shot.event_type;
+          var shotX = shot.loc_x;
+          var shotY = shot.loc_y;
+
+          if (shotOutcome === 'Made Shot') {
+            _this.render([shotX, shotY], shotOutcome);
+          } else if (shotOutcome === 'Missed Shot') {
+            _this.render([shotX, shotY], shotOutcome);
+          }
+        });
+      });
+    }
+  }, {
+    key: "render",
+    value: function render(playerPos, shotOutcome) {
+      var hexbin = d3.hexbin().radius(5);
+
+      if (shotOutcome === "Made Shot") {
+        this.svg.append("g").selectAll(".hexagon").data(hexbin([playerPos])).enter().append("path").attr("d", function (d) {
+          return "M" + d.x + "," + d.y + hexbin.hexagon();
+        }).attr("stroke", "white").attr('transform', 'translate(250, 52.5)').attr("fill", "skyblue").attr("fill-opacity", CONSTANTS.SHOT_OPACITY).attr("stroke-width", "0.1px");
+      } else if (shotOutcome === "Missed Shot") {
+        this.svg.append("g").selectAll(".hexagon").data(hexbin([playerPos])).enter().append("path").attr("d", function (d) {
+          return "M" + d.x + "," + d.y + hexbin.hexagon();
+        }).attr("stroke", "white").attr('transform', 'translate(250, 52.5)').attr("fill", "darkred").attr("fill-opacity", CONSTANTS.SHOT_OPACITY).attr("stroke-width", "0.1px");
+      }
+    }
+  }]);
+
+  return Shots;
+}();
+
+/* harmony default export */ __webpack_exports__["default"] = (Shots);
 
 /***/ }),
 

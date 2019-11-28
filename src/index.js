@@ -1,6 +1,7 @@
 import axios from "axios";
 const Court = require('./court');
 const db = require('./queries');
+import Shots from './shots';
 
 
 // Court Container 
@@ -9,27 +10,6 @@ const courtContainer = {
   height: 600
 }
 
-const Pool = require('pg').Pool
-
-const pool = new Pool({
-  user: 'chris',
-  host: 'localhost',
-  database: 'nba-shots-db_development',
-  password: 'password',
-  port: 5432,
-});
-
-//LEBRONS SEASON SHOTS FOR 2016-17 AND
-
-const getShots = (request, response) => {
-  pool.query("SELECT * FROM Shots WHERE season='2016-17' AND player_nba_id='2544' ", (error, results) => {
-    if (error) {
-      throw error
-    }
-    response.status(200).json(results.rows)
-  })
-};
-
 document.addEventListener("DOMContentLoaded", () => {
 
   let chartContainer = document.getElementById('chart-container')
@@ -37,20 +17,29 @@ document.addEventListener("DOMContentLoaded", () => {
     .append('svg')
     .attr("width", courtContainer.width)
     .attr("height", courtContainer.height)
-    .attr('fill', 'blue');
+    // .attr('fill', 'blue');
 
   const court = new Court(chart)
   court.render();
 
   console.log('Hello')
 
-  // d3.json('/shots').then( res => console.log(res));
-  const getLebronShots = () => (
-    axios('/shots')
-  )
+  // const getLebronShots = () => (
+  //   axios('/shots')
+  // )
 
-  
+  // let poop;
+  // const setVariable = (result) => {
+  //   return result.data
+  // };
 
-  getLebronShots().then( res => console.log(d3.json(res)))
-  // console.log('Hello')
+  // let data = getLebronShots().then(setVariable)
+  // data.then(res => poop = res);
+
+  // console.log("wait")
+  // console.log(getLebronShots())
+
+  let shots = new Shots(chart);
+  shots.parseShots();
+
 });
