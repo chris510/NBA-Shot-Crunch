@@ -36926,7 +36926,7 @@ function () {
   _createClass(Court, [{
     key: "render",
     value: function render() {
-      var halfCourtWidth = 500;
+      var halfCourtWidth = 510;
       var halfCourtHeight = 470; // container dimensions
 
       var insidePaintWidth = 160;
@@ -36949,7 +36949,7 @@ function () {
       var rimArc = d3.arc().innerRadius(40).outerRadius(41).startAngle(-90 * (pi / 180)).endAngle(90 * (pi / 180));
       this.chart.append("path").attr("d", rimArc).attr("fill", "white").attr("transform", "translate(250, 425)"); // rim 
 
-      this.chart.append("circle").attr("cx", 250).attr("cy", 447.5).attr("r", 7.5).attr("stroke", "white"); // rim block
+      this.chart.append("circle").attr("cx", 250).attr("cy", 422.5).attr("r", 7.5).attr("stroke", "white"); // rim block
 
       this.chart.append('rect').attr('x', 246.5).attr('y', 430).attr('width', 7).attr('height', 5).attr('fill', 'white'); // cover left-side arc
 
@@ -37125,11 +37125,11 @@ function () {
       if (shotOutcome === "Made Shot") {
         this.svg.append("g").selectAll(".hexagon").data(hexbin([playerPos])).enter().append("path").attr("d", function (d) {
           return "M" + d.x + "," + d.y + hexbin.hexagon();
-        }).attr("stroke", "white").attr('transform', 'translate(250, 52.5)').attr("fill", "skyblue").attr("fill-opacity", CONSTANTS.SHOT_OPACITY).attr("stroke-width", "0.1px");
+        }).attr("stroke", "white").attr('transform', 'translate(250, 52.5)').attr("fill", "skyblue").attr("fill-opacity", CONSTANTS.SHOT_OPACITY).attr("stroke-width", "0.1px").attr("transform", "rotate(180 130,210)");
       } else if (shotOutcome === "Missed Shot") {
         this.svg.append("g").selectAll(".hexagon").data(hexbin([playerPos])).enter().append("path").attr("d", function (d) {
           return "M" + d.x + "," + d.y + hexbin.hexagon();
-        }).attr("stroke", "white").attr('transform', 'translate(250, 52.5)').attr("fill", "darkred").attr("fill-opacity", CONSTANTS.SHOT_OPACITY).attr("stroke-width", "0.1px");
+        }).attr("stroke", "white").attr('transform', 'translate(250, 52.5)').attr("fill", "darkred").attr("fill-opacity", CONSTANTS.SHOT_OPACITY).attr("stroke-width", "0.1px").attr("transform", "rotate(180 130,210)");
       }
     }
   }]);

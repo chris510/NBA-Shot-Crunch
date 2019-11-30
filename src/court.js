@@ -4,7 +4,7 @@ class Court {
   }
 
   render() {
-    const halfCourtWidth = 500;
+    const halfCourtWidth = 510;
     const halfCourtHeight = 470;
 
     // container dimensions
@@ -81,7 +81,7 @@ class Court {
   // rim 
   this.chart.append("circle")
     .attr("cx", 250)
-    .attr("cy", 447.5)
+    .attr("cy", 422.5)
     .attr("r", 7.5)
     .attr("stroke", "white");
 

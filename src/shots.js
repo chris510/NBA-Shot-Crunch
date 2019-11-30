@@ -46,7 +46,9 @@ class Shots {
                 .attr('transform', 'translate(250, 52.5)')
                 .attr("fill", "skyblue")
                 .attr("fill-opacity", CONSTANTS.SHOT_OPACITY)
-                .attr("stroke-width", "0.1px");
+                .attr("stroke-width", "0.1px")
+                .attr("transform", "rotate(180 130,210)");
+
         } else if (shotOutcome === "Missed Shot") {
             this.svg.append("g")
                 .selectAll(".hexagon")
@@ -59,7 +61,8 @@ class Shots {
                 .attr('transform', 'translate(250, 52.5)')
                 .attr("fill", "darkred")
                 .attr("fill-opacity", CONSTANTS.SHOT_OPACITY)
-                .attr("stroke-width", "0.1px");
+                .attr("stroke-width", "0.1px")
+                .attr("transform", "rotate(180 130,210)");
         }
   }
 }
