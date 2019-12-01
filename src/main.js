@@ -16,13 +16,14 @@ class Main {
     PLAYERS.forEach(player => {
       axios(`https://nba-players.herokuapp.com/players/${player.last}/${player.first}`).then(res => {
         let img = new Image();
+        img.width = '250';
+        img.height = '200';
         img.src = `${res.config.url}`;
-        document.getElementById('nba-profile-pic-container').appendChild(img); 
-        // this.html.append('img')
-        //   .attr("src", `${res.config.url}`)
-        //   .attr("width", "300")
-        //   .attr("height", "300")
-        //   .attr("alt", `${player.first} ${player.last}`);
+        document.getElementById('nba-profile-pic').appendChild(img);
+
+        let name = document.createElement('nba-player-name');
+        name.innerHTML = `${player.first} ${player.last}`;
+        document.getElementById('nba-profile-pic').appendChild(name);
       })
     })
   }

@@ -37064,12 +37064,13 @@ function () {
       PLAYERS.forEach(function (player) {
         axios("https://nba-players.herokuapp.com/players/".concat(player.last, "/").concat(player.first)).then(function (res) {
           var img = new Image();
+          img.width = '250';
+          img.height = '200';
           img.src = "".concat(res.config.url);
-          document.getElementById('nba-profile-pic-container').appendChild(img); // this.html.append('img')
-          //   .attr("src", `${res.config.url}`)
-          //   .attr("width", "300")
-          //   .attr("height", "300")
-          //   .attr("alt", `${player.first} ${player.last}`);
+          document.getElementById('nba-profile-pic').appendChild(img);
+          var name = document.createElement('nba-player-name');
+          name.innerHTML = "".concat(player.first, " ").concat(player.last);
+          document.getElementById('nba-profile-pic').appendChild(name);
         });
       });
     }
