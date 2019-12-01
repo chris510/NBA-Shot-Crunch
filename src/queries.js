@@ -8,10 +8,10 @@ const pool = new Pool({
   port: 5432,
 });
 
-//LEBRONS SEASON SHOTS FOR 2016-17 AND
+// Stephen Curry's shots form 16-17 season;
 
 const getShots = (request, response) => {
-  pool.query("SELECT * FROM Shots WHERE season='2016-17' AND player_nba_id='2544' ", (error, results) => {
+  pool.query("SELECT * FROM Shots WHERE season='2016-17' AND player_nba_id='201939' ", (error, results) => {
     if (error) {
       throw error
     }

@@ -36926,7 +36926,7 @@ function () {
   _createClass(Court, [{
     key: "render",
     value: function render() {
-      var halfCourtWidth = 510;
+      var halfCourtWidth = 515;
       var halfCourtHeight = 470; // container dimensions
 
       var insidePaintWidth = 160;
@@ -36956,6 +36956,13 @@ function () {
       this.chart.append('rect').attr('x', 0).attr('y', 330).attr('width', 29.5).attr('height', 140); // .attr('fill', 'blue');
 
       this.chart.append('rect').attr('x', 470.5).attr('y', 330).attr('width', 29).attr('height', 140); // .attr('fill', 'blue');
+      // key made 
+
+      this.chart.append('rect').attr('x', 470.5).attr('y', 60).attr('width', 40).attr('height', 12).attr('fill', 'skyblue');
+      this.chart.append("text").attr("x", 434).attr("y", 65).attr("font-size", 14).attr("dy", ".35em").text("Made").style("fill", "#D5D5D5"); // key missed
+
+      this.chart.append('rect').attr('x', 470.5).attr('y', 40).attr('width', 40).attr('height', 12).attr('fill', 'darkred');
+      this.chart.append("text").attr("x", 428).attr("y", 45).attr("dy", ".35em").attr("font-size", 14).text("Missed").style("fill", "#D5D5D5");
     }
   }]);
 
@@ -37029,10 +37036,10 @@ var pool = new Pool({
   database: 'nba-shots-db_development',
   password: 'password',
   port: 5432
-}); //LEBRONS SEASON SHOTS FOR 2016-17 AND
+}); // Stephen Curry's shots form 16-17 season;
 
 var getShots = function getShots(request, response) {
-  pool.query("SELECT * FROM Shots WHERE season='2016-17' AND player_nba_id='2544' ", function (error, results) {
+  pool.query("SELECT * FROM Shots WHERE season='2016-17' AND player_nba_id='201939' ", function (error, results) {
     if (error) {
       throw error;
     }
@@ -37084,7 +37091,7 @@ var CONSTANTS = {
   COLS: 47,
   WIDTH: 550,
   HEIGHT: 470,
-  SHOT_OPACITY: "0.7"
+  SHOT_OPACITY: "0.8"
 };
 
 var Shots =
@@ -37125,11 +37132,11 @@ function () {
       if (shotOutcome === "Made Shot") {
         this.svg.append("g").selectAll(".hexagon").data(hexbin([playerPos])).enter().append("path").attr("d", function (d) {
           return "M" + d.x + "," + d.y + hexbin.hexagon();
-        }).attr("stroke", "white").attr('transform', 'translate(250, 52.5)').attr("fill", "skyblue").attr("fill-opacity", CONSTANTS.SHOT_OPACITY).attr("stroke-width", "0.1px").attr("transform", "rotate(180 130,210)");
+        }).attr("stroke", "white").attr('transform', 'translate(250, 52.5)').attr("fill", "skyblue").attr("fill-opacity", CONSTANTS.SHOT_OPACITY).attr("stroke-width", "0.1px").attr("transform", "rotate(180 125,208.5)");
       } else if (shotOutcome === "Missed Shot") {
         this.svg.append("g").selectAll(".hexagon").data(hexbin([playerPos])).enter().append("path").attr("d", function (d) {
           return "M" + d.x + "," + d.y + hexbin.hexagon();
-        }).attr("stroke", "white").attr('transform', 'translate(250, 52.5)').attr("fill", "darkred").attr("fill-opacity", CONSTANTS.SHOT_OPACITY).attr("stroke-width", "0.1px").attr("transform", "rotate(180 130,210)");
+        }).attr("stroke", "white").attr('transform', 'translate(250, 52.5)').attr("fill", "darkred").attr("fill-opacity", CONSTANTS.SHOT_OPACITY).attr("stroke-width", "0.1px").attr("transform", "rotate(180 125,208.5)");
       }
     }
   }]);

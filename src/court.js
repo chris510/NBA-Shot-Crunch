@@ -4,7 +4,7 @@ class Court {
   }
 
   render() {
-    const halfCourtWidth = 510;
+    const halfCourtWidth = 515;
     const halfCourtHeight = 470;
 
     // container dimensions
@@ -107,6 +107,38 @@ class Court {
     .attr('width', 29)
     .attr('height', 140)
     // .attr('fill', 'blue');
+
+    // key made 
+  this.chart.append('rect')
+    .attr('x', 470.5)
+    .attr('y', 60)
+    .attr('width', 40)
+    .attr('height', 12)
+    .attr('fill', 'skyblue')
+
+  this.chart.append("text")
+    .attr("x", 434)
+    .attr("y", 65)
+    .attr("font-size", 14)
+    .attr("dy", ".35em")
+    .text("Made")
+    .style("fill", "#D5D5D5")
+
+  // key missed
+  this.chart.append('rect')
+    .attr('x', 470.5)
+    .attr('y', 40)
+    .attr('width', 40)
+    .attr('height', 12)
+    .attr('fill', 'darkred')
+
+  this.chart.append("text")
+    .attr("x", 428)
+    .attr("y", 45)
+    .attr("dy", ".35em")
+    .attr("font-size", 14)
+    .text("Missed")
+    .style("fill", "#D5D5D5")
   }
 }
 
