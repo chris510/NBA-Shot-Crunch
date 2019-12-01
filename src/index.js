@@ -1,8 +1,11 @@
 import axios from "axios";
 const Court = require('./court');
 const db = require('./queries');
+const dropdown = require('./dropdown');
 import Shots from './shots';
 import Main from './main';
+
+
 
 window.axios = axios;
 
@@ -32,5 +35,14 @@ document.addEventListener("DOMContentLoaded", () => {
   const main = new Main();
   // main.render();
   main.getHeadshots();
+
+  //get elements
+  const dropdownTitle = document.querySelector('.dropdown .title');
+  const dropdownOptions = document.querySelectorAll('.dropdown .option');
+
+  //bind listeners to these elements
+  dropdownTitle.addEventListener('click', dropdown.toggleMenuDisplay);
+  dropdownOptions.forEach(option => option.addEventListener('click', dropdown.handleOptionSelected));
+  document.querySelector('.dropdown .title').addEventListener('change', dropdown.handleTitleChange);
 
 });

@@ -19,6 +19,7 @@ class Main {
         img.width = '250';
         img.height = '200';
         img.src = `${res.config.url}`;
+        img.color = 'black';
         document.getElementById('nba-profile-pic').appendChild(img);
 
         let name = document.createElement('nba-player-name');
@@ -26,6 +27,10 @@ class Main {
         document.getElementById('nba-profile-pic').appendChild(name);
       })
     })
+  }
+
+  seasonSelector(selectedSeason = '2015-2016') {
+
   }
 
   render() {

@@ -36973,6 +36973,72 @@ module.exports = Court;
 
 /***/ }),
 
+/***/ "./src/dropdown.js":
+/*!*************************!*\
+  !*** ./src/dropdown.js ***!
+  \*************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function toggleClass(elem, className) {
+  if (elem.className.indexOf(className) !== -1) {
+    elem.className = elem.className.replace(className, '');
+  } else {
+    elem.className = elem.className.replace(/\s+/g, ' ') + ' ' + className;
+  }
+
+  return elem;
+}
+
+function toggleDisplay(elem) {
+  var curDisplayStyle = elem.style.display;
+
+  if (curDisplayStyle === 'none' || curDisplayStyle === '') {
+    elem.style.display = 'block';
+  } else {
+    elem.style.display = 'none';
+  }
+}
+
+function toggleMenuDisplay(e) {
+  var dropdown = e.currentTarget.parentNode;
+  var menu = dropdown.querySelector('.menu');
+  var icon = dropdown.querySelector('.fa-angle-right');
+  toggleClass(menu, 'hide');
+  toggleClass(icon, 'rotate-90');
+}
+
+function handleOptionSelected(e) {
+  toggleClass(e.target.parentNode, 'hide');
+  var id = e.target.id;
+  var newValue = e.target.textContent + ' ';
+  var titleElem = document.querySelector('.dropdown .title');
+  var icon = document.querySelector('.dropdown .title .fa');
+  titleElem.textContent = newValue;
+  titleElem.appendChild(icon); //trigger custom event
+
+  document.querySelector('.dropdown .title').dispatchEvent(new Event('change')); //setTimeout is used so transition is properly shown
+
+  setTimeout(function () {
+    return toggleClass(icon, 'rotate-90', 0);
+  });
+}
+
+function handleTitleChange(e) {
+  var result = document.getElementById('result');
+  result.innerHTML = 'The result is: ' + e.target.textContent;
+}
+
+module.exports = {
+  toggleClass: toggleClass,
+  toggleDisplay: toggleDisplay,
+  toggleMenuDisplay: toggleMenuDisplay,
+  handleOptionSelected: handleOptionSelected,
+  handleTitleChange: handleTitleChange
+};
+
+/***/ }),
+
 /***/ "./src/index.js":
 /*!**********************!*\
   !*** ./src/index.js ***!
@@ -36991,6 +37057,8 @@ __webpack_require__.r(__webpack_exports__);
 var Court = __webpack_require__(/*! ./court */ "./src/court.js");
 
 var db = __webpack_require__(/*! ./queries */ "./src/queries.js");
+
+var dropdown = __webpack_require__(/*! ./dropdown */ "./src/dropdown.js");
 
 
 
@@ -37011,7 +37079,16 @@ document.addEventListener("DOMContentLoaded", function () {
   var playerImgContainer = document.getElementById('nba-profile-pic-container');
   var main = new _main__WEBPACK_IMPORTED_MODULE_2__["default"](); // main.render();
 
-  main.getHeadshots();
+  main.getHeadshots(); //get elements
+
+  var dropdownTitle = document.querySelector('.dropdown .title');
+  var dropdownOptions = document.querySelectorAll('.dropdown .option'); //bind listeners to these elements
+
+  dropdownTitle.addEventListener('click', dropdown.toggleMenuDisplay);
+  dropdownOptions.forEach(function (option) {
+    return option.addEventListener('click', dropdown.handleOptionSelected);
+  });
+  document.querySelector('.dropdown .title').addEventListener('change', dropdown.handleTitleChange);
 });
 
 /***/ }),
@@ -37067,12 +37144,18 @@ function () {
           img.width = '250';
           img.height = '200';
           img.src = "".concat(res.config.url);
+          img.color = 'black';
           document.getElementById('nba-profile-pic').appendChild(img);
           var name = document.createElement('nba-player-name');
           name.innerHTML = "".concat(player.first, " ").concat(player.last);
           document.getElementById('nba-profile-pic').appendChild(name);
         });
       });
+    }
+  }, {
+    key: "seasonSelector",
+    value: function seasonSelector() {
+      var selectedSeason = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '2015-2016';
     }
   }, {
     key: "render",

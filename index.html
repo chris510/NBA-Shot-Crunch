@@ -11,6 +11,7 @@
   <script src="./dist/main.js" type="text/javascript"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
+  <link rel="stylesheet" href="./src/css/main.css">
 
   <title>NBA Stat-Crunch</title>
 </head>
@@ -20,7 +21,20 @@
     <div id="app" href="/">
       <h1>NBA Stat-Crunch</h1>
       HELLO
-        <div id="nba-profile-pic"></div>
+      <div id="nba-profile-pic"></div>
+      <div id="select-season-container">
+        Season
+        <div class='dropdown'>
+            <div class='title pointerCursor'>Select an option <i class="fa fa-angle-right"></i></div>
+            
+            <div class='menu pointerCursor hide'>
+              <div class='option' id='option1'>Option 1</div>
+              <div class='option' id='option2'>Option 2</div>
+              <div class='option' id='option3'>Option 3</div>
+              <div class='option' id='option4'>Option 4</div>
+            </div>
+          </div>
+      </div>
       <div id="svg-container">
         THIS IS THE SVG
       </div>
