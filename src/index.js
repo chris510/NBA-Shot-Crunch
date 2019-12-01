@@ -2,6 +2,9 @@ import axios from "axios";
 const Court = require('./court');
 const db = require('./queries');
 import Shots from './shots';
+import Main from './main';
+
+window.axios = axios;
 
 
 // Court Container 
@@ -22,24 +25,12 @@ document.addEventListener("DOMContentLoaded", () => {
   const court = new Court(chart)
   court.render();
 
-  console.log('Hello')
-
-  // const getLebronShots = () => (
-  //   axios('/shots')
-  // )
-
-  // let poop;
-  // const setVariable = (result) => {
-  //   return result.data
-  // };
-
-  // let data = getLebronShots().then(setVariable)
-  // data.then(res => poop = res);
-
-  // console.log("wait")
-  // console.log(getLebronShots())
-
   let shots = new Shots(chart);
   shots.parseShots();
+
+  let playerImgContainer = document.getElementById('nba-profile-pic-container')
+  const main = new Main();
+  // main.render();
+  main.getHeadshots();
 
 });

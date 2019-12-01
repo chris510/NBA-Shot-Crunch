@@ -36985,13 +36985,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _shots__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./shots */ "./src/shots.js");
+/* harmony import */ var _main__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./main */ "./src/main.js");
 
 
 var Court = __webpack_require__(/*! ./court */ "./src/court.js");
 
 var db = __webpack_require__(/*! ./queries */ "./src/queries.js");
 
- // Court Container 
+
+
+window.axios = axios__WEBPACK_IMPORTED_MODULE_0___default.a; // Court Container 
 
 var courtContainer = {
   width: 800,
@@ -37003,21 +37006,84 @@ document.addEventListener("DOMContentLoaded", function () {
 
   var court = new Court(chart);
   court.render();
-  console.log('Hello'); // const getLebronShots = () => (
-  //   axios('/shots')
-  // )
-  // let poop;
-  // const setVariable = (result) => {
-  //   return result.data
-  // };
-  // let data = getLebronShots().then(setVariable)
-  // data.then(res => poop = res);
-  // console.log("wait")
-  // console.log(getLebronShots())
-
   var shots = new _shots__WEBPACK_IMPORTED_MODULE_1__["default"](chart);
   shots.parseShots();
+  var playerImgContainer = document.getElementById('nba-profile-pic-container');
+  var main = new _main__WEBPACK_IMPORTED_MODULE_2__["default"](); // main.render();
+
+  main.getHeadshots();
 });
+
+/***/ }),
+
+/***/ "./src/main.js":
+/*!*********************!*\
+  !*** ./src/main.js ***!
+  \*********************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var PLAYERS = [{
+  first: 'Stephen',
+  last: 'Curry'
+}, {
+  first: 'Lebron',
+  last: 'James'
+}, {
+  first: 'James',
+  last: 'Harden'
+}, {
+  first: 'Anthony',
+  last: 'Davis'
+}, {
+  first: 'Damian',
+  last: 'Lillard'
+}];
+
+var Main =
+/*#__PURE__*/
+function () {
+  function Main() {
+    _classCallCheck(this, Main);
+
+    // this.html = html;
+    this.getHeadshots = this.getHeadshots.bind(this);
+  }
+
+  _createClass(Main, [{
+    key: "getHeadshots",
+    value: function getHeadshots() {
+      PLAYERS.forEach(function (player) {
+        axios("https://nba-players.herokuapp.com/players/".concat(player.last, "/").concat(player.first)).then(function (res) {
+          var img = new Image();
+          img.src = "".concat(res.config.url);
+          document.getElementById('nba-profile-pic-container').appendChild(img); // this.html.append('img')
+          //   .attr("src", `${res.config.url}`)
+          //   .attr("width", "300")
+          //   .attr("height", "300")
+          //   .attr("alt", `${player.first} ${player.last}`);
+        });
+      });
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      this.getHeadshots();
+    }
+  }]);
+
+  return Main;
+}();
+
+/* harmony default export */ __webpack_exports__["default"] = (Main);
 
 /***/ }),
 
