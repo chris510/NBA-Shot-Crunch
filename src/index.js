@@ -3,7 +3,7 @@ const Court = require('./court');
 const db = require('./queries');
 const dropdown = require('./dropdown');
 import Shots from './shots';
-import Main from './main';
+import Main from './nav';
 const carousel = require('./carousel');
 
 
@@ -32,8 +32,8 @@ document.addEventListener("DOMContentLoaded", () => {
   let shots = new Shots(chart);
   shots.parseShots();
 
-  const playerImg = document.querySelector('.carousel');
-  playerImg.addEventListener('click', (e) => {
+  const player = document.querySelector('.carousel');
+  player.addEventListener('click', (e) => {
     shots.clearShots();
 
     let playerName = e.target.alt.split(' ');
@@ -41,7 +41,14 @@ document.addEventListener("DOMContentLoaded", () => {
     let lastName = playerName[1];
 
     shots.parseShots(firstName, lastName)
-  } );
+  });
+
+  const season = document.querySelector('.title');
+  season.addEventListener('change', (e) => {
+    shots.clearShots();
+    let seasonRange = e.target.innerText;
+    shots.parseShots('Stephen', 'Curry', seasonRange);
+  })
 
   const main = new Main();
   main.render();

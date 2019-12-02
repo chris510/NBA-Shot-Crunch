@@ -37145,8 +37145,7 @@ function handleOptionSelected(e) {
 }
 
 function handleTitleChange(e) {
-  var result = document.getElementById('result');
-  result.innerHTML = 'The result is: ' + e.target.textContent;
+  var result = document.getElementById('result'); // result.innerHTML = 'The result is: ' + e.target.textContent;
 }
 
 module.exports = {
@@ -37171,7 +37170,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _shots__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./shots */ "./src/shots.js");
-/* harmony import */ var _main__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./main */ "./src/main.js");
+/* harmony import */ var _nav__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./nav */ "./src/nav.js");
 
 
 var Court = __webpack_require__(/*! ./court */ "./src/court.js");
@@ -37199,15 +37198,21 @@ document.addEventListener("DOMContentLoaded", function () {
   court.render();
   var shots = new _shots__WEBPACK_IMPORTED_MODULE_1__["default"](chart);
   shots.parseShots();
-  var playerImg = document.querySelector('.carousel');
-  playerImg.addEventListener('click', function (e) {
+  var player = document.querySelector('.carousel');
+  player.addEventListener('click', function (e) {
     shots.clearShots();
     var playerName = e.target.alt.split(' ');
     var firstName = playerName[0];
     var lastName = playerName[1];
     shots.parseShots(firstName, lastName);
   });
-  var main = new _main__WEBPACK_IMPORTED_MODULE_2__["default"]();
+  var season = document.querySelector('.title');
+  season.addEventListener('change', function (e) {
+    shots.clearShots();
+    var seasonRange = e.target.innerText;
+    shots.parseShots('Stephen', 'Curry', seasonRange);
+  });
+  var main = new _nav__WEBPACK_IMPORTED_MODULE_2__["default"]();
   main.render(); //get elements
 
   var dropdownTitle = document.querySelector('.dropdown .title');
@@ -37222,10 +37227,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
 /***/ }),
 
-/***/ "./src/main.js":
-/*!*********************!*\
-  !*** ./src/main.js ***!
-  \*********************/
+/***/ "./src/nav.js":
+/*!********************!*\
+  !*** ./src/nav.js ***!
+  \********************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -37279,9 +37284,10 @@ function () {
           img.alt = "".concat(player.first, " ").concat(player.last); // img.className = 'carousel__photo'
           // document.getElementById('nba-profile-pic').appendChild(img);
 
-          document.querySelector('.carousel').appendChild(img); // let name = document.createElement('nba-player-name');
-          // name.innerHTML = `${player.first} ${player.last}`;
-          // document.getElementById('nba-profile-pic').appendChild(name);
+          document.querySelector('.carousel').appendChild(img);
+          var name = document.createElement('nba-player-name');
+          name.innerHTML = "".concat(player.first, " ").concat(player.last);
+          document.querySelector('.carousel').appendChild(name);
         });
       });
     }
@@ -37290,11 +37296,11 @@ function () {
     value: function seasonSelector() {
       var selectedSeason = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '2015-2016';
 
-      for (var i = 2014; i < 2019; i++) {
+      for (var i = 2015; i < 2018; i++) {
         var option = document.createElement('div');
         option.setAttribute('class', 'option');
         option.setAttribute('id', 'option1');
-        option.innerHTML = "".concat(i, "-").concat(i + 1);
+        option.innerHTML = "".concat(i, "-").concat(i + 1 - 2000);
         document.querySelector(".menu").appendChild(option);
       }
     }

@@ -31,19 +31,19 @@ class Main {
         // document.getElementById('nba-profile-pic').appendChild(img);
         document.querySelector('.carousel').appendChild(img);
 
-        // let name = document.createElement('nba-player-name');
-        // name.innerHTML = `${player.first} ${player.last}`;
-        // document.getElementById('nba-profile-pic').appendChild(name);
+        let name = document.createElement('nba-player-name');
+        name.innerHTML = `${player.first} ${player.last}`;
+        document.querySelector('.carousel').appendChild(name);
       })
     })
   }
 
   seasonSelector(selectedSeason = '2015-2016') {
-    for (let i = 2014; i < 2019; i++) {
+    for (let i = 2015; i < 2018; i++) {
       let option = document.createElement('div');
       option.setAttribute('class', 'option');
       option.setAttribute('id', 'option1');
-      option.innerHTML = `${i}-${i+1}`;
+      option.innerHTML = `${i}-${(i+1)-2000}`;
       document.querySelector(".menu").appendChild(option);
     }
   }
