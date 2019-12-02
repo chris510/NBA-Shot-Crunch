@@ -2,3 +2,22 @@
 @import './dropdown.css';
 @import './carousel.css';
 
+#app {
+  display: flex;
+}
+
+.app-title {
+  background-color: greenyellow;
+}
+
+.carousel-wrapper {
+  background-color: lightcoral;
+}
+
+#select-season-container {
+  background-color: lightseagreen;
+}
+
+#chart-container {
+  background-color: lightgrey;
+}

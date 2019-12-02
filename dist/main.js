@@ -37058,9 +37058,9 @@ function () {
 
       this.chart.append('rect').attr('x', 170).attr('y', 280).attr('width', insidePaintWidth).attr('height', insidePaintHeight).attr('stroke', 'white'); // three- point side left line
 
-      this.chart.append("line").attr("x1", 30).attr("y1", 500).attr("x2", 30).attr("y2", cornerThreePoint).attr("stroke", "white"); // three - point side right line
+      this.chart.append("line").attr("x1", 30).attr("y1", 470).attr("x2", 30).attr("y2", cornerThreePoint).attr("stroke", "white"); // three - point side right line
 
-      this.chart.append("line").attr("x1", 470).attr("y1", 500).attr("x2", 470).attr("y2", cornerThreePoint).attr("stroke", "white");
+      this.chart.append("line").attr("x1", 470).attr("y1", 470).attr("x2", 470).attr("y2", cornerThreePoint).attr("stroke", "white");
       var threePointArc = d3.arc().innerRadius(239).outerRadius(240).startAngle(-90 * (pi / 180)).endAngle(90 * (pi / 180));
       this.chart.append("path").attr("d", threePointArc).attr("fill", "white").attr("transform", "translate(250, 425)"); // backboard
 
@@ -37078,11 +37078,11 @@ function () {
       this.chart.append('rect').attr('x', 470.5).attr('y', 330).attr('width', 29).attr('height', 140); // .attr('fill', 'blue');
       // key made 
 
-      this.chart.append('rect').attr('x', 470.5).attr('y', 60).attr('width', 40).attr('height', 12).attr('fill', 'skyblue');
-      this.chart.append("text").attr("x", 434).attr("y", 65).attr("font-size", 14).attr("dy", ".35em").text("Made").style("fill", "#D5D5D5"); // key missed
+      this.chart.append('rect').attr('x', 60).attr('y', 30).attr('width', 40).attr('height', 12).attr('fill', 'skyblue');
+      this.chart.append("text").attr("x", 15).attr("y", 35).attr("font-size", 14).attr("dy", ".35em").text("Made").style("fill", "#D5D5D5"); // key missed
 
-      this.chart.append('rect').attr('x', 470.5).attr('y', 40).attr('width', 40).attr('height', 12).attr('fill', 'darkred');
-      this.chart.append("text").attr("x", 428).attr("y", 45).attr("dy", ".35em").attr("font-size", 14).text("Missed").style("fill", "#D5D5D5");
+      this.chart.append('rect').attr('x', 60).attr('y', 10).attr('width', 40).attr('height', 12).attr('fill', 'darkred');
+      this.chart.append("text").attr("x", 10).attr("y", 15).attr("dy", ".35em").attr("font-size", 14).text("Missed").style("fill", "#D5D5D5");
     }
   }]);
 
@@ -37198,19 +37198,21 @@ document.addEventListener("DOMContentLoaded", function () {
   court.render();
   var shots = new _shots__WEBPACK_IMPORTED_MODULE_1__["default"](chart);
   shots.parseShots();
+  var firstName = 'Stephen';
+  var lastName = 'Curry';
   var player = document.querySelector('.carousel');
   player.addEventListener('click', function (e) {
     shots.clearShots();
     var playerName = e.target.alt.split(' ');
-    var firstName = playerName[0];
-    var lastName = playerName[1];
+    firstName = playerName[0];
+    lastName = playerName[1];
     shots.parseShots(firstName, lastName);
   });
   var season = document.querySelector('.title');
   season.addEventListener('change', function (e) {
     shots.clearShots();
     var seasonRange = e.target.innerText;
-    shots.parseShots('Stephen', 'Curry', seasonRange);
+    shots.parseShots(firstName, lastName, seasonRange);
   });
   var main = new _nav__WEBPACK_IMPORTED_MODULE_2__["default"]();
   main.render(); //get elements
@@ -37248,8 +37250,10 @@ var PLAYERS = [{
 }, {
   first: 'Lebron',
   last: 'James'
-} // {first: 'James', last: 'Harden'},
-// {first: 'Anthony', last: 'Davis'},
+}, {
+  first: 'James',
+  last: 'Harden'
+} // {first: 'Anthony', last: 'Davis'},
 // {first: 'Damian', last: 'Lillard'}
 ];
 

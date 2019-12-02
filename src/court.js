@@ -33,7 +33,7 @@ class Court {
   // three- point side left line
   this.chart.append("line")
     .attr("x1", 30)
-    .attr("y1", 500)
+    .attr("y1", 470)
     .attr("x2", 30)
     .attr("y2", cornerThreePoint)
     .attr("stroke", "white");
@@ -41,7 +41,7 @@ class Court {
   // three - point side right line
   this.chart.append("line")
     .attr("x1", 470)
-    .attr("y1", 500)
+    .attr("y1", 470)
     .attr("x2", 470)
     .attr("y2", cornerThreePoint)
     .attr("stroke", "white");
@@ -110,15 +110,15 @@ class Court {
 
     // key made 
   this.chart.append('rect')
-    .attr('x', 470.5)
-    .attr('y', 60)
+    .attr('x', 60)
+    .attr('y', 30)
     .attr('width', 40)
     .attr('height', 12)
     .attr('fill', 'skyblue')
 
   this.chart.append("text")
-    .attr("x", 434)
-    .attr("y", 65)
+    .attr("x", 15)
+    .attr("y", 35)
     .attr("font-size", 14)
     .attr("dy", ".35em")
     .text("Made")
@@ -126,15 +126,15 @@ class Court {
 
   // key missed
   this.chart.append('rect')
-    .attr('x', 470.5)
-    .attr('y', 40)
+    .attr('x', 60)
+    .attr('y', 10)
     .attr('width', 40)
     .attr('height', 12)
     .attr('fill', 'darkred')
 
   this.chart.append("text")
-    .attr("x", 428)
-    .attr("y", 45)
+    .attr("x", 10)
+    .attr("y", 15)
     .attr("dy", ".35em")
     .attr("font-size", 14)
     .text("Missed")

@@ -1,7 +1,7 @@
 const PLAYERS = [
   {first: 'Stephen', last: 'Curry'},
-  {first: 'Lebron', last: 'James'}
-  // {first: 'James', last: 'Harden'},
+  {first: 'Lebron', last: 'James'},
+  {first: 'James', last: 'Harden'}
   // {first: 'Anthony', last: 'Davis'},
   // {first: 'Damian', last: 'Lillard'}
 ]

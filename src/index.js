@@ -6,10 +6,7 @@ import Shots from './shots';
 import Main from './nav';
 const carousel = require('./carousel');
 
-
-
 window.axios = axios;
-
 
 // Court Container 
 const courtContainer = {
@@ -32,13 +29,16 @@ document.addEventListener("DOMContentLoaded", () => {
   let shots = new Shots(chart);
   shots.parseShots();
 
+  let firstName = 'Stephen';
+  let lastName = 'Curry';
+
   const player = document.querySelector('.carousel');
   player.addEventListener('click', (e) => {
     shots.clearShots();
 
     let playerName = e.target.alt.split(' ');
-    let firstName = playerName[0];
-    let lastName = playerName[1];
+    firstName = playerName[0];
+    lastName = playerName[1];
 
     shots.parseShots(firstName, lastName)
   });
@@ -47,7 +47,7 @@ document.addEventListener("DOMContentLoaded", () => {
   season.addEventListener('change', (e) => {
     shots.clearShots();
     let seasonRange = e.target.innerText;
-    shots.parseShots('Stephen', 'Curry', seasonRange);
+    shots.parseShots(firstName, lastName, seasonRange);
   })
 
   const main = new Main();
