@@ -37,7 +37,7 @@
   },
   "scripts": {
     "build": "rm -rf dist && webpack --mode development --config webpack.server.config.js && webpack --mode development",
-    "start": "nodemon server.js",
+    "start": "node server.js",
     "go": "webpack --watch --mode=development"
   },
   "author": "",
