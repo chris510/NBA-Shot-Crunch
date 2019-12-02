@@ -4,6 +4,7 @@ const db = require('./queries');
 const dropdown = require('./dropdown');
 import Shots from './shots';
 import Main from './main';
+const carousel = require('./carousel');
 
 
 
@@ -44,5 +45,7 @@ document.addEventListener("DOMContentLoaded", () => {
   dropdownTitle.addEventListener('click', dropdown.toggleMenuDisplay);
   dropdownOptions.forEach(option => option.addEventListener('click', dropdown.handleOptionSelected));
   document.querySelector('.dropdown .title').addEventListener('change', dropdown.handleTitleChange);
+
+  // carousel.carouselListener();
 
 });

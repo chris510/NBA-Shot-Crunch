@@ -1,9 +1,9 @@
 const PLAYERS = [
   {first: 'Stephen', last: 'Curry'},
-  {first: 'Lebron', last: 'James'},
-  {first: 'James', last: 'Harden'},
-  {first: 'Anthony', last: 'Davis'},
-  {first: 'Damian', last: 'Lillard'}
+  {first: 'Lebron', last: 'James'}
+  // {first: 'James', last: 'Harden'},
+  // {first: 'Anthony', last: 'Davis'},
+  // {first: 'Damian', last: 'Lillard'}
 ]
 
 class Main {
@@ -14,18 +14,26 @@ class Main {
   }
 
   getHeadshots() {
-    PLAYERS.forEach(player => {
+    PLAYERS.forEach((player, idx) => {
       axios(`https://nba-players.herokuapp.com/players/${player.last}/${player.first}`).then(res => {
         let img = new Image();
+        if (idx === 0) {
+          img.className='carousel__photo initial'
+        } else {
+          img.className = 'carousel__photo'
+        }
         img.width = '250';
         img.height = '200';
         img.src = `${res.config.url}`;
         img.color = 'black';
-        document.getElementById('nba-profile-pic').appendChild(img);
+        img.alt = `${player.first} ${player.last}`;
+        // img.className = 'carousel__photo'
+        // document.getElementById('nba-profile-pic').appendChild(img);
+        document.querySelector('.carousel').appendChild(img);
 
-        let name = document.createElement('nba-player-name');
-        name.innerHTML = `${player.first} ${player.last}`;
-        document.getElementById('nba-profile-pic').appendChild(name);
+        // let name = document.createElement('nba-player-name');
+        // name.innerHTML = `${player.first} ${player.last}`;
+        // document.getElementById('nba-profile-pic').appendChild(name);
       })
     })
   }

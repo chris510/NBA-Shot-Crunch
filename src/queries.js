@@ -10,6 +10,7 @@ const pool = new Pool({
 
 // Stephen Curry's shots form 16-17 season;
 
+
 const getShots = (request, response) => {
   pool.query("SELECT * FROM Shots WHERE season='2016-17' AND player_nba_id='201939' ", (error, results) => {
     if (error) {
