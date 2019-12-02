@@ -32,9 +32,18 @@ document.addEventListener("DOMContentLoaded", () => {
   let shots = new Shots(chart);
   shots.parseShots();
 
-  let playerImgContainer = document.getElementById('nba-profile-pic-container')
+  const playerImg = document.querySelector('.carousel');
+  playerImg.addEventListener('click', (e) => {
+    shots.clearShots();
+
+    let playerName = e.target.alt.split(' ');
+    let firstName = playerName[0];
+    let lastName = playerName[1];
+
+    shots.parseShots(firstName, lastName)
+  } );
+
   const main = new Main();
-  // main.render();
   main.render();
 
   //get elements

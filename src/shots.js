@@ -12,13 +12,18 @@ const CONSTANTS = {
 class Shots {
   constructor(svg) {
     this.svg = svg;
+    this.clearShots = this.clearShots.bind(this);
     this.parseShots = this.parseShots.bind(this);
     this.renderShots = this.renderShots.bind(this);
-  };
+  }
 
-  parseShots() {
+  clearShots() {
+    d3.selectAll("g").remove();
+  }
+
+  parseShots(firstName = 'Stephen', lastName = 'Curry', season = '2015-16') {
     // axios('/shots')
-    d3.csv(`./data/stephen_curry_2015-16.csv`).then(shots => {
+    d3.csv(`./data/${firstName}_${lastName}_${season}.csv`).then(shots => {
         shots.forEach( shot => {
           let shotOutcome = shot.event_type;
           let shotX = shot.loc_x;

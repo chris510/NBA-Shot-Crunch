@@ -37199,9 +37199,15 @@ document.addEventListener("DOMContentLoaded", function () {
   court.render();
   var shots = new _shots__WEBPACK_IMPORTED_MODULE_1__["default"](chart);
   shots.parseShots();
-  var playerImgContainer = document.getElementById('nba-profile-pic-container');
-  var main = new _main__WEBPACK_IMPORTED_MODULE_2__["default"](); // main.render();
-
+  var playerImg = document.querySelector('.carousel');
+  playerImg.addEventListener('click', function (e) {
+    shots.clearShots();
+    var playerName = e.target.alt.split(' ');
+    var firstName = playerName[0];
+    var lastName = playerName[1];
+    shots.parseShots(firstName, lastName);
+  });
+  var main = new _main__WEBPACK_IMPORTED_MODULE_2__["default"]();
   main.render(); //get elements
 
   var dropdownTitle = document.querySelector('.dropdown .title');
@@ -37387,17 +37393,26 @@ function () {
     _classCallCheck(this, Shots);
 
     this.svg = svg;
+    this.clearShots = this.clearShots.bind(this);
     this.parseShots = this.parseShots.bind(this);
     this.renderShots = this.renderShots.bind(this);
   }
 
   _createClass(Shots, [{
+    key: "clearShots",
+    value: function clearShots() {
+      d3.selectAll("g").remove();
+    }
+  }, {
     key: "parseShots",
     value: function parseShots() {
       var _this = this;
 
+      var firstName = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'Stephen';
+      var lastName = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'Curry';
+      var season = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : '2015-16';
       // axios('/shots')
-      d3.csv("./data/stephen_curry_2015-16.csv").then(function (shots) {
+      d3.csv("./data/".concat(firstName, "_").concat(lastName, "_").concat(season, ".csv")).then(function (shots) {
         shots.forEach(function (shot) {
           var shotOutcome = shot.event_type;
           var shotX = shot.loc_x;
