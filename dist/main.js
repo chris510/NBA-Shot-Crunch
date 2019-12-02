@@ -37079,7 +37079,7 @@ document.addEventListener("DOMContentLoaded", function () {
   var playerImgContainer = document.getElementById('nba-profile-pic-container');
   var main = new _main__WEBPACK_IMPORTED_MODULE_2__["default"](); // main.render();
 
-  main.getHeadshots(); //get elements
+  main.render(); //get elements
 
   var dropdownTitle = document.querySelector('.dropdown .title');
   var dropdownOptions = document.querySelectorAll('.dropdown .option'); //bind listeners to these elements
@@ -37133,6 +37133,7 @@ function () {
 
     // this.html = html;
     this.getHeadshots = this.getHeadshots.bind(this);
+    this.seasonSelector = this.seasonSelector.bind(this);
   }
 
   _createClass(Main, [{
@@ -37156,11 +37157,20 @@ function () {
     key: "seasonSelector",
     value: function seasonSelector() {
       var selectedSeason = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '2015-2016';
+
+      for (var i = 2014; i < 2019; i++) {
+        var option = document.createElement('div');
+        option.setAttribute('class', 'option');
+        option.setAttribute('id', 'option1');
+        option.innerHTML = "".concat(i, "-").concat(i + 1);
+        document.querySelector(".menu").appendChild(option);
+      }
     }
   }, {
     key: "render",
     value: function render() {
       this.getHeadshots();
+      this.seasonSelector();
     }
   }]);
 

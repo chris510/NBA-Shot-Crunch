@@ -34,7 +34,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let playerImgContainer = document.getElementById('nba-profile-pic-container')
   const main = new Main();
   // main.render();
-  main.getHeadshots();
+  main.render();
 
   //get elements
   const dropdownTitle = document.querySelector('.dropdown .title');

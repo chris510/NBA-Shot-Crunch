@@ -10,6 +10,7 @@ class Main {
   constructor() {
     // this.html = html;
     this.getHeadshots = this.getHeadshots.bind(this);
+    this.seasonSelector = this.seasonSelector.bind(this);
   }
 
   getHeadshots() {
@@ -30,11 +31,18 @@ class Main {
   }
 
   seasonSelector(selectedSeason = '2015-2016') {
-
+    for (let i = 2014; i < 2019; i++) {
+      let option = document.createElement('div');
+      option.setAttribute('class', 'option');
+      option.setAttribute('id', 'option1');
+      option.innerHTML = `${i}-${i+1}`;
+      document.querySelector(".menu").appendChild(option);
+    }
   }
 
   render() {
     this.getHeadshots();
+    this.seasonSelector();
   }
 
 }
