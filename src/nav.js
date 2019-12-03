@@ -22,8 +22,8 @@ class Main {
         } else {
           img.className = 'carousel__photo'
         }
-        img.width = '250';
-        img.height = '200';
+        img.width = '200';
+        img.height = '150';
         img.src = `${res.config.url}`;
         img.color = 'black';
         img.alt = `${player.first} ${player.last}`;
@@ -31,9 +31,9 @@ class Main {
         // document.getElementById('nba-profile-pic').appendChild(img);
         document.querySelector('.carousel').appendChild(img);
 
-        let name = document.createElement('nba-player-name');
-        name.innerHTML = `${player.first} ${player.last}`;
-        document.querySelector('.carousel').appendChild(name);
+        // let name = document.createElement('nba-player-name');
+        // name.innerHTML = `${player.first} ${player.last}`;
+        // document.querySelector('.carousel').appendChild(name);
       })
     })
   }

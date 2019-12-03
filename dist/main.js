@@ -37046,11 +37046,11 @@ function () {
   _createClass(Court, [{
     key: "render",
     value: function render() {
-      var halfCourtWidth = 515;
-      var halfCourtHeight = 470; // container dimensions
+      var halfCourtWidth = 500;
+      var halfCourtHeight = 450; // container dimensions
 
       var insidePaintWidth = 160;
-      var insidePaintHeight = 190;
+      var insidePaintHeight = 170;
       var cornerThreePoint = 330;
       var pi = Math.PI; // black background
 
@@ -37188,11 +37188,11 @@ window.axios = axios__WEBPACK_IMPORTED_MODULE_0___default.a; // Court Container
 
 var courtContainer = {
   width: 800,
-  height: 600
+  height: 450
 };
 document.addEventListener("DOMContentLoaded", function () {
   var chartContainer = document.getElementById('chart-container');
-  var chart = d3.select(chartContainer).append('svg').attr("width", courtContainer.width).attr("height", courtContainer.height); // .attr('fill', 'blue');
+  var chart = d3.select(chartContainer).append('svg').attr('class', 'chart').attr("width", courtContainer.width).attr("height", courtContainer.height); // .attr('fill', 'blue');
 
   var court = new Court(chart);
   court.render();
@@ -37281,17 +37281,16 @@ function () {
             img.className = 'carousel__photo';
           }
 
-          img.width = '250';
-          img.height = '200';
+          img.width = '200';
+          img.height = '150';
           img.src = "".concat(res.config.url);
           img.color = 'black';
           img.alt = "".concat(player.first, " ").concat(player.last); // img.className = 'carousel__photo'
           // document.getElementById('nba-profile-pic').appendChild(img);
 
-          document.querySelector('.carousel').appendChild(img);
-          var name = document.createElement('nba-player-name');
-          name.innerHTML = "".concat(player.first, " ").concat(player.last);
-          document.querySelector('.carousel').appendChild(name);
+          document.querySelector('.carousel').appendChild(img); // let name = document.createElement('nba-player-name');
+          // name.innerHTML = `${player.first} ${player.last}`;
+          // document.querySelector('.carousel').appendChild(name);
         });
       });
     }

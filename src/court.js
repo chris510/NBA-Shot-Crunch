@@ -4,12 +4,12 @@ class Court {
   }
 
   render() {
-    const halfCourtWidth = 515;
-    const halfCourtHeight = 470;
+    const halfCourtWidth = 500;
+    const halfCourtHeight = 450;
 
     // container dimensions
     const insidePaintWidth = 160;
-    const insidePaintHeight = 190;
+    const insidePaintHeight = 170;
     const cornerThreePoint = 330;
 
     const pi = Math.PI;

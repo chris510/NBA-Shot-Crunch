@@ -11,7 +11,7 @@ window.axios = axios;
 // Court Container 
 const courtContainer = {
   width: 800,
-  height: 600
+  height: 450
 }
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -19,6 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let chartContainer = document.getElementById('chart-container')
   let chart = d3.select(chartContainer)
     .append('svg')
+    .attr('class', 'chart')
     .attr("width", courtContainer.width)
     .attr("height", courtContainer.height)
     // .attr('fill', 'blue');

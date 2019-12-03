@@ -2,12 +2,37 @@
 @import './dropdown.css';
 @import './carousel.css';
 
+body {
+  height: 100vh;
+  width: 100%;
+  background: lightskyblue;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+}
+
 #app {
   display: flex;
+  flex-direction: column;
+  /* font-size: 40px;
+  align-items: center; */
 }
 
 .app-title {
   background-color: greenyellow;
+  font-size: 50px;
+  display: flex;
+  justify-content: center;
+}
+
+.chart-filter {
+  display: flex;
+  flex-direction: column;
+}
+
+.shot-container {
+  display: flex;
 }
 
 .carousel-wrapper {
@@ -19,5 +44,17 @@
 }
 
 #chart-container {
-  background-color: lightgrey;
+  display: flex;
+  justify-content: center;
+  /* align-items: center; */
+  background-color: grey;
+  width: 500px;
+  height: 450px;
+}
+
+.chart {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* width: 600px; */
 }
