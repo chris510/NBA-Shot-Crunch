@@ -16,6 +16,9 @@ const courtContainer = {
 
 document.addEventListener("DOMContentLoaded", () => {
 
+  let firstName = 'Stephen';
+  let lastName = 'Curry';
+
   let chartContainer = document.getElementById('chart-container')
   let chart = d3.select(chartContainer)
     .append('svg')
@@ -29,9 +32,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   let shots = new Shots(chart);
   shots.parseShots();
-
-  let firstName = 'Stephen';
-  let lastName = 'Curry';
 
   const player = document.querySelector('.carousel');
   player.addEventListener('click', (e) => {
@@ -56,10 +56,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
   //get elements
   const dropdownTitle = document.querySelector('.dropdown .title');
+  const dropdownTeam = document.querySelector('.dropdown .team');
   const dropdownOptions = document.querySelectorAll('.dropdown .option');
 
   //bind listeners to these elements
   dropdownTitle.addEventListener('click', dropdown.toggleMenuDisplay);
+  dropdownTeam.addEventListener('click', dropdown.toggleTeamMenuDisplay);
   dropdownOptions.forEach(option => option.addEventListener('click', dropdown.handleOptionSelected));
   document.querySelector('.dropdown .title').addEventListener('change', dropdown.handleTitleChange);
 

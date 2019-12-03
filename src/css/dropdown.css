@@ -19,18 +19,33 @@
   transition: transform .3s;
 }
 
-.dropdown .menu{
+.dropdown .season-menu{
   transition: max-height .5s ease-out;
   max-height: 20em;
   overflow: hidden;
 }
 
-.dropdown .menu .option{
+.dropdown .season-menu .option{
   margin: .3em .3em .3em .3em;
   margin-top: 0.3em;
 }
 
-.dropdown .menu .option:hover{
+.dropdown .season-menu .option:hover{
+  background: rgba(0,0,0,0.2);
+}
+
+.dropdown .team-menu{
+  transition: max-height .5s ease-out;
+  max-height: 20em;
+  overflow: scroll;
+}
+
+.dropdown .team-menu .option{
+  margin: .3em .3em .3em .3em;
+  margin-top: 0.3em;
+}
+
+.dropdown .team-menu .option:hover{
   background: rgba(0,0,0,0.2);
 }
 

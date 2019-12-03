@@ -36922,9 +36922,9 @@ function extend(target) {
 //     // items[totalItems - 1].classList.add("prev");
 //     // items[0].classList.add("active");
 //     // items[1].classList.add("next");
-//     items[totalItems - 1].className = 'prev';
-//     items[0].className = 'active';
-//     items[1].className = 'next';
+//     items[totalItems - 1].setAttribute('class', 'prev');
+//     items[0].setAttribute('class', 'active');
+//     items[1].setAttribute('class', 'next');
 //   }
 //   // Set click events to navigation buttons
 //   function setEventListeners() {
@@ -37122,9 +37122,17 @@ function toggleDisplay(elem) {
 
 function toggleMenuDisplay(e) {
   var dropdown = e.currentTarget.parentNode;
-  var menu = dropdown.querySelector('.menu');
+  var seasonMenu = dropdown.querySelector('.season-menu');
   var icon = dropdown.querySelector('.fa-angle-right');
-  toggleClass(menu, 'hide');
+  toggleClass(seasonMenu, 'hide');
+  toggleClass(icon, 'rotate-90');
+}
+
+function toggleTeamMenuDisplay(e) {
+  var dropdown = e.currentTarget.parentNode;
+  var teamMenu = dropdown.querySelector('.team-menu');
+  var icon = dropdown.querySelector('.fa-angle-right');
+  toggleClass(teamMenu, 'hide');
   toggleClass(icon, 'rotate-90');
 }
 
@@ -37152,6 +37160,7 @@ module.exports = {
   toggleClass: toggleClass,
   toggleDisplay: toggleDisplay,
   toggleMenuDisplay: toggleMenuDisplay,
+  toggleTeamMenuDisplay: toggleTeamMenuDisplay,
   handleOptionSelected: handleOptionSelected,
   handleTitleChange: handleTitleChange
 };
@@ -37191,6 +37200,8 @@ var courtContainer = {
   height: 450
 };
 document.addEventListener("DOMContentLoaded", function () {
+  var firstName = 'Stephen';
+  var lastName = 'Curry';
   var chartContainer = document.getElementById('chart-container');
   var chart = d3.select(chartContainer).append('svg').attr('class', 'chart').attr("width", courtContainer.width).attr("height", courtContainer.height); // .attr('fill', 'blue');
 
@@ -37198,8 +37209,6 @@ document.addEventListener("DOMContentLoaded", function () {
   court.render();
   var shots = new _shots__WEBPACK_IMPORTED_MODULE_1__["default"](chart);
   shots.parseShots();
-  var firstName = 'Stephen';
-  var lastName = 'Curry';
   var player = document.querySelector('.carousel');
   player.addEventListener('click', function (e) {
     shots.clearShots();
@@ -37218,9 +37227,11 @@ document.addEventListener("DOMContentLoaded", function () {
   main.render(); //get elements
 
   var dropdownTitle = document.querySelector('.dropdown .title');
+  var dropdownTeam = document.querySelector('.dropdown .team');
   var dropdownOptions = document.querySelectorAll('.dropdown .option'); //bind listeners to these elements
 
   dropdownTitle.addEventListener('click', dropdown.toggleMenuDisplay);
+  dropdownTeam.addEventListener('click', dropdown.toggleTeamMenuDisplay);
   dropdownOptions.forEach(function (option) {
     return option.addEventListener('click', dropdown.handleOptionSelected);
   });
@@ -37263,9 +37274,9 @@ function () {
   function Main() {
     _classCallCheck(this, Main);
 
-    // this.html = html;
     this.getHeadshots = this.getHeadshots.bind(this);
     this.seasonSelector = this.seasonSelector.bind(this);
+    this.teamSelector = this.teamSelector.bind(this);
   }
 
   _createClass(Main, [{
@@ -37288,7 +37299,10 @@ function () {
           img.alt = "".concat(player.first, " ").concat(player.last); // img.className = 'carousel__photo'
           // document.getElementById('nba-profile-pic').appendChild(img);
 
-          document.querySelector('.carousel').appendChild(img); // let name = document.createElement('nba-player-name');
+          var nbaPlayer = document.createElement('div');
+          nbaPlayer.setAttribute('class', 'player-container');
+          document.querySelector('.carousel').appendChild(nbaPlayer).append(img); // document.querySelector('.carousel').appendChild(img);
+          // let name = document.createElement('nba-player-name');
           // name.innerHTML = `${player.first} ${player.last}`;
           // document.querySelector('.carousel').appendChild(name);
         });
@@ -37297,21 +37311,31 @@ function () {
   }, {
     key: "seasonSelector",
     value: function seasonSelector() {
-      var selectedSeason = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '2015-2016';
-
       for (var i = 2015; i < 2018; i++) {
         var option = document.createElement('div');
         option.setAttribute('class', 'option');
-        option.setAttribute('id', 'option1');
         option.innerHTML = "".concat(i, "-").concat(i + 1 - 2000);
-        document.querySelector(".menu").appendChild(option);
+        document.querySelector(".season-menu").appendChild(option);
       }
+    }
+  }, {
+    key: "teamSelector",
+    value: function teamSelector() {
+      d3.csv('./data/nba_teams.csv').then(function (teams) {
+        teams.forEach(function (team) {
+          var teamOption = document.createElement('div');
+          teamOption.setAttribute('class', 'option');
+          teamOption.innerHTML = team.name;
+          document.querySelector('.team-menu').appendChild(teamOption);
+        });
+      });
     }
   }, {
     key: "render",
     value: function render() {
       this.getHeadshots();
       this.seasonSelector();
+      this.teamSelector();
     }
   }]);
 
@@ -37375,17 +37399,11 @@ module.exports = {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var fs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! fs */ "./node_modules/node-libs-browser/mock/empty.js");
-/* harmony import */ var fs__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(fs__WEBPACK_IMPORTED_MODULE_1__);
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-
 
 var CONSTANTS = {
   ROWS: 50,
@@ -37431,6 +37449,31 @@ function () {
             _this.renderShots([shotX, shotY], shotOutcome);
           } else if (shotOutcome === 'Missed Shot') {
             _this.renderShots([shotX, shotY], shotOutcome);
+          }
+        });
+      });
+    }
+  }, {
+    key: "parseShotsByTeam",
+    value: function parseShotsByTeam() {
+      var _this2 = this;
+
+      var firstName = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'Stephen';
+      var lastName = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'Curry';
+      var season = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : '2015-16';
+      var team = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : null;
+      d3.csv("./data/".concat(firstName, "_").concat(lastName, "_").concat(season, ".csv")).then(function (shots) {
+        shots.forEach(function (shot) {
+          if (shot.team_name === team) {
+            var shotOutcome = shot.event_type;
+            var shotX = shot.loc_x;
+            var shotY = shot.loc_y;
+
+            if (shotOutcome === 'Made Shot') {
+              _this2.renderShots([shotX, shotY], shotOutcome);
+            } else if (shotOutcome === 'Missed Shot') {
+              _this2.renderShots([shotX, shotY], shotOutcome);
+            }
           }
         });
       });

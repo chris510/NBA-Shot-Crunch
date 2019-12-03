@@ -1,0 +1,152 @@
+[
+  {
+    "name": "Boston Celtics",
+    "prefix_1": "bos",
+    "prefix_2": "boston-celtics"
+  },
+  {
+    "name": "Brooklyn Nets",
+    "prefix_1": "bkn",
+    "prefix_2": "brooklyn-nets"
+  },
+  {
+    "name": "New York Knicks",
+    "prefix_1": "ny",
+    "prefix_2": "new-york-knicks"
+  },
+  {
+    "name": "Philadelphia 76ers",
+    "prefix_1": "phi",
+    "prefix_2": "philadelphia-76ers"
+  },
+  {
+    "name": "Toronto Raptors",
+    "prefix_1": "tor",
+    "prefix_2": "toronto-raptors"
+  },
+  {
+    "name": "Golden State Warriors",
+    "prefix_1": "gs",
+    "prefix_2": "golden-state-warriors"
+  },
+  {
+    "name": "Los Angeles Clippers",
+    "prefix_1": "lac",
+    "prefix_2": "los-angeles-clippers"
+  },
+  {
+    "name": "Los Angeles Lakers",
+    "prefix_1": "lal",
+    "prefix_2": "los-angeles-lakers"
+  },
+  {
+    "name": "Phoenix Suns",
+    "prefix_1": "phx",
+    "prefix_2": "phoenix-suns"
+  },
+  {
+    "name": "Sacramento Kings",
+    "prefix_1": "sac",
+    "prefix_2": "sacramento-kings"
+  },
+  {
+    "name": "Chicago Bulls",
+    "prefix_1": "chi",
+    "prefix_2": "chicago-bulls"
+  },
+  {
+    "name": "Cleveland Cavaliers",
+    "prefix_1": "cle",
+    "prefix_2": "cleveland-cavaliers"
+  },
+  {
+    "name": "Detroit Pistons",
+    "prefix_1": "det",
+    "prefix_2": "detroit-pistons"
+  },
+  {
+    "name": "Indiana Pacers",
+    "prefix_1": "ind",
+    "prefix_2": "indiana-pacers"
+  },
+  {
+    "name": "Milwaukee Bucks",
+    "prefix_1": "mil",
+    "prefix_2": "milwaukee-bucks"
+  },
+  {
+    "name": "Dallas Mavericks",
+    "prefix_1": "dal",
+    "prefix_2": "dallas-mavericks"
+  },
+  {
+    "name": "Houston Rockets",
+    "prefix_1": "hou",
+    "prefix_2": "houston-rockets"
+  },
+  {
+    "name": "Memphis Grizzlies",
+    "prefix_1": "mem",
+    "prefix_2": "memphis-grizzlies"
+  },
+  {
+    "name": "New Orleans Hornets",
+    "prefix_1": "no",
+    "prefix_2": "new-orleans-hornets"
+  },
+  {
+    "name": "San Antonio Spurs",
+    "prefix_1": "sa",
+    "prefix_2": "san-antonio-spurs"
+  },
+  {
+    "name": "Atlanta Hawks",
+    "prefix_1": "atl",
+    "prefix_2": "atlanta-hawks"
+  },
+  {
+    "name": "Charlotte Bobcats",
+    "prefix_1": "cha",
+    "prefix_2": "charlotte-bobcats"
+  },
+  {
+    "name": "Miami Heat",
+    "prefix_1": "mia",
+    "prefix_2": "miami-heat"
+  },
+  {
+    "name": "Orlando Magic",
+    "prefix_1": "orl",
+    "prefix_2": "orlando-magic"
+  },
+  {
+    "name": "Washington Wizards",
+    "prefix_1": "wsh",
+    "prefix_2": "washington-wizards"
+  },
+  {
+    "name": "Denver Nuggets",
+    "prefix_1": "den",
+    "prefix_2": "denver-nuggets"
+  },
+  {
+    "name": "Minnesota Timberwolves",
+    "prefix_1": "min",
+    "prefix_2": "minnesota-timberwolves"
+  },
+  {
+    "name": "Oklahoma City Thunder",
+    "prefix_1": "okc",
+    "prefix_2": "oklahoma-city-thunder"
+  },
+  {
+    "name": "Portland Trail Blazers",
+    "prefix_1": "por",
+    "prefix_2": "portland-trail-blazers"
+  },
+  {
+    "name": "Utah Jazz",
+    "prefix_1": "uta",
+    "prefix_2": "utah-jazz"
+  }
+]

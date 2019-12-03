@@ -1,6 +1,3 @@
-import axios from "axios";
-import { appendFile } from "fs";
-
 const CONSTANTS = {
   ROWS: 50,
   COLS: 47,
@@ -24,7 +21,23 @@ class Shots {
   parseShots(firstName = 'Stephen', lastName = 'Curry', season = '2015-16') {
     // axios('/shots')
     d3.csv(`./data/${firstName}_${lastName}_${season}.csv`).then(shots => {
-        shots.forEach( shot => {
+      shots.forEach( shot => {
+        let shotOutcome = shot.event_type;
+        let shotX = shot.loc_x;
+        let shotY = shot.loc_y;
+        if (shotOutcome === 'Made Shot') {
+          this.renderShots([shotX, shotY], shotOutcome);
+        } else if (shotOutcome === 'Missed Shot') {
+          this.renderShots([shotX, shotY], shotOutcome);
+        }
+      })
+    })
+  }
+
+  parseShotsByTeam(firstName = 'Stephen', lastName = 'Curry', season = '2015-16', team = null) {
+    d3.csv(`./data/${firstName}_${lastName}_${season}.csv`).then(shots => {
+      shots.forEach( shot => {
+        if (shot.team_name === team) {
           let shotOutcome = shot.event_type;
           let shotX = shot.loc_x;
           let shotY = shot.loc_y;
@@ -33,8 +46,9 @@ class Shots {
           } else if (shotOutcome === 'Missed Shot') {
             this.renderShots([shotX, shotY], shotOutcome);
           }
-        })
+        }
       })
+    })
   }
 
   renderShots(playerPos, shotOutcome) {

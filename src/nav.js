@@ -8,9 +8,9 @@ const PLAYERS = [
 
 class Main {
   constructor() {
-    // this.html = html;
     this.getHeadshots = this.getHeadshots.bind(this);
     this.seasonSelector = this.seasonSelector.bind(this);
+    this.teamSelector = this.teamSelector.bind(this);
   }
 
   getHeadshots() {
@@ -29,7 +29,10 @@ class Main {
         img.alt = `${player.first} ${player.last}`;
         // img.className = 'carousel__photo'
         // document.getElementById('nba-profile-pic').appendChild(img);
-        document.querySelector('.carousel').appendChild(img);
+        let nbaPlayer = document.createElement('div')
+        nbaPlayer.setAttribute('class', 'player-container')
+        document.querySelector('.carousel').appendChild(nbaPlayer).append(img);
+        // document.querySelector('.carousel').appendChild(img);
 
         // let name = document.createElement('nba-player-name');
         // name.innerHTML = `${player.first} ${player.last}`;
@@ -38,19 +41,30 @@ class Main {
     })
   }
 
-  seasonSelector(selectedSeason = '2015-2016') {
+  seasonSelector() {
     for (let i = 2015; i < 2018; i++) {
       let option = document.createElement('div');
       option.setAttribute('class', 'option');
-      option.setAttribute('id', 'option1');
       option.innerHTML = `${i}-${(i+1)-2000}`;
-      document.querySelector(".menu").appendChild(option);
+      document.querySelector(".season-menu").appendChild(option);
     }
+  }
+
+  teamSelector() {
+    d3.csv('./data/nba_teams.csv').then(teams => {
+      teams.forEach(team => {
+        let teamOption = document.createElement('div');
+        teamOption.setAttribute('class','option');
+        teamOption.innerHTML = team.name;
+        document.querySelector('.team-menu').appendChild(teamOption);
+      })
+    })
   }
 
   render() {
     this.getHeadshots();
     this.seasonSelector();
+    this.teamSelector();
   }
 
 }

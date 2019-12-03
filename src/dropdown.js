@@ -22,10 +22,19 @@ function toggleDisplay(elem){
 
 function toggleMenuDisplay(e){
 	const dropdown = e.currentTarget.parentNode;
-	const menu = dropdown.querySelector('.menu');
+	const seasonMenu = dropdown.querySelector('.season-menu');
 	const icon = dropdown.querySelector('.fa-angle-right');
 
-	toggleClass(menu,'hide');
+	toggleClass(seasonMenu,'hide');
+	toggleClass(icon,'rotate-90');
+}
+
+function toggleTeamMenuDisplay(e){
+	const dropdown = e.currentTarget.parentNode;
+	const teamMenu = dropdown.querySelector('.team-menu');
+	const icon = dropdown.querySelector('.fa-angle-right');
+
+	toggleClass(teamMenu, 'hide');
 	toggleClass(icon,'rotate-90');
 }
 
@@ -56,7 +65,8 @@ function handleTitleChange(e){
 module.exports = {
   toggleClass,
   toggleDisplay,
-  toggleMenuDisplay,
+	toggleMenuDisplay,
+	toggleTeamMenuDisplay,
   handleOptionSelected,
   handleTitleChange
 }

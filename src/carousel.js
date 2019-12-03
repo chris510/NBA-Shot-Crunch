@@ -14,9 +14,9 @@
 //     // items[totalItems - 1].classList.add("prev");
 //     // items[0].classList.add("active");
 //     // items[1].classList.add("next");
-//     items[totalItems - 1].className = 'prev';
-//     items[0].className = 'active';
-//     items[1].className = 'next';
+//     items[totalItems - 1].setAttribute('class', 'prev');
+//     items[0].setAttribute('class', 'active');
+//     items[1].setAttribute('class', 'next');
 //   }
 
 //   // Set click events to navigation buttons
