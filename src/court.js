@@ -5,7 +5,7 @@ class Court {
 
   render() {
     const halfCourtWidth = 500;
-    const halfCourtHeight = 450;
+    const halfCourtHeight = 455;
 
     // container dimensions
     const insidePaintWidth = 160;

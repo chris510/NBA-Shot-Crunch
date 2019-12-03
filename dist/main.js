@@ -37047,7 +37047,7 @@ function () {
     key: "render",
     value: function render() {
       var halfCourtWidth = 500;
-      var halfCourtHeight = 450; // container dimensions
+      var halfCourtHeight = 455; // container dimensions
 
       var insidePaintWidth = 160;
       var insidePaintHeight = 170;

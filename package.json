@@ -12,6 +12,7 @@
     "handlebars": "^4.5.3",
     "pg": "^7.14.0",
     "pg-native": "^3.0.0",
+    "simple-icons": "^1.20.0",
     "webpack-dev-middleware": "^3.7.2"
   },
   "devDependencies": {

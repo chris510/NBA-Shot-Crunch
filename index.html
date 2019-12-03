@@ -10,6 +10,8 @@
   <!-- JS Library Dependencies -->
   <script src="./dist/main.js" type="text/javascript"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Varela&display=swap" rel="stylesheet">
+
 
   <link rel="stylesheet" href="./src/css/main.css">
 
@@ -22,17 +24,21 @@
       <div class="app-title">
         NBA Shot-Crunch
       </div>
+      <div className="player-container">
+        <div class="carousel-wrapper">
+          <div class="carousel">
+            <!-- <div id="nba-profile-pic"></div> -->
+            <!-- <div class="carousel__button--next"></div>
+            <div class="carousel__button--prev"></div> -->
+          </div>
+        </div>
+      </div>
       <div class="shot-container">
         <div class="chart-filter">
-          <div class="carousel-wrapper">
-            <div class="carousel">
-              <!-- <div id="nba-profile-pic"></div> -->
-              <!-- <div class="carousel__button--next"></div>
-              <div class="carousel__button--prev"></div> -->
-            </div>
-          </div>
           <div id="select-season-container">
-            Season
+            <div class="season">
+              Season
+            </div>
             <div class='dropdown'>
                 <div class='title pointerCursor'>2015-16 <i class="fa fa-angle-right"></i></div>
                 <div class='menu pointerCursor hide'> </div>
@@ -40,8 +46,26 @@
           </div>
   
         </div>
-        <div id="chart-container"></div>        
+        <div class="chart-wrapper">
+          <div id="chart-container"></div>        
+        </div>
       </div>
+    </div>
+  </div>
+  <div class="footer">
+    <div class="github">
+      <a target="_blank" href="https://github.com/chris510">
+        <img class="github-icon" height="48" width="48" src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/github.svg" />
+      </a>
+    </div>
+    <div class="mail">
+      <a target="_blank" href="mailto:christrinh5@gmail.com"></a>
+        <img class="mail-icon" height="48" width="48" src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/gmail.svg" />
+    </div>
+    <div class="linkedin">
+      <a target="_blank" href="https://www.linkedin.com/in/trinh-christopher/">
+        <img fill="white" class="linkedin-icon" height="48" width="48" src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/linkedin.svg" />
+      </a>
     </div>
   </div>
 

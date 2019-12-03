@@ -2,54 +2,122 @@
 @import './dropdown.css';
 @import './carousel.css';
 
+html {
+  --font-color: white;
+  --sub-bg-color: #121212;
+  --bg-color: #292929;
+  --font: 'Varela', sans-serif;
+}
+
 body {
   height: 100vh;
   width: 100%;
-  background: lightskyblue;
+  background-color: var(--bg-color);
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   margin: 0 auto;
+  color: white;
 }
 
 #app {
+  width: 65%;
   display: flex;
   flex-direction: column;
+  background-color: var(--sub-bg-color);
+  border: 2px solid black;
+  border-radius: 8px;
+  box-shadow: 5px 5px 10px 5px rgba(0,0,0,0.5);
   /* font-size: 40px;
   align-items: center; */
 }
 
+#app > div {
+  margin: 8px;
+}
+
 .app-title {
-  background-color: greenyellow;
   font-size: 50px;
+  width: 50%;
+  align-self: center;
   display: flex;
   justify-content: center;
+  background: var(--bg-color);
+  box-shadow: 5px 5px 10px 5px rgba(0,0,0,0.5);
+  border-radius: 8px;
+  font-family: var(--font);
 }
 
 .chart-filter {
+  width: 30%;
   display: flex;
   flex-direction: column;
+  background: var(--bg-color);
+  box-shadow: 5px 5px 10px 5px rgba(0,0,0,0.5);
+  border-radius: 8px;
+}
+
+#select-season-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: var(--font);
+
 }
 
 .shot-container {
   display: flex;
+  justify-content: center;
+}
+
+.shot-container > div {
+  margin: 20px;
 }
 
 .carousel-wrapper {
-  background-color: lightcoral;
+  /* background-color: lightcoral; */
+  display: flex;
+  justify-content: center;
+}
+
+.carousel {
+  background: var(--bg-color);
+  box-shadow: 5px 5px 10px 5px rgba(0,0,0,0.5);
+  display: flex;
+  justify-content: center;
+  border-radius: 8px;
+  width: 95%;
+}
+
+.carousel__photo {
+  padding: 10px;
+}
+
+.carousel > div {
+  /* margin: 10px; */
 }
 
 #select-season-container {
-  background-color: lightseagreen;
+  /* background-color: lightseagreen; */
 }
 
 #chart-container {
   display: flex;
   justify-content: center;
   /* align-items: center; */
-  background-color: grey;
   width: 500px;
   height: 450px;
+  box-shadow: 5px 5px 10px 5px rgba(0,0,0,0.5);
+  border-radius: 8px;
+}
+
+.chart-wrapper {
+  padding: 15px;
+  background-color: var(--bg-color);
+  box-shadow: 5px 5px 10px 5px rgba(0,0,0,0.5);
+  border-radius: 8px;
+
 }
 
 .chart {
@@ -57,4 +125,44 @@ body {
   justify-content: center;
   align-items: center;
   /* width: 600px; */
+}
+
+.footer {
+  display: flex;
+  width: 65%;
+  margin-top: 30px;
+  height: 60px;
+}
+
+.footer {
+  display: flex;
+  justify-content: center;
+}
+
+.footer > div {
+  padding: 10px;
+}
+
+/* .contact {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-self: center;
+} */
+
+.github-icon, .mail-icon, .linkedin-icon {
+  background: var(--bg-color);
+  box-shadow: 5px 5px 10px 5px rgba(0,0,0,0.5);
+  border-radius: 8px;
+  font-family: var(--font);
+  padding: 8px;
+}
+
+.github-icon:hover, .mail-icon:hover, .linkedin-icon:hover {
+  background: var(--bg-color);
+  box-shadow: 5px 5px 10px 5px rgba(0,0,0,0.5);
+  border-radius: 8px;
+  font-family: var(--font);
+  padding: 15px;
+  cursor: pointer;
 }
