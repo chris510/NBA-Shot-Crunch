@@ -3,10 +3,8 @@ const Court = require('./court');
 const db = require('./queries');
 const dropdown = require('./dropdown');
 import Shots from './shots';
-import Main from './nav';
+import Main from './main';
 const carousel = require('./carousel');
-
-window.axios = axios;
 
 // Court Container 
 const courtContainer = {
@@ -18,6 +16,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   let firstName = 'Stephen';
   let lastName = 'Curry';
+  let season = '2015-16';
+  let team = '';
 
   let chartContainer = document.getElementById('chart-container')
   let chart = d3.select(chartContainer)
@@ -44,11 +44,24 @@ document.addEventListener("DOMContentLoaded", () => {
     shots.parseShots(firstName, lastName)
   });
 
-  const season = document.querySelector('.title');
-  season.addEventListener('change', (e) => {
+  const seasonOption = document.querySelector('.title');
+  seasonOption.addEventListener('change', (e) => {
     shots.clearShots();
     let seasonRange = e.target.innerText;
-    shots.parseShots(firstName, lastName, seasonRange);
+    if (seasonRange === 'Career') {
+      debugger
+      shots.parseCareerShots(firstName, lastName);
+    } else {
+      debugger
+      shots.parseShots(firstName, lastName, seasonRange);
+    }
+  })
+
+  const teamOption = document.querySelector('.team');
+  teamOption.addEventListener('change', (e) => {
+    shots.clearShots();
+    team = e.target.id;
+    shots.parseShotsByTeam(firstName, lastName, season, team)
   })
 
   const main = new Main();
@@ -56,14 +69,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
   //get elements
   const dropdownTitle = document.querySelector('.dropdown .title');
-  const dropdownTeam = document.querySelector('.dropdown .team');
   const dropdownOptions = document.querySelectorAll('.dropdown .option');
+  const dropdownTeam = document.querySelector('.dropdown .team');
+  const dropdownTeamOptions = document.querySelectorAll('.dropdown .team-menu')
 
   //bind listeners to these elements
   dropdownTitle.addEventListener('click', dropdown.toggleMenuDisplay);
-  dropdownTeam.addEventListener('click', dropdown.toggleTeamMenuDisplay);
   dropdownOptions.forEach(option => option.addEventListener('click', dropdown.handleOptionSelected));
+
   document.querySelector('.dropdown .title').addEventListener('change', dropdown.handleTitleChange);
+
+  dropdownTeam.addEventListener('click', dropdown.toggleTeamMenuDisplay);
+  dropdownTeamOptions.forEach(teamOption => teamOption.addEventListener('click', dropdown.handleTeamOptionSelected))
+
+  // document.querySelector('.dropdown .team').addEventListener('change'. dropdownHandleTitleChange)
+
 
   // carousel.carouselListener();
 

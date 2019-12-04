@@ -1,31 +1,31 @@
 name,prefix_1,prefix_2
-Boston Celtics,bos,boston-celtics
-Brooklyn Nets,bkn,brooklyn-nets
-New York Knicks,ny,new-york-knicks
-Philadelphia 76ers,phi,philadelphia-76ers
-Toronto Raptors,tor,toronto-raptors
-Golden State Warriors,gs,golden-state-warriors
-Los Angeles Clippers,lac,los-angeles-clippers
-Los Angeles Lakers,lal,los-angeles-lakers
-Phoenix Suns,phx,phoenix-suns
-Sacramento Kings,sac,sacramento-kings
-Chicago Bulls,chi,chicago-bulls
-Cleveland Cavaliers,cle,cleveland-cavaliers
-Detroit Pistons,det,detroit-pistons
-Indiana Pacers,ind,indiana-pacers
-Milwaukee Bucks,mil,milwaukee-bucks
-Dallas Mavericks,dal,dallas-mavericks
-Houston Rockets,hou,houston-rockets
-Memphis Grizzlies,mem,memphis-grizzlies
-New Orleans Hornets,no,new-orleans-hornets
-San Antonio Spurs,sa,san-antonio-spurs
-Atlanta Hawks,atl,atlanta-hawks
-Charlotte Bobcats,cha,charlotte-bobcats
-Miami Heat,mia,miami-heat
-Orlando Magic,orl,orlando-magic
-Washington Wizards,wsh,washington-wizards
-Denver Nuggets,den,denver-nuggets
-Minnesota Timberwolves,min,minnesota-timberwolves
-Oklahoma City Thunder,okc,oklahoma-city-thunder
-Portland Trail Blazers,por,portland-trail-blazers
-Utah Jazz,uta,utah-jazz
+Boston Celtics,BOS,boston-celtics
+Brooklyn Nets,BKN,brooklyn-nets
+New York Knicks,NYK,new-york-knicks
+Philadelphia 76ers,PHI,philadelphia-76ers
+Toronto Raptors,TOR,toronto-raptors
+Golden State Warriors,GSW,golden-state-warriors
+Los Angeles Clippers,LAC,los-angeles-clippers
+Los Angeles Lakers,LAL,los-angeles-lakers
+Phoenix Suns,PHX,phoenix-suns
+Sacramento Kings,SAC,sacramento-kings
+Chicago Bulls,CHI,chicago-bulls
+Cleveland Cavaliers,CLE,cleveland-cavaliers
+Detroit Pistons,DET,detroit-pistons
+Indiana Pacers,IND,indiana-pacers
+Milwaukee Bucks,MIL,milwaukee-bucks
+Dallas Mavericks,DAL,dallas-mavericks
+Houston Rockets,HOU,houston-rockets
+Memphis Grizzlies,MEM,memphis-grizzlies
+New Orleans Hornets,NOP,new-orleans-hornets
+San Antonio Spurs,SAS,san-antonio-spurs
+Atlanta Hawks,ATL,atlanta-hawks
+Charlotte Bobcats,CHA,charlotte-bobcats
+Miami Heat,MIA,miami-heat
+Orlando Magic,ORL,orlando-magic
+Washington Wizards,WSH,washington-wizards
+Denver Nuggets,DEV,denver-nuggets
+Minnesota Timberwolves,MIN,minnesota-timberwolves
+Oklahoma City Thunder,OKC,oklahoma-city-thunder
+Portland Trail Blazers,POR,portland-trail-blazers
+Utah Jazz,UTA,utah-jazz

@@ -56,6 +56,23 @@ function handleOptionSelected(e){
 	setTimeout(() => toggleClass(icon,'rotate-90',0));
 }
 
+function handleTeamOptionSelected(e){
+	toggleClass(e.target.parentNode, 'hide');			
+	const id = e.target.id;
+	const newValue = e.target.textContent + ' ';
+	const teamElem = document.querySelector('.dropdown .team');
+	const icon = document.querySelector('.dropdown .team .fa');
+
+	teamElem.textContent = newValue;
+	teamElem.setAttribute('id',`${id}`);
+	teamElem.appendChild(icon);
+	
+	//trigger custom event
+	document.querySelector('.dropdown .team').dispatchEvent(new Event('change'));
+	//setTimeout is used so transition is properly shown
+	setTimeout(() => toggleClass(icon,'rotate-90',0));
+}
+
 function handleTitleChange(e){
 	const result = document.getElementById('result');
 
@@ -67,6 +84,7 @@ module.exports = {
   toggleDisplay,
 	toggleMenuDisplay,
 	toggleTeamMenuDisplay,
-  handleOptionSelected,
+	handleOptionSelected,
+	handleTeamOptionSelected,
   handleTitleChange
 }

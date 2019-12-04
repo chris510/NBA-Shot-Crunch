@@ -1,3 +1,4 @@
+import axios from "axios";
 const PLAYERS = [
   {first: 'Stephen', last: 'Curry'},
   {first: 'Lebron', last: 'James'},
@@ -42,6 +43,11 @@ class Main {
   }
 
   seasonSelector() {
+    let career = document.createElement('div');
+    career.innerHTML = 'Career';
+    career.setAttribute('class', 'option');
+    document.querySelector(".season-menu").appendChild(career);
+
     for (let i = 2015; i < 2018; i++) {
       let option = document.createElement('div');
       option.setAttribute('class', 'option');
@@ -54,7 +60,8 @@ class Main {
     d3.csv('./data/nba_teams.csv').then(teams => {
       teams.forEach(team => {
         let teamOption = document.createElement('div');
-        teamOption.setAttribute('class','option');
+        teamOption.setAttribute('class','team-option');
+        teamOption.setAttribute('id',`${team.prefix_1}`);
         teamOption.innerHTML = team.name;
         document.querySelector('.team-menu').appendChild(teamOption);
       })

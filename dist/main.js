@@ -37152,6 +37152,23 @@ function handleOptionSelected(e) {
   });
 }
 
+function handleTeamOptionSelected(e) {
+  toggleClass(e.target.parentNode, 'hide');
+  var id = e.target.id;
+  var newValue = e.target.textContent + ' ';
+  var teamElem = document.querySelector('.dropdown .team');
+  var icon = document.querySelector('.dropdown .team .fa');
+  teamElem.textContent = newValue;
+  teamElem.setAttribute('id', "".concat(id));
+  teamElem.appendChild(icon); //trigger custom event
+
+  document.querySelector('.dropdown .team').dispatchEvent(new Event('change')); //setTimeout is used so transition is properly shown
+
+  setTimeout(function () {
+    return toggleClass(icon, 'rotate-90', 0);
+  });
+}
+
 function handleTitleChange(e) {
   var result = document.getElementById('result'); // result.innerHTML = 'The result is: ' + e.target.textContent;
 }
@@ -37162,6 +37179,7 @@ module.exports = {
   toggleMenuDisplay: toggleMenuDisplay,
   toggleTeamMenuDisplay: toggleTeamMenuDisplay,
   handleOptionSelected: handleOptionSelected,
+  handleTeamOptionSelected: handleTeamOptionSelected,
   handleTitleChange: handleTitleChange
 };
 
@@ -37179,7 +37197,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _shots__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./shots */ "./src/shots.js");
-/* harmony import */ var _nav__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./nav */ "./src/nav.js");
+/* harmony import */ var _main__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./main */ "./src/main.js");
 
 
 var Court = __webpack_require__(/*! ./court */ "./src/court.js");
@@ -37191,9 +37209,8 @@ var dropdown = __webpack_require__(/*! ./dropdown */ "./src/dropdown.js");
 
 
 
-var carousel = __webpack_require__(/*! ./carousel */ "./src/carousel.js");
+var carousel = __webpack_require__(/*! ./carousel */ "./src/carousel.js"); // Court Container 
 
-window.axios = axios__WEBPACK_IMPORTED_MODULE_0___default.a; // Court Container 
 
 var courtContainer = {
   width: 800,
@@ -37202,6 +37219,8 @@ var courtContainer = {
 document.addEventListener("DOMContentLoaded", function () {
   var firstName = 'Stephen';
   var lastName = 'Curry';
+  var season = '2015-16';
+  var team = '';
   var chartContainer = document.getElementById('chart-container');
   var chart = d3.select(chartContainer).append('svg').attr('class', 'chart').attr("width", courtContainer.width).attr("height", courtContainer.height); // .attr('fill', 'blue');
 
@@ -37217,43 +37236,64 @@ document.addEventListener("DOMContentLoaded", function () {
     lastName = playerName[1];
     shots.parseShots(firstName, lastName);
   });
-  var season = document.querySelector('.title');
-  season.addEventListener('change', function (e) {
+  var seasonOption = document.querySelector('.title');
+  seasonOption.addEventListener('change', function (e) {
     shots.clearShots();
     var seasonRange = e.target.innerText;
-    shots.parseShots(firstName, lastName, seasonRange);
+
+    if (seasonRange === 'Career') {
+      debugger;
+      shots.parseCareerShots(firstName, lastName);
+    } else {
+      debugger;
+      shots.parseShots(firstName, lastName, seasonRange);
+    }
   });
-  var main = new _nav__WEBPACK_IMPORTED_MODULE_2__["default"]();
+  var teamOption = document.querySelector('.team');
+  teamOption.addEventListener('change', function (e) {
+    shots.clearShots();
+    team = e.target.id;
+    shots.parseShotsByTeam(firstName, lastName, season, team);
+  });
+  var main = new _main__WEBPACK_IMPORTED_MODULE_2__["default"]();
   main.render(); //get elements
 
   var dropdownTitle = document.querySelector('.dropdown .title');
+  var dropdownOptions = document.querySelectorAll('.dropdown .option');
   var dropdownTeam = document.querySelector('.dropdown .team');
-  var dropdownOptions = document.querySelectorAll('.dropdown .option'); //bind listeners to these elements
+  var dropdownTeamOptions = document.querySelectorAll('.dropdown .team-menu'); //bind listeners to these elements
 
   dropdownTitle.addEventListener('click', dropdown.toggleMenuDisplay);
-  dropdownTeam.addEventListener('click', dropdown.toggleTeamMenuDisplay);
   dropdownOptions.forEach(function (option) {
     return option.addEventListener('click', dropdown.handleOptionSelected);
   });
-  document.querySelector('.dropdown .title').addEventListener('change', dropdown.handleTitleChange); // carousel.carouselListener();
+  document.querySelector('.dropdown .title').addEventListener('change', dropdown.handleTitleChange);
+  dropdownTeam.addEventListener('click', dropdown.toggleTeamMenuDisplay);
+  dropdownTeamOptions.forEach(function (teamOption) {
+    return teamOption.addEventListener('click', dropdown.handleTeamOptionSelected);
+  }); // document.querySelector('.dropdown .team').addEventListener('change'. dropdownHandleTitleChange)
+  // carousel.carouselListener();
 });
 
 /***/ }),
 
-/***/ "./src/nav.js":
-/*!********************!*\
-  !*** ./src/nav.js ***!
-  \********************/
+/***/ "./src/main.js":
+/*!*********************!*\
+  !*** ./src/main.js ***!
+  \*********************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
 
 var PLAYERS = [{
   first: 'Stephen',
@@ -37283,7 +37323,7 @@ function () {
     key: "getHeadshots",
     value: function getHeadshots() {
       PLAYERS.forEach(function (player, idx) {
-        axios("https://nba-players.herokuapp.com/players/".concat(player.last, "/").concat(player.first)).then(function (res) {
+        axios__WEBPACK_IMPORTED_MODULE_0___default()("https://nba-players.herokuapp.com/players/".concat(player.last, "/").concat(player.first)).then(function (res) {
           var img = new Image();
 
           if (idx === 0) {
@@ -37311,6 +37351,11 @@ function () {
   }, {
     key: "seasonSelector",
     value: function seasonSelector() {
+      var career = document.createElement('div');
+      career.innerHTML = 'Career';
+      career.setAttribute('class', 'option');
+      document.querySelector(".season-menu").appendChild(career);
+
       for (var i = 2015; i < 2018; i++) {
         var option = document.createElement('div');
         option.setAttribute('class', 'option');
@@ -37324,7 +37369,8 @@ function () {
       d3.csv('./data/nba_teams.csv').then(function (teams) {
         teams.forEach(function (team) {
           var teamOption = document.createElement('div');
-          teamOption.setAttribute('class', 'option');
+          teamOption.setAttribute('class', 'team-option');
+          teamOption.setAttribute('id', "".concat(team.prefix_1));
           teamOption.innerHTML = team.name;
           document.querySelector('.team-menu').appendChild(teamOption);
         });
@@ -37411,7 +37457,38 @@ var CONSTANTS = {
   WIDTH: 550,
   HEIGHT: 470,
   SHOT_OPACITY: "0.8"
-};
+}; // const NBA_TEAMS = {
+// 'Boston Celtics': 'BOS',
+// Brooklyn Nets,BKN,brooklyn-nets
+// New York Knicks,NYK,new-york-knicks
+// Philadelphia 76ers,PHI,philadelphia-76ers
+// Toronto Raptors,TOR,toronto-raptors
+// Golden State Warriors,GSW,golden-state-warriors
+// Los Angeles Clippers,LAC,los-angeles-clippers
+// Los Angeles Lakers,LAL,los-angeles-lakers
+// Phoenix Suns,PHX,phoenix-suns
+// Sacramento Kings,SAC,sacramento-kings
+// Chicago Bulls,CHI,chicago-bulls
+// Cleveland Cavaliers,CLE,cleveland-cavaliers
+// Detroit Pistons,DET,detroit-pistons
+// Indiana Pacers,IND,indiana-pacers
+// Milwaukee Bucks,MIL,milwaukee-bucks
+// Dallas Mavericks,DAL,dallas-mavericks
+// Houston Rockets,HOU,houston-rockets
+// Memphis Grizzlies,MEM,memphis-grizzlies
+// New Orleans Hornets,NOP,new-orleans-hornets
+// San Antonio Spurs,SAS,san-antonio-spurs
+// Atlanta Hawks,ATL,atlanta-hawks
+// Charlotte Bobcats,CHA,charlotte-bobcats
+// Miami Heat,MIA,miami-heat
+// Orlando Magic,ORL,orlando-magic
+// Washington Wizards,WSH,washington-wizards
+// Denver Nuggets,DEV,denver-nuggets
+// Minnesota Timberwolves,MIN,minnesota-timberwolves
+// Oklahoma City Thunder,OKC,oklahoma-city-thunder
+// Portland Trail Blazers,POR,portland-trail-blazers
+// Utah Jazz,UTA,utah-jazz
+// }
 
 var Shots =
 /*#__PURE__*/
@@ -37423,6 +37500,8 @@ function () {
     this.clearShots = this.clearShots.bind(this);
     this.parseShots = this.parseShots.bind(this);
     this.renderShots = this.renderShots.bind(this);
+    this.parseShotsByTeam = this.parseShotsByTeam.bind(this);
+    this.parseCareerShots = this.parseCareerShots.bind(this);
   }
 
   _createClass(Shots, [{
@@ -37431,9 +37510,34 @@ function () {
       d3.selectAll("g").remove();
     }
   }, {
+    key: "parseCareerShots",
+    value: function parseCareerShots() {
+      var _this = this;
+
+      var firstName = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'Stephen';
+      var lastName = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "Curry";
+
+      for (var i = 2015; i < 2018; i++) {
+        var season = "".concat(i, "-").concat(i + 1 - 2000);
+        d3.csv("./data/".concat(firstName, "_").concat(lastName, "_").concat(season, ".csv")).then(function (shots) {
+          shots.forEach(function (shot) {
+            var shotOutcome = shot.event_type;
+            var shotX = shot.loc_x;
+            var shotY = shot.loc_y;
+
+            if (shotOutcome === 'Made Shot') {
+              _this.renderShots([shotX, shotY], shotOutcome);
+            } else if (shotOutcome === 'Missed Shot') {
+              _this.renderShots([shotX, shotY], shotOutcome);
+            }
+          });
+        });
+      }
+    }
+  }, {
     key: "parseShots",
     value: function parseShots() {
-      var _this = this;
+      var _this2 = this;
 
       var firstName = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'Stephen';
       var lastName = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'Curry';
@@ -37446,9 +37550,9 @@ function () {
           var shotY = shot.loc_y;
 
           if (shotOutcome === 'Made Shot') {
-            _this.renderShots([shotX, shotY], shotOutcome);
+            _this2.renderShots([shotX, shotY], shotOutcome);
           } else if (shotOutcome === 'Missed Shot') {
-            _this.renderShots([shotX, shotY], shotOutcome);
+            _this2.renderShots([shotX, shotY], shotOutcome);
           }
         });
       });
@@ -37456,23 +37560,23 @@ function () {
   }, {
     key: "parseShotsByTeam",
     value: function parseShotsByTeam() {
-      var _this2 = this;
+      var _this3 = this;
 
       var firstName = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'Stephen';
       var lastName = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'Curry';
       var season = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : '2015-16';
-      var team = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : null;
+      var team = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : '';
       d3.csv("./data/".concat(firstName, "_").concat(lastName, "_").concat(season, ".csv")).then(function (shots) {
         shots.forEach(function (shot) {
-          if (shot.team_name === team) {
+          if (shot.visiting_team === team) {
             var shotOutcome = shot.event_type;
             var shotX = shot.loc_x;
             var shotY = shot.loc_y;
 
             if (shotOutcome === 'Made Shot') {
-              _this2.renderShots([shotX, shotY], shotOutcome);
+              _this3.renderShots([shotX, shotY], shotOutcome);
             } else if (shotOutcome === 'Missed Shot') {
-              _this2.renderShots([shotX, shotY], shotOutcome);
+              _this3.renderShots([shotX, shotY], shotOutcome);
             }
           }
         });
