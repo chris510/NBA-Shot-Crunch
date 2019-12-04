@@ -4,6 +4,7 @@ const db = require('./queries');
 const dropdown = require('./dropdown');
 import Shots from './shots';
 import Main from './main';
+import { teamSelector } from "./helpers";
 const carousel = require('./carousel');
 
 // Court Container 
@@ -16,8 +17,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
   let firstName = 'Stephen';
   let lastName = 'Curry';
+  let playerTeam = 'Golden State Warriors'
   let season = '2015-16';
   let team = '';
+  let type = 'season'
+
+  // let currentPlayerNameHTML = document.querySelector('#current-player-name');
+  // currentPlayerNameHTML.innerHTML = `${firstName} ${lastName}`;
 
   let chartContainer = document.getElementById('chart-container')
   let chart = d3.select(chartContainer)
@@ -32,6 +38,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   let shots = new Shots(chart);
   shots.parseShots();
+  // console.log(shots.parseShots());
 
   const player = document.querySelector('.carousel');
   player.addEventListener('click', (e) => {
@@ -41,6 +48,9 @@ document.addEventListener("DOMContentLoaded", () => {
     firstName = playerName[0];
     lastName = playerName[1];
 
+    let currentPlayerNameHTML = document.querySelector('.current-player-name');
+    currentPlayerNameHTML.innerHTML = `${firstName} ${lastName}`;
+
     shots.parseShots(firstName, lastName)
   });
 
@@ -49,23 +59,27 @@ document.addEventListener("DOMContentLoaded", () => {
     shots.clearShots();
     let seasonRange = e.target.innerText;
     if (seasonRange === 'Career') {
-      debugger
+      type = 'career';
       shots.parseCareerShots(firstName, lastName);
     } else {
-      debugger
       shots.parseShots(firstName, lastName, seasonRange);
     }
+    let currentTeamHTML = document.querySelector('.team');
+    currentTeamHTML.innerHTML = 'All';
   })
 
   const teamOption = document.querySelector('.team');
   teamOption.addEventListener('change', (e) => {
     shots.clearShots();
     team = e.target.id;
-    shots.parseShotsByTeam(firstName, lastName, season, team)
+    shots.parseShotsByTeam(firstName, lastName, season, team, type)
   })
 
   const main = new Main();
-  main.render();
+  // main.render();
+  main.getHeadshots();
+  main.seasonSelector();
+  teamSelector(playerTeam);
 
   //get elements
   const dropdownTitle = document.querySelector('.dropdown .title');

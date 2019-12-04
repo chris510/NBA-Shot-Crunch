@@ -6,40 +6,6 @@ const CONSTANTS = {
   SHOT_OPACITY: "0.8",
 }
 
-// const NBA_TEAMS = {
-// 'Boston Celtics': 'BOS',
-// Brooklyn Nets,BKN,brooklyn-nets
-// New York Knicks,NYK,new-york-knicks
-// Philadelphia 76ers,PHI,philadelphia-76ers
-// Toronto Raptors,TOR,toronto-raptors
-// Golden State Warriors,GSW,golden-state-warriors
-// Los Angeles Clippers,LAC,los-angeles-clippers
-// Los Angeles Lakers,LAL,los-angeles-lakers
-// Phoenix Suns,PHX,phoenix-suns
-// Sacramento Kings,SAC,sacramento-kings
-// Chicago Bulls,CHI,chicago-bulls
-// Cleveland Cavaliers,CLE,cleveland-cavaliers
-// Detroit Pistons,DET,detroit-pistons
-// Indiana Pacers,IND,indiana-pacers
-// Milwaukee Bucks,MIL,milwaukee-bucks
-// Dallas Mavericks,DAL,dallas-mavericks
-// Houston Rockets,HOU,houston-rockets
-// Memphis Grizzlies,MEM,memphis-grizzlies
-// New Orleans Hornets,NOP,new-orleans-hornets
-// San Antonio Spurs,SAS,san-antonio-spurs
-// Atlanta Hawks,ATL,atlanta-hawks
-// Charlotte Bobcats,CHA,charlotte-bobcats
-// Miami Heat,MIA,miami-heat
-// Orlando Magic,ORL,orlando-magic
-// Washington Wizards,WSH,washington-wizards
-// Denver Nuggets,DEV,denver-nuggets
-// Minnesota Timberwolves,MIN,minnesota-timberwolves
-// Oklahoma City Thunder,OKC,oklahoma-city-thunder
-// Portland Trail Blazers,POR,portland-trail-blazers
-// Utah Jazz,UTA,utah-jazz
-
-// }
-
 class Shots {
   constructor(svg) {
     this.svg = svg;
@@ -48,10 +14,21 @@ class Shots {
     this.renderShots = this.renderShots.bind(this);
     this.parseShotsByTeam = this.parseShotsByTeam.bind(this);
     this.parseCareerShots = this.parseCareerShots.bind(this);
+    this.getTotalShots = this.getTotalShots.bind(this);
+    this.getShotPercentage = this.getShotPercentage.bind(this);
   }
 
   clearShots() {
     d3.selectAll("g").remove();
+  }
+
+  getTotalShots(shots) {
+    let totalShots = shots;
+    return totalShots
+  }
+
+  getShotPercentage(shots) {
+
   }
 
   parseCareerShots(firstName = 'Stephen', lastName = "Curry") {
@@ -73,36 +50,58 @@ class Shots {
   }
 
   parseShots(firstName = 'Stephen', lastName = 'Curry', season = '2015-16') {
-    // axios('/shots')
-  d3.csv(`./data/${firstName}_${lastName}_${season}.csv`).then(shots => {
-    shots.forEach( shot => {
-      let shotOutcome = shot.event_type;
-      let shotX = shot.loc_x;
-      let shotY = shot.loc_y;
-      if (shotOutcome === 'Made Shot') {
-        this.renderShots([shotX, shotY], shotOutcome);
-      } else if (shotOutcome === 'Missed Shot') {
-        this.renderShots([shotX, shotY], shotOutcome);
-      }
-    })
-  })
-}
-
-  parseShotsByTeam(firstName = 'Stephen', lastName = 'Curry', season = '2015-16', team = '') {
-    d3.csv(`./data/${firstName}_${lastName}_${season}.csv`).then(shots => {
+    let totalShots = 0;
+    d3.csv(`./data/${firstName}_${lastName}_${season}.csv`).then(shots => { 
       shots.forEach( shot => {
-        if (shot.visiting_team === team) {
-          let shotOutcome = shot.event_type;
-          let shotX = shot.loc_x;
-          let shotY = shot.loc_y;
-          if (shotOutcome === 'Made Shot') {
-            this.renderShots([shotX, shotY], shotOutcome);
-          } else if (shotOutcome === 'Missed Shot') {
-            this.renderShots([shotX, shotY], shotOutcome);
-          }
+        totalShots++;
+        let shotOutcome = shot.event_type;
+        let shotX = shot.loc_x;
+        let shotY = shot.loc_y;
+        if (shotOutcome === 'Made Shot') {
+          this.renderShots([shotX, shotY], shotOutcome);
+        } else if (shotOutcome === 'Missed Shot') {
+          this.renderShots([shotX, shotY], shotOutcome);
         }
       })
     })
+
+  }
+
+  parseShotsByTeam(firstName = 'Stephen', lastName = 'Curry', season = '2015-16', team = '', type = '') {
+    if (type === 'career') {
+      for (let i = 2015; i < 2018; i++) {
+        let season = `${i}-${(i+1)-2000}`
+        d3.csv(`./data/${firstName}_${lastName}_${season}.csv`).then(shots => {
+          shots.forEach( shot => {
+            if (shot.visiting_team === team) {
+              let shotOutcome = shot.event_type;
+              let shotX = shot.loc_x;
+              let shotY = shot.loc_y;
+              if (shotOutcome === 'Made Shot') {
+                this.renderShots([shotX, shotY], shotOutcome);
+              } else if (shotOutcome === 'Missed Shot') {
+                this.renderShots([shotX, shotY], shotOutcome);
+              }
+            }
+          })
+        })
+      }
+    } else {
+      d3.csv(`./data/${firstName}_${lastName}_${season}.csv`).then(shots => {
+        shots.forEach( shot => {
+          if (shot.visiting_team === team) {
+            let shotOutcome = shot.event_type;
+            let shotX = shot.loc_x;
+            let shotY = shot.loc_y;
+            if (shotOutcome === 'Made Shot') {
+              this.renderShots([shotX, shotY], shotOutcome);
+            } else if (shotOutcome === 'Missed Shot') {
+              this.renderShots([shotX, shotY], shotOutcome);
+            }
+          }
+        })
+      })
+    }
   }
 
   renderShots(playerPos, shotOutcome) {

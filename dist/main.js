@@ -37185,6 +37185,32 @@ module.exports = {
 
 /***/ }),
 
+/***/ "./src/helpers.js":
+/*!************************!*\
+  !*** ./src/helpers.js ***!
+  \************************/
+/*! exports provided: teamSelector */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "teamSelector", function() { return teamSelector; });
+var teamSelector = function teamSelector(playerTeam) {
+  d3.csv('./data/nba_teams.csv').then(function (teams) {
+    teams.forEach(function (team) {
+      if (playerTeam != team.name) {
+        var teamOption = document.createElement('div');
+        teamOption.setAttribute('class', 'team-option');
+        teamOption.setAttribute('id', "".concat(team.prefix_1));
+        teamOption.innerHTML = team.name;
+        document.querySelector('.team-menu').appendChild(teamOption);
+      }
+    });
+  });
+};
+
+/***/ }),
+
 /***/ "./src/index.js":
 /*!**********************!*\
   !*** ./src/index.js ***!
@@ -37198,6 +37224,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _shots__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./shots */ "./src/shots.js");
 /* harmony import */ var _main__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./main */ "./src/main.js");
+/* harmony import */ var _helpers__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./helpers */ "./src/helpers.js");
 
 
 var Court = __webpack_require__(/*! ./court */ "./src/court.js");
@@ -37205,6 +37232,7 @@ var Court = __webpack_require__(/*! ./court */ "./src/court.js");
 var db = __webpack_require__(/*! ./queries */ "./src/queries.js");
 
 var dropdown = __webpack_require__(/*! ./dropdown */ "./src/dropdown.js");
+
 
 
 
@@ -37219,21 +37247,28 @@ var courtContainer = {
 document.addEventListener("DOMContentLoaded", function () {
   var firstName = 'Stephen';
   var lastName = 'Curry';
+  var playerTeam = 'Golden State Warriors';
   var season = '2015-16';
   var team = '';
+  var type = 'season'; // let currentPlayerNameHTML = document.querySelector('#current-player-name');
+  // currentPlayerNameHTML.innerHTML = `${firstName} ${lastName}`;
+
   var chartContainer = document.getElementById('chart-container');
   var chart = d3.select(chartContainer).append('svg').attr('class', 'chart').attr("width", courtContainer.width).attr("height", courtContainer.height); // .attr('fill', 'blue');
 
   var court = new Court(chart);
   court.render();
   var shots = new _shots__WEBPACK_IMPORTED_MODULE_1__["default"](chart);
-  shots.parseShots();
+  shots.parseShots(); // console.log(shots.parseShots());
+
   var player = document.querySelector('.carousel');
   player.addEventListener('click', function (e) {
     shots.clearShots();
     var playerName = e.target.alt.split(' ');
     firstName = playerName[0];
     lastName = playerName[1];
+    var currentPlayerNameHTML = document.querySelector('.current-player-name');
+    currentPlayerNameHTML.innerHTML = "".concat(firstName, " ").concat(lastName);
     shots.parseShots(firstName, lastName);
   });
   var seasonOption = document.querySelector('.title');
@@ -37242,21 +37277,26 @@ document.addEventListener("DOMContentLoaded", function () {
     var seasonRange = e.target.innerText;
 
     if (seasonRange === 'Career') {
-      debugger;
+      type = 'career';
       shots.parseCareerShots(firstName, lastName);
     } else {
-      debugger;
       shots.parseShots(firstName, lastName, seasonRange);
     }
+
+    var currentTeamHTML = document.querySelector('.team');
+    currentTeamHTML.innerHTML = 'All';
   });
   var teamOption = document.querySelector('.team');
   teamOption.addEventListener('change', function (e) {
     shots.clearShots();
     team = e.target.id;
-    shots.parseShotsByTeam(firstName, lastName, season, team);
+    shots.parseShotsByTeam(firstName, lastName, season, team, type);
   });
-  var main = new _main__WEBPACK_IMPORTED_MODULE_2__["default"]();
-  main.render(); //get elements
+  var main = new _main__WEBPACK_IMPORTED_MODULE_2__["default"](); // main.render();
+
+  main.getHeadshots();
+  main.seasonSelector();
+  Object(_helpers__WEBPACK_IMPORTED_MODULE_3__["teamSelector"])(playerTeam); //get elements
 
   var dropdownTitle = document.querySelector('.dropdown .title');
   var dropdownOptions = document.querySelectorAll('.dropdown .option');
@@ -37304,6 +37344,9 @@ var PLAYERS = [{
 }, {
   first: 'James',
   last: 'Harden'
+}, {
+  first: 'Russell',
+  last: 'Westbrook'
 } // {first: 'Anthony', last: 'Davis'},
 // {first: 'Damian', last: 'Lillard'}
 ];
@@ -37378,11 +37421,7 @@ function () {
     }
   }, {
     key: "render",
-    value: function render() {
-      this.getHeadshots();
-      this.seasonSelector();
-      this.teamSelector();
-    }
+    value: function render() {}
   }]);
 
   return Main;
@@ -37457,38 +37496,7 @@ var CONSTANTS = {
   WIDTH: 550,
   HEIGHT: 470,
   SHOT_OPACITY: "0.8"
-}; // const NBA_TEAMS = {
-// 'Boston Celtics': 'BOS',
-// Brooklyn Nets,BKN,brooklyn-nets
-// New York Knicks,NYK,new-york-knicks
-// Philadelphia 76ers,PHI,philadelphia-76ers
-// Toronto Raptors,TOR,toronto-raptors
-// Golden State Warriors,GSW,golden-state-warriors
-// Los Angeles Clippers,LAC,los-angeles-clippers
-// Los Angeles Lakers,LAL,los-angeles-lakers
-// Phoenix Suns,PHX,phoenix-suns
-// Sacramento Kings,SAC,sacramento-kings
-// Chicago Bulls,CHI,chicago-bulls
-// Cleveland Cavaliers,CLE,cleveland-cavaliers
-// Detroit Pistons,DET,detroit-pistons
-// Indiana Pacers,IND,indiana-pacers
-// Milwaukee Bucks,MIL,milwaukee-bucks
-// Dallas Mavericks,DAL,dallas-mavericks
-// Houston Rockets,HOU,houston-rockets
-// Memphis Grizzlies,MEM,memphis-grizzlies
-// New Orleans Hornets,NOP,new-orleans-hornets
-// San Antonio Spurs,SAS,san-antonio-spurs
-// Atlanta Hawks,ATL,atlanta-hawks
-// Charlotte Bobcats,CHA,charlotte-bobcats
-// Miami Heat,MIA,miami-heat
-// Orlando Magic,ORL,orlando-magic
-// Washington Wizards,WSH,washington-wizards
-// Denver Nuggets,DEV,denver-nuggets
-// Minnesota Timberwolves,MIN,minnesota-timberwolves
-// Oklahoma City Thunder,OKC,oklahoma-city-thunder
-// Portland Trail Blazers,POR,portland-trail-blazers
-// Utah Jazz,UTA,utah-jazz
-// }
+};
 
 var Shots =
 /*#__PURE__*/
@@ -37502,6 +37510,8 @@ function () {
     this.renderShots = this.renderShots.bind(this);
     this.parseShotsByTeam = this.parseShotsByTeam.bind(this);
     this.parseCareerShots = this.parseCareerShots.bind(this);
+    this.getTotalShots = this.getTotalShots.bind(this);
+    this.getShotPercentage = this.getShotPercentage.bind(this);
   }
 
   _createClass(Shots, [{
@@ -37509,6 +37519,15 @@ function () {
     value: function clearShots() {
       d3.selectAll("g").remove();
     }
+  }, {
+    key: "getTotalShots",
+    value: function getTotalShots(shots) {
+      var totalShots = shots;
+      return totalShots;
+    }
+  }, {
+    key: "getShotPercentage",
+    value: function getShotPercentage(shots) {}
   }, {
     key: "parseCareerShots",
     value: function parseCareerShots() {
@@ -37542,9 +37561,10 @@ function () {
       var firstName = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'Stephen';
       var lastName = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'Curry';
       var season = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : '2015-16';
-      // axios('/shots')
+      var totalShots = 0;
       d3.csv("./data/".concat(firstName, "_").concat(lastName, "_").concat(season, ".csv")).then(function (shots) {
         shots.forEach(function (shot) {
+          totalShots++;
           var shotOutcome = shot.event_type;
           var shotX = shot.loc_x;
           var shotY = shot.loc_y;
@@ -37566,21 +37586,45 @@ function () {
       var lastName = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'Curry';
       var season = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : '2015-16';
       var team = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : '';
-      d3.csv("./data/".concat(firstName, "_").concat(lastName, "_").concat(season, ".csv")).then(function (shots) {
-        shots.forEach(function (shot) {
-          if (shot.visiting_team === team) {
-            var shotOutcome = shot.event_type;
-            var shotX = shot.loc_x;
-            var shotY = shot.loc_y;
+      var type = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : '';
 
-            if (shotOutcome === 'Made Shot') {
-              _this3.renderShots([shotX, shotY], shotOutcome);
-            } else if (shotOutcome === 'Missed Shot') {
-              _this3.renderShots([shotX, shotY], shotOutcome);
+      if (type === 'career') {
+        for (var i = 2015; i < 2018; i++) {
+          var _season = "".concat(i, "-").concat(i + 1 - 2000);
+
+          d3.csv("./data/".concat(firstName, "_").concat(lastName, "_").concat(_season, ".csv")).then(function (shots) {
+            shots.forEach(function (shot) {
+              if (shot.visiting_team === team) {
+                var shotOutcome = shot.event_type;
+                var shotX = shot.loc_x;
+                var shotY = shot.loc_y;
+
+                if (shotOutcome === 'Made Shot') {
+                  _this3.renderShots([shotX, shotY], shotOutcome);
+                } else if (shotOutcome === 'Missed Shot') {
+                  _this3.renderShots([shotX, shotY], shotOutcome);
+                }
+              }
+            });
+          });
+        }
+      } else {
+        d3.csv("./data/".concat(firstName, "_").concat(lastName, "_").concat(season, ".csv")).then(function (shots) {
+          shots.forEach(function (shot) {
+            if (shot.visiting_team === team) {
+              var shotOutcome = shot.event_type;
+              var shotX = shot.loc_x;
+              var shotY = shot.loc_y;
+
+              if (shotOutcome === 'Made Shot') {
+                _this3.renderShots([shotX, shotY], shotOutcome);
+              } else if (shotOutcome === 'Missed Shot') {
+                _this3.renderShots([shotX, shotY], shotOutcome);
+              }
             }
-          }
+          });
         });
-      });
+      }
     }
   }, {
     key: "renderShots",

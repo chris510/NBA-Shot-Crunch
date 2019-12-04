@@ -12,7 +12,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <link href="https://fonts.googleapis.com/css?family=Varela&display=swap" rel="stylesheet">
 
-
+  <link href="./images/favicon.ico" rel="icon" type="image/x-icon" />
   <link rel="stylesheet" href="./src/css/main.css">
 
   <title>NBA Stat-Crunch</title>
@@ -35,6 +35,7 @@
       </div>
       <div class="shot-container">
         <div class="chart-filter">
+          <div class="current-player-name">Stephen Curry</div>
           <div id="select-season-container">
             <div class="season">
               Season
@@ -43,12 +44,16 @@
               <div class='title pointerCursor'>2015-16 <i class="fa fa-angle-right"></i></div>
               <div class='season-menu pointerCursor hide'> </div>
             </div>
+          </div>
+          <div id="select-team-container">
+            <div class='team-title'>
+              Team
+            </div>
             <div class='dropdown'>
-              <div class='team pointerCursor'>Team <i class="fa fa-angle-right"></i></div>
+              <div class='team pointerCursor'>All<i class="fa fa-angle-right"></i></div>
               <div class='team-menu pointerCursor hide'> </div>
             </div>
           </div>
-  
         </div>
         <div class="chart-wrapper">
           <div id="chart-container"></div>        

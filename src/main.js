@@ -2,7 +2,8 @@ import axios from "axios";
 const PLAYERS = [
   {first: 'Stephen', last: 'Curry'},
   {first: 'Lebron', last: 'James'},
-  {first: 'James', last: 'Harden'}
+  {first: 'James', last: 'Harden'},
+  {first: 'Russell', last: 'Westbrook'}
   // {first: 'Anthony', last: 'Davis'},
   // {first: 'Damian', last: 'Lillard'}
 ]
@@ -69,9 +70,6 @@ class Main {
   }
 
   render() {
-    this.getHeadshots();
-    this.seasonSelector();
-    this.teamSelector();
   }
 
 }
