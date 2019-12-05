@@ -4,7 +4,7 @@ const db = require('./queries');
 const dropdown = require('./dropdown');
 import Shots from './shots';
 import Main from './main';
-import { teamSelector, renderCourt, renderBody } from "./helpers";
+import { teamSelector, renderCourt, renderBody, renderFooter } from "./helpers";
 const carousel = require('./carousel');
 
 // Court Container 
@@ -79,6 +79,7 @@ document.addEventListener("DOMContentLoaded", () => {
   main.seasonSelector();
   teamSelector(playerTeam);
   
+  renderFooter();
 
   //get elements
   const dropdownTitle = document.querySelector('.dropdown .title');

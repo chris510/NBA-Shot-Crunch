@@ -37198,6 +37198,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "renderCourt", function() { return renderCourt; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "renderBody", function() { return renderBody; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "renderFooter", function() { return renderFooter; });
+/* harmony import */ var fs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! fs */ "./node_modules/node-libs-browser/mock/empty.js");
+/* harmony import */ var fs__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(fs__WEBPACK_IMPORTED_MODULE_0__);
+
 var teamSelector = function teamSelector(playerTeam) {
   d3.csv('./assets/nba_teams.csv').then(function (teams) {
     teams.forEach(function (team) {
@@ -37242,7 +37245,54 @@ var renderBody = function renderBody() {
   shotContainer.setAttribute('class', 'shot-container');
   app.appendChild(shotContainer);
 };
-var renderFooter = function renderFooter() {};
+var renderFooter = function renderFooter() {
+  var iconHeight = '48';
+  var iconWidth = '48';
+  var body = document.querySelector('body');
+  var footer = document.createElement('div');
+  footer.setAttribute('class', 'footer');
+  var footerWrapper = document.createElement('div');
+  footerWrapper.setAttribute('class', 'footer');
+  var buttonModal = document.createElement('button');
+  buttonModal.setAttribute('id', 'open-modal');
+  body.appendChild(footer).appendChild(footerWrapper).appendChild(buttonModal);
+  var github = document.createElement('div');
+  github.setAttribute('class', 'github');
+  var githubLink = document.createElement('a');
+  githubLink.target = "_blank";
+  githubLink.href = "https://github.com/chris510";
+  var githubImg = new Image();
+  githubImg.className = 'github-icon';
+  githubImg.height = "".concat(iconHeight);
+  githubImg.width = "".concat(iconWidth);
+  githubImg.src = "https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/github.svg";
+  github.appendChild(githubLink).appendChild(githubImg);
+  var mail = document.createElement('div');
+  mail.setAttribute('class', 'mail');
+  var mailLink = document.createElement('a');
+  mailLink.target = "_blank";
+  mailLink.href = "mailto:christrinh5@gmail.com";
+  var mailImg = new Image();
+  mailImg.className = 'mail-icon';
+  mailImg.height = "".concat(iconHeight);
+  mailImg.width = "".concat(iconWidth);
+  mailImg.src = "https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/gmail.svg";
+  mail.appendChild(mailLink).appendChild(mailImg);
+  var linkedin = document.createElement('div');
+  linkedin.setAttribute('class', 'linkedin');
+  var linkedinLink = document.createElement('a');
+  linkedinLink.target = "_blank";
+  linkedinLink.href = "https://www.linkedin.com/in/trinh-christopher/";
+  var linkedinImg = new Image();
+  linkedinImg.className = 'linkedin-icon';
+  linkedinImg.height = "".concat(iconHeight);
+  linkedinImg.width = "".concat(iconWidth);
+  linkedinImg.src = "https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/linkedin.svg";
+  linkedin.appendChild(linkedinLink).appendChild(linkedinImg);
+  footerWrapper.appendChild(github);
+  footerWrapper.appendChild(mail);
+  footerWrapper.appendChild(linkedin);
+};
 
 /***/ }),
 
@@ -37326,7 +37376,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
     main.getHeadshots();
     main.seasonSelector();
-    Object(_helpers__WEBPACK_IMPORTED_MODULE_3__["teamSelector"])(playerTeam); //get elements
+    Object(_helpers__WEBPACK_IMPORTED_MODULE_3__["teamSelector"])(playerTeam);
+    Object(_helpers__WEBPACK_IMPORTED_MODULE_3__["renderFooter"])(); //get elements
 
     var dropdownTitle = document.querySelector('.dropdown .title');
     var dropdownOptions = document.querySelectorAll('.dropdown .option');
