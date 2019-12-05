@@ -47,9 +47,19 @@ document.addEventListener("DOMContentLoaded", () => {
     let playerName = e.target.alt.split(' ');
     firstName = playerName[0];
     lastName = playerName[1];
+    season = '2015-16';
+    team = '';
 
     let currentPlayerNameHTML = document.querySelector('.current-player-name');
     currentPlayerNameHTML.innerHTML = `${firstName} ${lastName}`;
+
+    //Resets filters to proper option when selecting new player
+    let iTagOne = document.createElement('i');
+    iTagOne.setAttribute('class', 'fa fa-angle-right');
+
+    document.querySelector('.title').innerHTML = '2015-16';
+    document.querySelector('.team').innerHTML = 'All';
+    document.querySelector('.team').appendChild(iTagOne.cloneNode(true));
 
     shots.parseShots(firstName, lastName)
   });
