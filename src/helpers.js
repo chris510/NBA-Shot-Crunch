@@ -1,5 +1,5 @@
 export const teamSelector = (playerTeam) => {
-  d3.csv('./data/nba_teams.csv').then(teams => {
+  d3.csv('./assets/nba_teams.csv').then(teams => {
     teams.forEach(team => {
       if (playerTeam != team.name) {
         let teamOption = document.createElement('div');

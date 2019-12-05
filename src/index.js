@@ -60,6 +60,9 @@ document.addEventListener("DOMContentLoaded", () => {
     document.querySelector('.title').innerHTML = '2015-16';
     document.querySelector('.team').innerHTML = 'All';
     document.querySelector('.team').appendChild(iTagOne.cloneNode(true));
+    document.querySelector('.title').appendChild(iTagOne.cloneNode(true));
+
+
 
     shots.parseShots(firstName, lastName)
   });

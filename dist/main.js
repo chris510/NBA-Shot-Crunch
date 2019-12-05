@@ -37196,7 +37196,7 @@ module.exports = {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "teamSelector", function() { return teamSelector; });
 var teamSelector = function teamSelector(playerTeam) {
-  d3.csv('./data/nba_teams.csv').then(function (teams) {
+  d3.csv('./assets/nba_teams.csv').then(function (teams) {
     teams.forEach(function (team) {
       if (playerTeam != team.name) {
         var teamOption = document.createElement('div');
@@ -37277,6 +37277,7 @@ document.addEventListener("DOMContentLoaded", function () {
     document.querySelector('.title').innerHTML = '2015-16';
     document.querySelector('.team').innerHTML = 'All';
     document.querySelector('.team').appendChild(iTagOne.cloneNode(true));
+    document.querySelector('.title').appendChild(iTagOne.cloneNode(true));
     shots.parseShots(firstName, lastName);
   });
   var seasonOption = document.querySelector('.title');
