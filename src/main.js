@@ -104,24 +104,24 @@ class Main {
       .appendChild(selectSeasonContainer)
       .appendChild(season);
 
-    const dropdownOne = document.createElement('div');
-    dropdownOne.setAttribute('class', 'dropdown');
+    const dropDownOne = document.createElement('div');
+    dropDownOne.setAttribute('class', 'dropdown');
 
     const dropDownTitle = document.createElement('div');
     dropDownTitle.setAttribute('class', 'title pointerCursor');
     dropDownTitle.innerHTML = '2015-16'
 
-    const iFaFaAngle = document.createElement('i');
-    iFaFaAngle.setAttribute('class', "fa fa-angle-right");
+    const iFaFaAngleOne = document.createElement('i');
+    iFaFaAngleOne.setAttribute('class', "fa fa-angle-right");
 
     const seasonMenu = document.createElement('div');
     seasonMenu.setAttribute('class', 'season-menu pointerCursor hide')
 
-    dropDownTitle.appendChild(iFaFaAngle);
-    dropdownOne.appendChild(dropDownTitle);
-    dropdownOne.appendChild(seasonMenu);
+    // dropDownTitle.appendChild(iFaFaAngle);
+    dropDownOne.appendChild(dropDownTitle).appendChild(iFaFaAngleOne);
+    dropDownOne.appendChild(seasonMenu);
 
-    selectSeasonContainer.appendChild(dropdownOne);
+    selectSeasonContainer.appendChild(dropDownOne);
 
     const selectTeamContainer = document.createElement('div');
     selectTeamContainer.setAttribute('id', 'select-team-container');
@@ -132,21 +132,24 @@ class Main {
     filterContainer.appendChild(selectTeamContainer)
       .appendChild(team);
 
-    const dropdownTwo = document.createElement('div');
-    dropdownTwo.setAttribute('class', 'dropdown');
+    const dropDownTwo = document.createElement('div');
+    dropDownTwo.setAttribute('class', 'dropdown');
 
     const dropDownTeam = document.createElement('div');
     dropDownTeam.setAttribute('class', 'team pointerCursor');
     dropDownTeam.innerHTML = 'All'
 
+    const iFaFaAngleTwo = document.createElement('i');
+    iFaFaAngleTwo.setAttribute('class', "fa fa-angle-right");
+
     const teamMenu = document.createElement('div');
     teamMenu.setAttribute('class', 'team-menu pointerCursor hide')
 
-    dropDownTitle.appendChild(iFaFaAngle);
-    dropdownOne.appendChild(dropDownTeam);
-    dropdownOne.appendChild(teamMenu);
+    // dropDownTitle.appendChild(iFaFaAngle);
+    dropDownTwo.appendChild(dropDownTeam).appendChild(iFaFaAngleTwo);
+    dropDownTwo.appendChild(teamMenu);
 
-    selectTeamContainer.appendChild(dropDownOne);
+    selectTeamContainer.appendChild(dropDownTwo);
 
   }
 

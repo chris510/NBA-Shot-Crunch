@@ -74,26 +74,26 @@ document.addEventListener("DOMContentLoaded", () => {
   const main = new Main();
   main.displayChartFilter();
 
-  // const seasonOption = document.querySelector('.title');
-  // seasonOption.addEventListener('change', (e) => {
-  //   shots.clearShots();
-  //   let seasonRange = e.target.innerText;
-  //   if (seasonRange === 'Career') {
-  //     type = 'career';
-  //     shots.parseCareerShots(firstName, lastName);
-  //   } else {
-  //     shots.parseShots(firstName, lastName, seasonRange);
-  //   }
-  //   let currentTeamHTML = document.querySelector('.team');
-  //   currentTeamHTML.innerHTML = 'All';
-  // })
+  const seasonOption = document.querySelector('.title');
+  seasonOption.addEventListener('change', (e) => {
+    shots.clearShots();
+    let seasonRange = e.target.innerText;
+    if (seasonRange === 'Career') {
+      type = 'career';
+      shots.parseCareerShots(firstName, lastName);
+    } else {
+      shots.parseShots(firstName, lastName, seasonRange);
+    }
+    let currentTeamHTML = document.querySelector('.team');
+    currentTeamHTML.innerHTML = 'All';
+  })
 
-  // const teamOption = document.querySelector('.team');
-  // teamOption.addEventListener('change', (e) => {
-  //   shots.clearShots();
-  //   team = e.target.id;
-  //   shots.parseShotsByTeam(firstName, lastName, season, team, type)
-  // })
+  const teamOption = document.querySelector('.team');
+  teamOption.addEventListener('change', (e) => {
+    shots.clearShots();
+    team = e.target.id;
+    shots.parseShotsByTeam(firstName, lastName, season, team, type)
+  })
 
   // main.render();
   main.getHeadshots();

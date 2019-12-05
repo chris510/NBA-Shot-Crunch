@@ -37282,26 +37282,28 @@ document.addEventListener("DOMContentLoaded", function () {
       shots.parseShots(firstName, lastName);
     });
     var main = new _main__WEBPACK_IMPORTED_MODULE_2__["default"]();
-    main.displayChartFilter(); // const seasonOption = document.querySelector('.title');
-    // seasonOption.addEventListener('change', (e) => {
-    //   shots.clearShots();
-    //   let seasonRange = e.target.innerText;
-    //   if (seasonRange === 'Career') {
-    //     type = 'career';
-    //     shots.parseCareerShots(firstName, lastName);
-    //   } else {
-    //     shots.parseShots(firstName, lastName, seasonRange);
-    //   }
-    //   let currentTeamHTML = document.querySelector('.team');
-    //   currentTeamHTML.innerHTML = 'All';
-    // })
-    // const teamOption = document.querySelector('.team');
-    // teamOption.addEventListener('change', (e) => {
-    //   shots.clearShots();
-    //   team = e.target.id;
-    //   shots.parseShotsByTeam(firstName, lastName, season, team, type)
-    // })
-    // main.render();
+    main.displayChartFilter();
+    var seasonOption = document.querySelector('.title');
+    seasonOption.addEventListener('change', function (e) {
+      shots.clearShots();
+      var seasonRange = e.target.innerText;
+
+      if (seasonRange === 'Career') {
+        type = 'career';
+        shots.parseCareerShots(firstName, lastName);
+      } else {
+        shots.parseShots(firstName, lastName, seasonRange);
+      }
+
+      var currentTeamHTML = document.querySelector('.team');
+      currentTeamHTML.innerHTML = 'All';
+    });
+    var teamOption = document.querySelector('.team');
+    teamOption.addEventListener('change', function (e) {
+      shots.clearShots();
+      team = e.target.id;
+      shots.parseShotsByTeam(firstName, lastName, season, team, type);
+    }); // main.render();
 
     main.getHeadshots();
     main.seasonSelector();
@@ -37561,36 +37563,38 @@ function () {
       season.setAttribute('class', 'season');
       season.innerHTML = 'Season';
       chartFilter.appendChild(filterContainer).appendChild(selectSeasonContainer).appendChild(season);
-      var dropdownOne = document.createElement('div');
-      dropdownOne.setAttribute('class', 'dropdown');
+      var dropDownOne = document.createElement('div');
+      dropDownOne.setAttribute('class', 'dropdown');
       var dropDownTitle = document.createElement('div');
       dropDownTitle.setAttribute('class', 'title pointerCursor');
       dropDownTitle.innerHTML = '2015-16';
-      var iFaFaAngle = document.createElement('i');
-      iFaFaAngle.setAttribute('class', "fa fa-angle-right");
+      var iFaFaAngleOne = document.createElement('i');
+      iFaFaAngleOne.setAttribute('class', "fa fa-angle-right");
       var seasonMenu = document.createElement('div');
-      seasonMenu.setAttribute('class', 'season-menu pointerCursor hide');
-      dropDownTitle.appendChild(iFaFaAngle);
-      dropdownOne.appendChild(dropDownTitle);
-      dropdownOne.appendChild(seasonMenu);
-      selectSeasonContainer.appendChild(dropdownOne);
+      seasonMenu.setAttribute('class', 'season-menu pointerCursor hide'); // dropDownTitle.appendChild(iFaFaAngle);
+
+      dropDownOne.appendChild(dropDownTitle).appendChild(iFaFaAngleOne);
+      dropDownOne.appendChild(seasonMenu);
+      selectSeasonContainer.appendChild(dropDownOne);
       var selectTeamContainer = document.createElement('div');
       selectTeamContainer.setAttribute('id', 'select-team-container');
       var team = document.createElement('div');
       team.setAttribute('class', 'team-title');
       team.innerHTML = 'Team';
       filterContainer.appendChild(selectTeamContainer).appendChild(team);
-      var dropdownTwo = document.createElement('div');
-      dropdownTwo.setAttribute('class', 'dropdown');
+      var dropDownTwo = document.createElement('div');
+      dropDownTwo.setAttribute('class', 'dropdown');
       var dropDownTeam = document.createElement('div');
       dropDownTeam.setAttribute('class', 'team pointerCursor');
       dropDownTeam.innerHTML = 'All';
+      var iFaFaAngleTwo = document.createElement('i');
+      iFaFaAngleTwo.setAttribute('class', "fa fa-angle-right");
       var teamMenu = document.createElement('div');
-      teamMenu.setAttribute('class', 'team-menu pointerCursor hide');
-      dropDownTitle.appendChild(iFaFaAngle);
-      dropdownOne.appendChild(dropDownTeam);
-      dropdownOne.appendChild(teamMenu);
-      selectTeamContainer.appendChild(dropDownOne);
+      teamMenu.setAttribute('class', 'team-menu pointerCursor hide'); // dropDownTitle.appendChild(iFaFaAngle);
+
+      dropDownTwo.appendChild(dropDownTeam).appendChild(iFaFaAngleTwo);
+      dropDownTwo.appendChild(teamMenu);
+      selectTeamContainer.appendChild(dropDownTwo);
     }
   }, {
     key: "render",
