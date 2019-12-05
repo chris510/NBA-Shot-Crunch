@@ -58,7 +58,7 @@ class Main {
   }
 
   teamSelector() {
-    d3.csv('./data/nba_teams.csv').then(teams => {
+    d3.csv('./assets/nba_teams.csv').then(teams => {
       teams.forEach(team => {
         let teamOption = document.createElement('div');
         teamOption.setAttribute('class','team-option');

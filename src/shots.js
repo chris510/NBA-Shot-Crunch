@@ -87,7 +87,7 @@ class Shots {
         })
       }
     } else {
-      d3.csv(`./data/${firstName}_${lastName}_${season}.csv`).then(shots => {
+      d3.csv(`./assets/${firstName}_${lastName}_${season}.csv`).then(shots => {
         shots.forEach( shot => {
           if (shot.visiting_team === team) {
             let shotOutcome = shot.event_type;

@@ -37417,7 +37417,7 @@ function () {
   }, {
     key: "teamSelector",
     value: function teamSelector() {
-      d3.csv('./data/nba_teams.csv').then(function (teams) {
+      d3.csv('./assets/nba_teams.csv').then(function (teams) {
         teams.forEach(function (team) {
           var teamOption = document.createElement('div');
           teamOption.setAttribute('class', 'team-option');
@@ -37617,7 +37617,7 @@ function () {
           });
         }
       } else {
-        d3.csv("./data/".concat(firstName, "_").concat(lastName, "_").concat(season, ".csv")).then(function (shots) {
+        d3.csv("./assets/".concat(firstName, "_").concat(lastName, "_").concat(season, ".csv")).then(function (shots) {
           shots.forEach(function (shot) {
             if (shot.visiting_team === team) {
               var shotOutcome = shot.event_type;
