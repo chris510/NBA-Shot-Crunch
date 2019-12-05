@@ -37546,7 +37546,7 @@ function () {
 
       for (var i = 2015; i < 2018; i++) {
         var season = "".concat(i, "-").concat(i + 1 - 2000);
-        d3.csv("./data/".concat(firstName, "_").concat(lastName, "_").concat(season, ".csv")).then(function (shots) {
+        d3.csv("./assets/".concat(firstName, "_").concat(lastName, "_").concat(season, ".csv")).then(function (shots) {
           shots.forEach(function (shot) {
             var shotOutcome = shot.event_type;
             var shotX = shot.loc_x;
@@ -37570,7 +37570,7 @@ function () {
       var lastName = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'Curry';
       var season = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : '2015-16';
       var totalShots = 0;
-      d3.csv("./data/".concat(firstName, "_").concat(lastName, "_").concat(season, ".csv")).then(function (shots) {
+      d3.csv("./assets/".concat(firstName, "_").concat(lastName, "_").concat(season, ".csv")).then(function (shots) {
         shots.forEach(function (shot) {
           totalShots++;
           var shotOutcome = shot.event_type;
@@ -37600,7 +37600,7 @@ function () {
         for (var i = 2015; i < 2018; i++) {
           var _season = "".concat(i, "-").concat(i + 1 - 2000);
 
-          d3.csv("./data/".concat(firstName, "_").concat(lastName, "_").concat(_season, ".csv")).then(function (shots) {
+          d3.csv("./assets/".concat(firstName, "_").concat(lastName, "_").concat(_season, ".csv")).then(function (shots) {
             shots.forEach(function (shot) {
               if (shot.visiting_team === team) {
                 var shotOutcome = shot.event_type;

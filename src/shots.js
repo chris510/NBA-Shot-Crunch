@@ -34,7 +34,7 @@ class Shots {
   parseCareerShots(firstName = 'Stephen', lastName = "Curry") {
     for (let i = 2015; i < 2018; i++) {
       let season = `${i}-${(i+1)-2000}`
-      d3.csv(`./data/${firstName}_${lastName}_${season}.csv`).then(shots => {
+      d3.csv(`./assets/${firstName}_${lastName}_${season}.csv`).then(shots => {
         shots.forEach( shot => {
           let shotOutcome = shot.event_type;
           let shotX = shot.loc_x;
@@ -51,7 +51,7 @@ class Shots {
 
   parseShots(firstName = 'Stephen', lastName = 'Curry', season = '2015-16') {
     let totalShots = 0;
-    d3.csv(`./data/${firstName}_${lastName}_${season}.csv`).then(shots => { 
+    d3.csv(`./assets/${firstName}_${lastName}_${season}.csv`).then(shots => { 
       shots.forEach( shot => {
         totalShots++;
         let shotOutcome = shot.event_type;
@@ -71,7 +71,7 @@ class Shots {
     if (type === 'career') {
       for (let i = 2015; i < 2018; i++) {
         let season = `${i}-${(i+1)-2000}`
-        d3.csv(`./data/${firstName}_${lastName}_${season}.csv`).then(shots => {
+        d3.csv(`./assets/${firstName}_${lastName}_${season}.csv`).then(shots => {
           shots.forEach( shot => {
             if (shot.visiting_team === team) {
               let shotOutcome = shot.event_type;
