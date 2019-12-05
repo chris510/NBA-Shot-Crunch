@@ -37189,7 +37189,7 @@ module.exports = {
 /*!************************!*\
   !*** ./src/helpers.js ***!
   \************************/
-/*! exports provided: teamSelector, renderCourt, renderBody, renderFooter */
+/*! exports provided: teamSelector, renderCourt, renderBody, renderFooter, renderSplashPage */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -37198,9 +37198,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "renderCourt", function() { return renderCourt; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "renderBody", function() { return renderBody; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "renderFooter", function() { return renderFooter; });
-/* harmony import */ var fs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! fs */ "./node_modules/node-libs-browser/mock/empty.js");
-/* harmony import */ var fs__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(fs__WEBPACK_IMPORTED_MODULE_0__);
-
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "renderSplashPage", function() { return renderSplashPage; });
+var GIF = ["../assets/gifs/anthony_davis.gif", "../assets/gifs/Blake-Griffin.gif", "../assets/gifs/Chris-Paul.gif", "../assets/gifs/Dwight-Howard.gif", "../assets/gifs/jamesharden.gif", "../assets/gifs/Kevin-Durant.gif", "../assets/gifs/Kevin-Love.gif", "../assets/gifs/lebron-james.gif", "../assets/gifs/Russell-Westbrook.gif", "../assets/gifs/Stephen-Curry.gif"];
 var teamSelector = function teamSelector(playerTeam) {
   d3.csv('./assets/nba_teams.csv').then(function (teams) {
     teams.forEach(function (team) {
@@ -37216,14 +37215,14 @@ var teamSelector = function teamSelector(playerTeam) {
 };
 var renderCourt = function renderCourt() {
   var body = document.querySelector('body');
-  var shotContainer = document.createElement('div');
-  shotContainer.setAttribute('class', 'shot-container'); // let shotContainer = document.querySelector('.shot-container');
+  var shotContainer = document.querySelector('.shot-container'); // shotContainer.setAttribute('class', 'shot-container');
+  // let shotContainer = document.querySelector('.shot-container');
 
   var chartWrapper = document.createElement('div');
   chartWrapper.setAttribute('class', 'chart-wrapper');
   var chartContainer = document.createElement('div');
   chartContainer.setAttribute('id', 'chart-container');
-  body.appendChild(shotContainer).appendChild(chartWrapper).appendChild(chartContainer);
+  shotContainer.appendChild(chartWrapper).appendChild(chartContainer);
 };
 var renderBody = function renderBody() {
   var body = document.querySelector('body');
@@ -37241,6 +37240,7 @@ var renderBody = function renderBody() {
   body.appendChild(app).appendChild(appTitle); // app.appendChild(appTitle);
 
   app.appendChild(player).appendChild(carouselWrapper).appendChild(carousel);
+  debugger;
   var shotContainer = document.createElement('div');
   shotContainer.setAttribute('class', 'shot-container');
   app.appendChild(shotContainer);
@@ -37293,6 +37293,30 @@ var renderFooter = function renderFooter() {
   footerWrapper.appendChild(mail);
   footerWrapper.appendChild(linkedin);
 };
+var renderSplashPage = function renderSplashPage() {
+  var body = document.querySelector('body');
+  var splash = document.createElement('div');
+  splash.setAttribute('class', 'splash');
+  var splashTitle = document.createElement('div');
+  splashTitle.setAttribute('class', 'splash-title');
+  splashTitle.innerHTML = 'NBA Shot Crunch';
+  var randomGifIdx = Math.round(Math.random() * (GIF.length - 1));
+  var randomGif = GIF[randomGifIdx];
+  var splashGif = new Image();
+  splashGif.className = "splash-gif";
+  splashGif.src = "".concat(randomGif);
+  splashGif.height = "400";
+  splashGif.width = "400"; // const splashGIF = document.createElement('div');
+  // splashGIF.setAttribute('class', 'splash-gif');
+
+  var button = document.createElement('div');
+  button.setAttribute('class', 'lucky');
+  body.appendChild(splash);
+  splash.appendChild(splashTitle);
+  splash.appendChild(splashGif); //change to splash
+
+  body.appendChild(button); // body.appendChild(button);
+};
 
 /***/ }),
 
@@ -37321,15 +37345,16 @@ var dropdown = __webpack_require__(/*! ./dropdown */ "./src/dropdown.js");
 
 
 
+var carousel = __webpack_require__(/*! ./carousel */ "./src/carousel.js");
 
-var carousel = __webpack_require__(/*! ./carousel */ "./src/carousel.js"); // Court Container 
-
+ // Court Container 
 
 var courtContainer = {
   width: 800,
   height: 450
 };
 document.addEventListener("DOMContentLoaded", function () {
+  Object(_helpers__WEBPACK_IMPORTED_MODULE_3__["renderSplashPage"])();
   d3.selectAll(".lucky").append("input").property("type", "button").attr("class", "randombutton").on("click", function (d, i) {
     Object(_helpers__WEBPACK_IMPORTED_MODULE_3__["renderBody"])();
     var firstName = 'Stephen';
@@ -37341,8 +37366,8 @@ document.addEventListener("DOMContentLoaded", function () {
     // currentPlayerNameHTML.innerHTML = `${firstName} ${lastName}`;
 
     var main = new _main__WEBPACK_IMPORTED_MODULE_2__["default"]();
-    main.displayChartFilter();
     Object(_helpers__WEBPACK_IMPORTED_MODULE_3__["renderCourt"])();
+    main.displayChartFilter();
     var chartContainer = document.getElementById('chart-container');
     var chart = d3.select(chartContainer).append('svg').attr('class', 'chart').attr("width", courtContainer.width).attr("height", courtContainer.height); // const court = new Court(chart)
     // court.render();

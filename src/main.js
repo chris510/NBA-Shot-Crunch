@@ -80,7 +80,6 @@ class Main {
     const currentPlayerNameContainer = document.createElement('div');
     currentPlayerNameContainer.setAttribute('class', 'current-player-name-container');
 
-    
     const currentPlayerName = document.createElement('div');
     currentPlayerName.setAttribute('class', 'current-player-name');
     currentPlayerName.innerText = 'Stephen Curry';

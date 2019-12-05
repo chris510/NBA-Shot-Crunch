@@ -1,4 +1,15 @@
-import { appendFile } from "fs";
+const GIF = [
+  "../assets/gifs/anthony_davis.gif",
+  "../assets/gifs/Blake-Griffin.gif",
+  "../assets/gifs/Chris-Paul.gif",
+  "../assets/gifs/Dwight-Howard.gif",
+  "../assets/gifs/jamesharden.gif",
+  "../assets/gifs/Kevin-Durant.gif",
+  "../assets/gifs/Kevin-Love.gif",
+  "../assets/gifs/lebron-james.gif",
+  "../assets/gifs/Russell-Westbrook.gif",
+  "../assets/gifs/Stephen-Curry.gif",
+]
 
 export const teamSelector = (playerTeam) => {
   d3.csv('./assets/nba_teams.csv').then(teams => {
@@ -16,8 +27,8 @@ export const teamSelector = (playerTeam) => {
 
 export const renderCourt = () => {
   const body = document.querySelector('body');
-  const shotContainer = document.createElement('div');
-  shotContainer.setAttribute('class', 'shot-container');
+  const shotContainer = document.querySelector('.shot-container');
+  // shotContainer.setAttribute('class', 'shot-container');
   // let shotContainer = document.querySelector('.shot-container');
   let chartWrapper = document.createElement('div');
   chartWrapper.setAttribute('class', 'chart-wrapper')
@@ -25,8 +36,7 @@ export const renderCourt = () => {
   let chartContainer = document.createElement('div');
   chartContainer.setAttribute('id', 'chart-container')
 
-  body
-    .appendChild(shotContainer)
+  shotContainer
     .appendChild(chartWrapper)
     .appendChild(chartContainer);
 }
@@ -38,25 +48,27 @@ export const renderBody = () => {
   const appTitle = document.createElement('div');
   appTitle.setAttribute('class', 'app-title');
   appTitle.innerHTML = 'NBA Shot Crunch';
-
+  
   const player = document.createElement('div');
   player.setAttribute('class', 'player');
-
+  
   const carouselWrapper = document.createElement('div');
   carouselWrapper.setAttribute('class', 'carousel-wrapper');
-
+  
   const carousel = document.createElement('div');
   carousel.setAttribute('class', 'carousel');
-
+  
+  
   body.appendChild(app).appendChild(appTitle)
   // app.appendChild(appTitle);
   app.appendChild(player)
-    .appendChild(carouselWrapper)
-    .appendChild(carousel);
-
+  .appendChild(carouselWrapper)
+  .appendChild(carousel);
+  debugger
   const shotContainer = document.createElement('div');
   shotContainer.setAttribute('class', 'shot-container');
   app.appendChild(shotContainer);
+
 }
 
 export const renderFooter = () => {
@@ -121,4 +133,37 @@ export const renderFooter = () => {
   footerWrapper.appendChild(github);
   footerWrapper.appendChild(mail);
   footerWrapper.appendChild(linkedin);
+}
+
+export const renderSplashPage = () => {
+  const body = document.querySelector('body');
+  const splash = document.createElement('div');
+  splash.setAttribute('class', 'splash')
+
+  const splashTitle = document.createElement('div');
+  splashTitle.setAttribute('class', 'splash-title');
+  splashTitle.innerHTML = 'NBA Shot Crunch'
+
+  let randomGifIdx = Math.round(Math.random() * (GIF.length - 1));
+  let randomGif = GIF[randomGifIdx];
+
+  const splashGif = new Image();
+  splashGif.className = "splash-gif";
+  splashGif.src = `${randomGif}`;
+  splashGif.height = "400";
+  splashGif.width = "400";
+  // const splashGIF = document.createElement('div');
+  // splashGIF.setAttribute('class', 'splash-gif');
+
+  const button = document.createElement('div');
+  button.setAttribute('class', 'lucky');
+
+  body.appendChild(splash);
+  splash.appendChild(splashTitle);
+  splash.appendChild(splashGif);
+
+  //change to splash
+  body.appendChild(button);
+
+  // body.appendChild(button);
 }

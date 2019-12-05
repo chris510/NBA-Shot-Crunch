@@ -1,0 +1,13 @@
+
+.splash {
+  width: 60%;
+  height: 70%; 
+  background-color: whitesmoke;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.splash-title {
+  color: black;
+}

@@ -4,8 +4,8 @@ const db = require('./queries');
 const dropdown = require('./dropdown');
 import Shots from './shots';
 import Main from './main';
-import { teamSelector, renderCourt, renderBody, renderFooter } from "./helpers";
 const carousel = require('./carousel');
+import { teamSelector, renderCourt, renderBody, renderFooter, renderSplashPage } from "./helpers";
 
 // Court Container 
 const courtContainer = {
@@ -14,6 +14,8 @@ const courtContainer = {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+
+  renderSplashPage();
 
   d3.selectAll(".lucky")
     .append("input")
@@ -33,8 +35,8 @@ document.addEventListener("DOMContentLoaded", () => {
   // currentPlayerNameHTML.innerHTML = `${firstName} ${lastName}`;
   
   const main = new Main();
-  main.displayChartFilter();
   renderCourt();
+  main.displayChartFilter();
 
   let chartContainer = document.getElementById('chart-container')
   let chart = d3.select(chartContainer)

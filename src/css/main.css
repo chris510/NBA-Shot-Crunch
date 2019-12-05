@@ -1,4 +1,5 @@
 @import './reset.css';
+@import './splash.css';
 @import './dropdown.css';
 @import './carousel.css';
 @import './filters.css';
@@ -14,7 +15,7 @@ html {
 body {
   height: 100%;
   width: 100%;
-  background-color: lightgreen;
+  background-color: black;
   /* background-image: url("../../images/basketballcourt.jpeg"); */
   background-size: 42% 100%;
   /* background-repeat: space; */
