@@ -5,7 +5,14 @@ const dropdown = require('./dropdown');
 import Shots from './shots';
 import Main from './main';
 const carousel = require('./carousel');
-import { teamSelector, renderCourt, renderBody, renderFooter, renderSplashPage } from "./helpers";
+import { 
+  teamSelector, 
+  renderCourt, 
+  renderBody, 
+  renderFooter,
+  renderSplashPage,
+  removeSplash
+} from "./helpers";
 
 // Court Container 
 const courtContainer = {
@@ -18,11 +25,8 @@ document.addEventListener("DOMContentLoaded", () => {
   renderSplashPage();
 
   d3.selectAll(".lucky")
-    .append("input")
-    .property("type", "button")
-    .attr("class", "randombutton")
     .on("click", function(d, i) {
-
+      removeSplash();
       renderBody();
 
       let firstName = 'Stephen';

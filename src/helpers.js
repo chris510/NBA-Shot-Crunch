@@ -8,7 +8,16 @@ const GIF = [
   "../assets/gifs/Kevin-Love.gif",
   "../assets/gifs/lebron-james.gif",
   "../assets/gifs/Russell-Westbrook.gif",
-  "../assets/gifs/Stephen-Curry.gif",
+  "../assets/gifs/anthony_davis_lakers.gif",
+  "../assets/gifs/derek_rose.gif",
+  "../assets/gifs/devin_booker.gif",
+  "../assets/gifs/draymond_green.gif",
+  "../assets/gifs/giannis.gif",
+  "../assets/gifs/hassan_whiteside.gif",
+  "../assets/gifs/james_harden_cook.gif",
+  "../assets/gifs/zion_williamson.gif",
+  "../assets/gifs/luka_doncic.gif",
+  "../assets/gifs/lebron_lal.gif",
 ]
 
 export const teamSelector = (playerTeam) => {
@@ -64,7 +73,6 @@ export const renderBody = () => {
   app.appendChild(player)
   .appendChild(carouselWrapper)
   .appendChild(carousel);
-  debugger
   const shotContainer = document.createElement('div');
   shotContainer.setAttribute('class', 'shot-container');
   app.appendChild(shotContainer);
@@ -158,12 +166,23 @@ export const renderSplashPage = () => {
   const button = document.createElement('div');
   button.setAttribute('class', 'lucky');
 
+  const buttonInput = document.createElement('input');
+  buttonInput.setAttribute('type', 'button');
+  buttonInput.setAttribute('class', 'randombutton');
+  buttonInput.value = "CLICK ME";
+
   body.appendChild(splash);
   splash.appendChild(splashTitle);
   splash.appendChild(splashGif);
-
-  //change to splash
-  body.appendChild(button);
+  splash.appendChild(button).appendChild(buttonInput);
+  // splash.appendChild(button);
 
   // body.appendChild(button);
+}
+
+export const removeSplash = () => {
+  const splash = document.querySelector('.splash');
+  const button = document.querySelector('.lucky');
+  splash.remove();
+  button.remove();
 }

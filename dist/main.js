@@ -37189,7 +37189,7 @@ module.exports = {
 /*!************************!*\
   !*** ./src/helpers.js ***!
   \************************/
-/*! exports provided: teamSelector, renderCourt, renderBody, renderFooter, renderSplashPage */
+/*! exports provided: teamSelector, renderCourt, renderBody, renderFooter, renderSplashPage, removeSplash */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -37199,7 +37199,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "renderBody", function() { return renderBody; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "renderFooter", function() { return renderFooter; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "renderSplashPage", function() { return renderSplashPage; });
-var GIF = ["../assets/gifs/anthony_davis.gif", "../assets/gifs/Blake-Griffin.gif", "../assets/gifs/Chris-Paul.gif", "../assets/gifs/Dwight-Howard.gif", "../assets/gifs/jamesharden.gif", "../assets/gifs/Kevin-Durant.gif", "../assets/gifs/Kevin-Love.gif", "../assets/gifs/lebron-james.gif", "../assets/gifs/Russell-Westbrook.gif", "../assets/gifs/Stephen-Curry.gif"];
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "removeSplash", function() { return removeSplash; });
+var GIF = ["../assets/gifs/anthony_davis.gif", "../assets/gifs/Blake-Griffin.gif", "../assets/gifs/Chris-Paul.gif", "../assets/gifs/Dwight-Howard.gif", "../assets/gifs/jamesharden.gif", "../assets/gifs/Kevin-Durant.gif", "../assets/gifs/Kevin-Love.gif", "../assets/gifs/lebron-james.gif", "../assets/gifs/Russell-Westbrook.gif", "../assets/gifs/anthony_davis_lakers.gif", "../assets/gifs/derek_rose.gif", "../assets/gifs/devin_booker.gif", "../assets/gifs/draymond_green.gif", "../assets/gifs/giannis.gif", "../assets/gifs/hassan_whiteside.gif", "../assets/gifs/james_harden_cook.gif", "../assets/gifs/zion_williamson.gif", "../assets/gifs/luka_doncic.gif", "../assets/gifs/lebron_lal.gif"];
 var teamSelector = function teamSelector(playerTeam) {
   d3.csv('./assets/nba_teams.csv').then(function (teams) {
     teams.forEach(function (team) {
@@ -37240,7 +37241,6 @@ var renderBody = function renderBody() {
   body.appendChild(app).appendChild(appTitle); // app.appendChild(appTitle);
 
   app.appendChild(player).appendChild(carouselWrapper).appendChild(carousel);
-  debugger;
   var shotContainer = document.createElement('div');
   shotContainer.setAttribute('class', 'shot-container');
   app.appendChild(shotContainer);
@@ -37311,11 +37311,21 @@ var renderSplashPage = function renderSplashPage() {
 
   var button = document.createElement('div');
   button.setAttribute('class', 'lucky');
+  var buttonInput = document.createElement('input');
+  buttonInput.setAttribute('type', 'button');
+  buttonInput.setAttribute('class', 'randombutton');
+  buttonInput.value = "CLICK ME";
   body.appendChild(splash);
   splash.appendChild(splashTitle);
-  splash.appendChild(splashGif); //change to splash
-
-  body.appendChild(button); // body.appendChild(button);
+  splash.appendChild(splashGif);
+  splash.appendChild(button).appendChild(buttonInput); // splash.appendChild(button);
+  // body.appendChild(button);
+};
+var removeSplash = function removeSplash() {
+  var splash = document.querySelector('.splash');
+  var button = document.querySelector('.lucky');
+  splash.remove();
+  button.remove();
 };
 
 /***/ }),
@@ -37355,7 +37365,8 @@ var courtContainer = {
 };
 document.addEventListener("DOMContentLoaded", function () {
   Object(_helpers__WEBPACK_IMPORTED_MODULE_3__["renderSplashPage"])();
-  d3.selectAll(".lucky").append("input").property("type", "button").attr("class", "randombutton").on("click", function (d, i) {
+  d3.selectAll(".lucky").on("click", function (d, i) {
+    Object(_helpers__WEBPACK_IMPORTED_MODULE_3__["removeSplash"])();
     Object(_helpers__WEBPACK_IMPORTED_MODULE_3__["renderBody"])();
     var firstName = 'Stephen';
     var lastName = 'Curry';
