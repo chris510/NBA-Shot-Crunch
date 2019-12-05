@@ -36,8 +36,10 @@
 
 .dropdown .team-menu{
   transition: max-height .5s ease-out;
-  max-height: 20em;
+  max-height: 13em;
   overflow: scroll;
+  position: relative;
+
 }
 
 .dropdown .team-menu .option{

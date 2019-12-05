@@ -37245,83 +37245,193 @@ var courtContainer = {
   height: 450
 };
 document.addEventListener("DOMContentLoaded", function () {
-  var firstName = 'Stephen';
-  var lastName = 'Curry';
-  var playerTeam = 'Golden State Warriors';
-  var season = '2015-16';
-  var team = '';
-  var type = 'season'; // let currentPlayerNameHTML = document.querySelector('#current-player-name');
-  // currentPlayerNameHTML.innerHTML = `${firstName} ${lastName}`;
+  d3.selectAll(".lucky").append("input").property("type", "button").attr("class", "randombutton").on("click", function (d, i) {
+    var firstName = 'Stephen';
+    var lastName = 'Curry';
+    var playerTeam = 'Golden State Warriors';
+    var season = '2015-16';
+    var team = '';
+    var type = 'season'; // let currentPlayerNameHTML = document.querySelector('#current-player-name');
+    // currentPlayerNameHTML.innerHTML = `${firstName} ${lastName}`;
 
-  var chartContainer = document.getElementById('chart-container');
-  var chart = d3.select(chartContainer).append('svg').attr('class', 'chart').attr("width", courtContainer.width).attr("height", courtContainer.height); // .attr('fill', 'blue');
+    var chartContainer = document.getElementById('chart-container');
+    var chart = d3.select(chartContainer).append('svg').attr('class', 'chart').attr("width", courtContainer.width).attr("height", courtContainer.height); // .attr('fill', 'blue');
 
-  var court = new Court(chart);
-  court.render();
-  var shots = new _shots__WEBPACK_IMPORTED_MODULE_1__["default"](chart);
-  shots.parseShots(); // console.log(shots.parseShots());
+    var court = new Court(chart);
+    court.render();
+    var shots = new _shots__WEBPACK_IMPORTED_MODULE_1__["default"](chart);
+    shots.parseShots(); // console.log(shots.parseShots());
 
-  var player = document.querySelector('.carousel');
-  player.addEventListener('click', function (e) {
-    shots.clearShots();
-    var playerName = e.target.alt.split(' ');
-    firstName = playerName[0];
-    lastName = playerName[1];
-    season = '2015-16';
-    team = '';
-    var currentPlayerNameHTML = document.querySelector('.current-player-name');
-    currentPlayerNameHTML.innerHTML = "".concat(firstName, " ").concat(lastName); //Resets filters to proper option when selecting new player
+    var player = document.querySelector('.carousel');
+    player.addEventListener('click', function (e) {
+      shots.clearShots();
+      var playerName = e.target.alt.split(' ');
+      firstName = playerName[0];
+      lastName = playerName[1];
+      season = '2015-16';
+      team = '';
+      var currentPlayerNameHTML = document.querySelector('.current-player-name');
+      currentPlayerNameHTML.innerHTML = "".concat(firstName, " ").concat(lastName); //Resets filters to proper option when selecting new player
 
-    var iTagOne = document.createElement('i');
-    iTagOne.setAttribute('class', 'fa fa-angle-right');
-    document.querySelector('.title').innerHTML = '2015-16';
-    document.querySelector('.team').innerHTML = 'All';
-    document.querySelector('.team').appendChild(iTagOne.cloneNode(true));
-    document.querySelector('.title').appendChild(iTagOne.cloneNode(true));
-    shots.parseShots(firstName, lastName);
-  });
-  var seasonOption = document.querySelector('.title');
-  seasonOption.addEventListener('change', function (e) {
-    shots.clearShots();
-    var seasonRange = e.target.innerText;
+      var iTagOne = document.createElement('i');
+      iTagOne.setAttribute('class', 'fa fa-angle-right');
+      document.querySelector('.title').innerHTML = '2015-16';
+      document.querySelector('.team').innerHTML = 'All';
+      document.querySelector('.team').appendChild(iTagOne.cloneNode(true));
+      document.querySelector('.title').appendChild(iTagOne.cloneNode(true));
+      shots.parseShots(firstName, lastName);
+    });
+    var main = new _main__WEBPACK_IMPORTED_MODULE_2__["default"]();
+    main.displayChartFilter(); // const seasonOption = document.querySelector('.title');
+    // seasonOption.addEventListener('change', (e) => {
+    //   shots.clearShots();
+    //   let seasonRange = e.target.innerText;
+    //   if (seasonRange === 'Career') {
+    //     type = 'career';
+    //     shots.parseCareerShots(firstName, lastName);
+    //   } else {
+    //     shots.parseShots(firstName, lastName, seasonRange);
+    //   }
+    //   let currentTeamHTML = document.querySelector('.team');
+    //   currentTeamHTML.innerHTML = 'All';
+    // })
+    // const teamOption = document.querySelector('.team');
+    // teamOption.addEventListener('change', (e) => {
+    //   shots.clearShots();
+    //   team = e.target.id;
+    //   shots.parseShotsByTeam(firstName, lastName, season, team, type)
+    // })
+    // main.render();
 
-    if (seasonRange === 'Career') {
-      type = 'career';
-      shots.parseCareerShots(firstName, lastName);
-    } else {
-      shots.parseShots(firstName, lastName, seasonRange);
-    }
+    main.getHeadshots();
+    main.seasonSelector();
+    Object(_helpers__WEBPACK_IMPORTED_MODULE_3__["teamSelector"])(playerTeam); //get elements
 
-    var currentTeamHTML = document.querySelector('.team');
-    currentTeamHTML.innerHTML = 'All';
-  });
-  var teamOption = document.querySelector('.team');
-  teamOption.addEventListener('change', function (e) {
-    shots.clearShots();
-    team = e.target.id;
-    shots.parseShotsByTeam(firstName, lastName, season, team, type);
-  });
-  var main = new _main__WEBPACK_IMPORTED_MODULE_2__["default"](); // main.render();
+    var dropdownTitle = document.querySelector('.dropdown .title');
+    var dropdownOptions = document.querySelectorAll('.dropdown .option');
+    var dropdownTeam = document.querySelector('.dropdown .team');
+    var dropdownTeamOptions = document.querySelectorAll('.dropdown .team-menu'); //bind listeners to these elements
 
-  main.getHeadshots();
-  main.seasonSelector();
-  Object(_helpers__WEBPACK_IMPORTED_MODULE_3__["teamSelector"])(playerTeam); //get elements
+    dropdownTitle.addEventListener('click', dropdown.toggleMenuDisplay);
+    dropdownOptions.forEach(function (option) {
+      return option.addEventListener('click', dropdown.handleOptionSelected);
+    });
+    document.querySelector('.dropdown .title').addEventListener('change', dropdown.handleTitleChange);
+    dropdownTeam.addEventListener('click', dropdown.toggleTeamMenuDisplay);
+    dropdownTeamOptions.forEach(function (teamOption) {
+      return teamOption.addEventListener('click', dropdown.handleTeamOptionSelected);
+    }); // document.querySelector('.dropdown .team').addEventListener('change'. dropdownHandleTitleChange)
+    // carousel.carouselListener();
 
-  var dropdownTitle = document.querySelector('.dropdown .title');
-  var dropdownOptions = document.querySelectorAll('.dropdown .option');
-  var dropdownTeam = document.querySelector('.dropdown .team');
-  var dropdownTeamOptions = document.querySelectorAll('.dropdown .team-menu'); //bind listeners to these elements
+    var openModal = document.getElementById("open-modal");
+    var modal = document.getElementById('instructions');
+    var exitButton = document.getElementById("modal-close");
+    openModal.addEventListener('mousedown', function (e) {
+      e.preventDefault();
+      modal.style.display = "block";
+    });
+    exitButton.addEventListener('mousedown', function (e) {
+      e.preventDefault();
+      modal.style.display = "none";
+    });
 
-  dropdownTitle.addEventListener('click', dropdown.toggleMenuDisplay);
-  dropdownOptions.forEach(function (option) {
-    return option.addEventListener('click', dropdown.handleOptionSelected);
-  });
-  document.querySelector('.dropdown .title').addEventListener('change', dropdown.handleTitleChange);
-  dropdownTeam.addEventListener('click', dropdown.toggleTeamMenuDisplay);
-  dropdownTeamOptions.forEach(function (teamOption) {
-    return teamOption.addEventListener('click', dropdown.handleTeamOptionSelected);
-  }); // document.querySelector('.dropdown .team').addEventListener('change'. dropdownHandleTitleChange)
-  // carousel.carouselListener();
+    window.onclick = function (e) {
+      if (e.target == modal) {
+        modal.style.display = "none";
+      }
+    };
+  }); // let firstName = 'Stephen';
+  // let lastName = 'Curry';
+  // let playerTeam = 'Golden State Warriors'
+  // let season = '2015-16';
+  // let team = '';
+  // let type = 'season'
+  // // let currentPlayerNameHTML = document.querySelector('#current-player-name');
+  // // currentPlayerNameHTML.innerHTML = `${firstName} ${lastName}`;
+  // let chartContainer = document.getElementById('chart-container')
+  // let chart = d3.select(chartContainer)
+  //   .append('svg')
+  //   .attr('class', 'chart')
+  //   .attr("width", courtContainer.width)
+  //   .attr("height", courtContainer.height)
+  //   // .attr('fill', 'blue');
+  // const court = new Court(chart)
+  // court.render();
+  // let shots = new Shots(chart);
+  // shots.parseShots();
+  // // console.log(shots.parseShots());
+  // const player = document.querySelector('.carousel');
+  // player.addEventListener('click', (e) => {
+  //   shots.clearShots();
+  //   let playerName = e.target.alt.split(' ');
+  //   firstName = playerName[0];
+  //   lastName = playerName[1];
+  //   season = '2015-16';
+  //   team = '';
+  //   let currentPlayerNameHTML = document.querySelector('.current-player-name');
+  //   currentPlayerNameHTML.innerHTML = `${firstName} ${lastName}`;
+  //   //Resets filters to proper option when selecting new player
+  //   let iTagOne = document.createElement('i');
+  //   iTagOne.setAttribute('class', 'fa fa-angle-right');
+  //   document.querySelector('.title').innerHTML = '2015-16';
+  //   document.querySelector('.team').innerHTML = 'All';
+  //   document.querySelector('.team').appendChild(iTagOne.cloneNode(true));
+  //   document.querySelector('.title').appendChild(iTagOne.cloneNode(true));
+  //   shots.parseShots(firstName, lastName)
+  // });
+  // const seasonOption = document.querySelector('.title');
+  // seasonOption.addEventListener('change', (e) => {
+  //   shots.clearShots();
+  //   let seasonRange = e.target.innerText;
+  //   if (seasonRange === 'Career') {
+  //     type = 'career';
+  //     shots.parseCareerShots(firstName, lastName);
+  //   } else {
+  //     shots.parseShots(firstName, lastName, seasonRange);
+  //   }
+  //   let currentTeamHTML = document.querySelector('.team');
+  //   currentTeamHTML.innerHTML = 'All';
+  // })
+  // const teamOption = document.querySelector('.team');
+  // teamOption.addEventListener('change', (e) => {
+  //   shots.clearShots();
+  //   team = e.target.id;
+  //   shots.parseShotsByTeam(firstName, lastName, season, team, type)
+  // })
+  // const main = new Main();
+  // // main.render();
+  // main.getHeadshots();
+  // main.seasonSelector();
+  // teamSelector(playerTeam);
+  // //get elements
+  // const dropdownTitle = document.querySelector('.dropdown .title');
+  // const dropdownOptions = document.querySelectorAll('.dropdown .option');
+  // const dropdownTeam = document.querySelector('.dropdown .team');
+  // const dropdownTeamOptions = document.querySelectorAll('.dropdown .team-menu')
+  // //bind listeners to these elements
+  // dropdownTitle.addEventListener('click', dropdown.toggleMenuDisplay);
+  // dropdownOptions.forEach(option => option.addEventListener('click', dropdown.handleOptionSelected));
+  // document.querySelector('.dropdown .title').addEventListener('change', dropdown.handleTitleChange);
+  // dropdownTeam.addEventListener('click', dropdown.toggleTeamMenuDisplay);
+  // dropdownTeamOptions.forEach(teamOption => teamOption.addEventListener('click', dropdown.handleTeamOptionSelected))
+  // // document.querySelector('.dropdown .team').addEventListener('change'. dropdownHandleTitleChange)
+  // // carousel.carouselListener();
+  // const openModal = document.getElementById("open-modal");
+  // const modal = document.getElementById('instructions');
+  // const exitButton = document.getElementById("modal-close");
+  // openModal.addEventListener('mousedown', (e) => {
+  //   e.preventDefault();
+  //   modal.style.display = "block";
+  // });
+  // exitButton.addEventListener('mousedown', (e) => {
+  //   e.preventDefault();
+  //   modal.style.display = "none";
+  // });
+  // window.onclick = (e) => {
+  //   if (e.target == modal) {
+  //     modal.style.display = "none";
+  //   }
+  // };
 });
 
 /***/ }),
@@ -37369,6 +37479,7 @@ function () {
     this.getHeadshots = this.getHeadshots.bind(this);
     this.seasonSelector = this.seasonSelector.bind(this);
     this.teamSelector = this.teamSelector.bind(this);
+    this.displayChartFilter = this.displayChartFilter.bind(this);
   }
 
   _createClass(Main, [{
@@ -37384,8 +37495,8 @@ function () {
             img.className = 'carousel__photo';
           }
 
-          img.width = '200';
-          img.height = '150';
+          img.width = '190';
+          img.height = '140';
           img.src = "".concat(res.config.url);
           img.color = 'black';
           img.alt = "".concat(player.first, " ").concat(player.last); // img.className = 'carousel__photo'
@@ -37427,6 +37538,59 @@ function () {
           document.querySelector('.team-menu').appendChild(teamOption);
         });
       });
+    }
+  }, {
+    key: "displayChartFilter",
+    value: function displayChartFilter() {
+      var shotContainer = document.querySelector('.shot-container');
+      var chartFilter = document.createElement('div');
+      chartFilter.setAttribute('class', 'chart-filter');
+      var currentPlayerNameContainer = document.createElement('div');
+      currentPlayerNameContainer.setAttribute('class', 'current-player-name-container');
+      var currentPlayerName = document.createElement('div');
+      currentPlayerName.setAttribute('class', 'current-player-name');
+      currentPlayerName.innerText = 'Stephen Curry';
+      shotContainer.appendChild(chartFilter).appendChild(currentPlayerNameContainer).appendChild(currentPlayerName); // chartFilter.appendChild(currentPlayerNameContainer).appendChild(currentPlayerName);
+
+      var filterContainer = document.createElement('div');
+      filterContainer.setAttribute('class', 'filter-container');
+      shotContainer.appendChild(filterContainer);
+      var selectSeasonContainer = document.createElement('div');
+      selectSeasonContainer.setAttribute('id', 'select-season-container');
+      var season = document.createElement('div');
+      season.setAttribute('class', 'season');
+      season.innerHTML = 'Season';
+      chartFilter.appendChild(filterContainer).appendChild(selectSeasonContainer).appendChild(season);
+      var dropdownOne = document.createElement('div');
+      dropdownOne.setAttribute('class', 'dropdown');
+      var dropDownTitle = document.createElement('div');
+      dropDownTitle.setAttribute('class', 'title pointerCursor');
+      dropDownTitle.innerHTML = '2015-16';
+      var iFaFaAngle = document.createElement('i');
+      iFaFaAngle.setAttribute('class', "fa fa-angle-right");
+      var seasonMenu = document.createElement('div');
+      seasonMenu.setAttribute('class', 'season-menu pointerCursor hide');
+      dropDownTitle.appendChild(iFaFaAngle);
+      dropdownOne.appendChild(dropDownTitle);
+      dropdownOne.appendChild(seasonMenu);
+      selectSeasonContainer.appendChild(dropdownOne);
+      var selectTeamContainer = document.createElement('div');
+      selectTeamContainer.setAttribute('id', 'select-team-container');
+      var team = document.createElement('div');
+      team.setAttribute('class', 'team-title');
+      team.innerHTML = 'Team';
+      filterContainer.appendChild(selectTeamContainer).appendChild(team);
+      var dropdownTwo = document.createElement('div');
+      dropdownTwo.setAttribute('class', 'dropdown');
+      var dropDownTeam = document.createElement('div');
+      dropDownTeam.setAttribute('class', 'team pointerCursor');
+      dropDownTeam.innerHTML = 'All';
+      var teamMenu = document.createElement('div');
+      teamMenu.setAttribute('class', 'team-menu pointerCursor hide');
+      dropDownTitle.appendChild(iFaFaAngle);
+      dropdownOne.appendChild(dropDownTeam);
+      dropdownOne.appendChild(teamMenu);
+      selectTeamContainer.appendChild(dropDownOne);
     }
   }, {
     key: "render",

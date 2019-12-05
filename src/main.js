@@ -13,6 +13,7 @@ class Main {
     this.getHeadshots = this.getHeadshots.bind(this);
     this.seasonSelector = this.seasonSelector.bind(this);
     this.teamSelector = this.teamSelector.bind(this);
+    this.displayChartFilter = this.displayChartFilter.bind(this);
   }
 
   getHeadshots() {
@@ -24,8 +25,8 @@ class Main {
         } else {
           img.className = 'carousel__photo'
         }
-        img.width = '200';
-        img.height = '150';
+        img.width = '190';
+        img.height = '140';
         img.src = `${res.config.url}`;
         img.color = 'black';
         img.alt = `${player.first} ${player.last}`;
@@ -67,6 +68,86 @@ class Main {
         document.querySelector('.team-menu').appendChild(teamOption);
       })
     })
+  }
+
+  displayChartFilter() {
+    const shotContainer = document.querySelector('.shot-container');
+
+    const chartFilter = document.createElement('div');
+    chartFilter.setAttribute('class', 'chart-filter');
+
+    const currentPlayerNameContainer = document.createElement('div');
+    currentPlayerNameContainer.setAttribute('class', 'current-player-name-container');
+
+    
+    const currentPlayerName = document.createElement('div');
+    currentPlayerName.setAttribute('class', 'current-player-name');
+    currentPlayerName.innerText = 'Stephen Curry';
+    
+    shotContainer.appendChild(chartFilter)
+    .appendChild(currentPlayerNameContainer)
+    .appendChild(currentPlayerName);
+    // chartFilter.appendChild(currentPlayerNameContainer).appendChild(currentPlayerName);
+
+    const filterContainer = document.createElement('div');
+    filterContainer.setAttribute('class', 'filter-container');
+
+    shotContainer.appendChild(filterContainer);
+
+    const selectSeasonContainer = document.createElement('div');
+    selectSeasonContainer.setAttribute('id', 'select-season-container');
+    const season = document.createElement('div');
+    season.setAttribute('class', 'season');
+    season.innerHTML = 'Season';
+
+    chartFilter.appendChild(filterContainer)
+      .appendChild(selectSeasonContainer)
+      .appendChild(season);
+
+    const dropdownOne = document.createElement('div');
+    dropdownOne.setAttribute('class', 'dropdown');
+
+    const dropDownTitle = document.createElement('div');
+    dropDownTitle.setAttribute('class', 'title pointerCursor');
+    dropDownTitle.innerHTML = '2015-16'
+
+    const iFaFaAngle = document.createElement('i');
+    iFaFaAngle.setAttribute('class', "fa fa-angle-right");
+
+    const seasonMenu = document.createElement('div');
+    seasonMenu.setAttribute('class', 'season-menu pointerCursor hide')
+
+    dropDownTitle.appendChild(iFaFaAngle);
+    dropdownOne.appendChild(dropDownTitle);
+    dropdownOne.appendChild(seasonMenu);
+
+    selectSeasonContainer.appendChild(dropdownOne);
+
+    const selectTeamContainer = document.createElement('div');
+    selectTeamContainer.setAttribute('id', 'select-team-container');
+    const team = document.createElement('div');
+    team.setAttribute('class', 'team-title');
+    team.innerHTML = 'Team';
+
+    filterContainer.appendChild(selectTeamContainer)
+      .appendChild(team);
+
+    const dropdownTwo = document.createElement('div');
+    dropdownTwo.setAttribute('class', 'dropdown');
+
+    const dropDownTeam = document.createElement('div');
+    dropDownTeam.setAttribute('class', 'team pointerCursor');
+    dropDownTeam.innerHTML = 'All'
+
+    const teamMenu = document.createElement('div');
+    teamMenu.setAttribute('class', 'team-menu pointerCursor hide')
+
+    dropDownTitle.appendChild(iFaFaAngle);
+    dropdownOne.appendChild(dropDownTeam);
+    dropdownOne.appendChild(teamMenu);
+
+    selectTeamContainer.appendChild(dropDownOne);
+
   }
 
   render() {
