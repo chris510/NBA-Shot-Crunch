@@ -4,7 +4,7 @@ const db = require('./queries');
 const dropdown = require('./dropdown');
 import Shots from './shots';
 import Main from './main';
-import { teamSelector } from "./helpers";
+import { teamSelector, renderCourt } from "./helpers";
 const carousel = require('./carousel');
 
 // Court Container 
@@ -38,7 +38,8 @@ document.addEventListener("DOMContentLoaded", () => {
     .attr("width", courtContainer.width)
     .attr("height", courtContainer.height)
     // .attr('fill', 'blue');
-
+  
+  renderCourt();
   const court = new Court(chart)
   court.render();
 

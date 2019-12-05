@@ -150,11 +150,9 @@ class Main {
     dropDownTwo.appendChild(teamMenu);
 
     selectTeamContainer.appendChild(dropDownTwo);
-
   }
 
-  render() {
-  }
+  
 
 }
 

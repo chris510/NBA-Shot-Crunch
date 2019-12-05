@@ -37189,12 +37189,15 @@ module.exports = {
 /*!************************!*\
   !*** ./src/helpers.js ***!
   \************************/
-/*! exports provided: teamSelector */
+/*! exports provided: teamSelector, renderCourt, renderBody, renderFooter */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "teamSelector", function() { return teamSelector; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "renderCourt", function() { return renderCourt; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "renderBody", function() { return renderBody; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "renderFooter", function() { return renderFooter; });
 var teamSelector = function teamSelector(playerTeam) {
   d3.csv('./assets/nba_teams.csv').then(function (teams) {
     teams.forEach(function (team) {
@@ -37208,6 +37211,20 @@ var teamSelector = function teamSelector(playerTeam) {
     });
   });
 };
+var renderCourt = function renderCourt() {
+  var shotContainer = document.querySelector('.shot-container');
+  var chartWrapper = document.createElement('div');
+  chartWrapper.setAttribute('class', 'chart-wrapper');
+  var chartContainer = document.createElement('div');
+  chartContainer.setAttribute('id', 'chart-container');
+  shotContainer.appendChild(chartWrapper).appendChild(chartContainer);
+};
+var renderBody = function renderBody() {
+  var app = document.createElement('div');
+  app.setAttribute('class', 'app');
+  var appTitle = document.createElement;
+};
+var renderFooter = function renderFooter() {};
 
 /***/ }),
 
@@ -37257,6 +37274,7 @@ document.addEventListener("DOMContentLoaded", function () {
     var chartContainer = document.getElementById('chart-container');
     var chart = d3.select(chartContainer).append('svg').attr('class', 'chart').attr("width", courtContainer.width).attr("height", courtContainer.height); // .attr('fill', 'blue');
 
+    Object(_helpers__WEBPACK_IMPORTED_MODULE_3__["renderCourt"])();
     var court = new Court(chart);
     court.render();
     var shots = new _shots__WEBPACK_IMPORTED_MODULE_1__["default"](chart);
@@ -37596,9 +37614,6 @@ function () {
       dropDownTwo.appendChild(teamMenu);
       selectTeamContainer.appendChild(dropDownTwo);
     }
-  }, {
-    key: "render",
-    value: function render() {}
   }]);
 
   return Main;

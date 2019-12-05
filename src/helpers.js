@@ -11,3 +11,25 @@ export const teamSelector = (playerTeam) => {
     })
   })
 }
+
+export const renderCourt = () => {
+  let shotContainer = document.querySelector('.shot-container');
+  let chartWrapper = document.createElement('div');
+  chartWrapper.setAttribute('class', 'chart-wrapper')
+
+  let chartContainer = document.createElement('div');
+  chartContainer.setAttribute('id', 'chart-container')
+
+  shotContainer.appendChild(chartWrapper)
+    .appendChild(chartContainer);
+}
+
+export const renderBody = () => {
+  const app = document.createElement('div');
+  app.setAttribute('class', 'app');
+  const appTitle = document.createElement
+}
+
+export const renderFooter = () => {
+
+}
