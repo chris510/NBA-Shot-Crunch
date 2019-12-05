@@ -13,21 +13,48 @@ export const teamSelector = (playerTeam) => {
 }
 
 export const renderCourt = () => {
-  let shotContainer = document.querySelector('.shot-container');
+  const body = document.querySelector('body');
+  const shotContainer = document.createElement('div');
+  shotContainer.setAttribute('class', 'shot-container');
+  // let shotContainer = document.querySelector('.shot-container');
   let chartWrapper = document.createElement('div');
   chartWrapper.setAttribute('class', 'chart-wrapper')
 
   let chartContainer = document.createElement('div');
   chartContainer.setAttribute('id', 'chart-container')
 
-  shotContainer.appendChild(chartWrapper)
+  body
+    .appendChild(shotContainer)
+    .appendChild(chartWrapper)
     .appendChild(chartContainer);
 }
 
 export const renderBody = () => {
+  const body = document.querySelector('body');
   const app = document.createElement('div');
   app.setAttribute('class', 'app');
-  const appTitle = document.createElement
+  const appTitle = document.createElement('div');
+  appTitle.setAttribute('class', 'app-title');
+  appTitle.innerHTML = 'NBA Shot Crunch';
+
+  const player = document.createElement('div');
+  player.setAttribute('class', 'player');
+
+  const carouselWrapper = document.createElement('div');
+  carouselWrapper.setAttribute('class', 'carousel-wrapper');
+
+  const carousel = document.createElement('div');
+  carousel.setAttribute('class', 'carousel');
+
+  body.appendChild(app).appendChild(appTitle)
+  // app.appendChild(appTitle);
+  app.appendChild(player)
+    .appendChild(carouselWrapper)
+    .appendChild(carousel);
+
+  const shotContainer = document.createElement('div');
+  shotContainer.setAttribute('class', 'shot-container');
+  app.appendChild(shotContainer);
 }
 
 export const renderFooter = () => {

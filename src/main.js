@@ -1,4 +1,5 @@
 import axios from "axios";
+
 const PLAYERS = [
   {first: 'Stephen', last: 'Curry'},
   {first: 'Lebron', last: 'James'},
@@ -151,8 +152,6 @@ class Main {
 
     selectTeamContainer.appendChild(dropDownTwo);
   }
-
-  
 
 }
 

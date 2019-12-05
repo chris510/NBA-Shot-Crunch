@@ -4,7 +4,7 @@ const db = require('./queries');
 const dropdown = require('./dropdown');
 import Shots from './shots';
 import Main from './main';
-import { teamSelector, renderCourt } from "./helpers";
+import { teamSelector, renderCourt, renderBody } from "./helpers";
 const carousel = require('./carousel');
 
 // Court Container 
@@ -21,15 +21,20 @@ document.addEventListener("DOMContentLoaded", () => {
     .attr("class", "randombutton")
     .on("click", function(d, i) {
 
+      renderBody();
+
       let firstName = 'Stephen';
       let lastName = 'Curry';
       let playerTeam = 'Golden State Warriors'
       let season = '2015-16';
       let team = '';
       let type = 'season'
-
   // let currentPlayerNameHTML = document.querySelector('#current-player-name');
   // currentPlayerNameHTML.innerHTML = `${firstName} ${lastName}`;
+  
+  const main = new Main();
+  main.displayChartFilter();
+  renderCourt();
 
   let chartContainer = document.getElementById('chart-container')
   let chart = d3.select(chartContainer)
@@ -37,43 +42,16 @@ document.addEventListener("DOMContentLoaded", () => {
     .attr('class', 'chart')
     .attr("width", courtContainer.width)
     .attr("height", courtContainer.height)
-    // .attr('fill', 'blue');
   
-  renderCourt();
-  const court = new Court(chart)
-  court.render();
+  // const court = new Court(chart)
+  // court.render();
 
   let shots = new Shots(chart);
   shots.parseShots();
   // console.log(shots.parseShots());
 
-  const player = document.querySelector('.carousel');
-  player.addEventListener('click', (e) => {
-    shots.clearShots();
-
-    let playerName = e.target.alt.split(' ');
-    firstName = playerName[0];
-    lastName = playerName[1];
-    season = '2015-16';
-    team = '';
-
-    let currentPlayerNameHTML = document.querySelector('.current-player-name');
-    currentPlayerNameHTML.innerHTML = `${firstName} ${lastName}`;
-
-    //Resets filters to proper option when selecting new player
-    let iTagOne = document.createElement('i');
-    iTagOne.setAttribute('class', 'fa fa-angle-right');
-
-    document.querySelector('.title').innerHTML = '2015-16';
-    document.querySelector('.team').innerHTML = 'All';
-    document.querySelector('.team').appendChild(iTagOne.cloneNode(true));
-    document.querySelector('.title').appendChild(iTagOne.cloneNode(true));
-
-    shots.parseShots(firstName, lastName)
-  });
-
-  const main = new Main();
-  main.displayChartFilter();
+  const court = new Court(chart)
+  court.render();
 
   const seasonOption = document.querySelector('.title');
   seasonOption.addEventListener('change', (e) => {
@@ -100,6 +78,7 @@ document.addEventListener("DOMContentLoaded", () => {
   main.getHeadshots();
   main.seasonSelector();
   teamSelector(playerTeam);
+  
 
   //get elements
   const dropdownTitle = document.querySelector('.dropdown .title');
@@ -140,6 +119,32 @@ document.addEventListener("DOMContentLoaded", () => {
       modal.style.display = "none";
     }
   };
+
+  const player = document.querySelector('.carousel');
+  player.addEventListener('click', (e) => {
+    shots.clearShots();
+
+    let playerName = e.target.alt.split(' ');
+    firstName = playerName[0];
+    lastName = playerName[1];
+    season = '2015-16';
+    team = '';
+
+    let currentPlayerNameHTML = document.querySelector('.current-player-name');
+    currentPlayerNameHTML.innerHTML = `${firstName} ${lastName}`;
+
+    //Resets filters to proper option when selecting new player
+    let iTagOne = document.createElement('i');
+    iTagOne.setAttribute('class', 'fa fa-angle-right');
+
+    document.querySelector('.title').innerHTML = '2015-16';
+    document.querySelector('.team').innerHTML = 'All';
+    document.querySelector('.team').appendChild(iTagOne.cloneNode(true));
+    document.querySelector('.title').appendChild(iTagOne.cloneNode(true));
+
+    shots.parseShots(firstName, lastName)
+  });
+
   })
 
   // let firstName = 'Stephen';

@@ -37212,17 +37212,35 @@ var teamSelector = function teamSelector(playerTeam) {
   });
 };
 var renderCourt = function renderCourt() {
-  var shotContainer = document.querySelector('.shot-container');
+  var body = document.querySelector('body');
+  var shotContainer = document.createElement('div');
+  shotContainer.setAttribute('class', 'shot-container'); // let shotContainer = document.querySelector('.shot-container');
+
   var chartWrapper = document.createElement('div');
   chartWrapper.setAttribute('class', 'chart-wrapper');
   var chartContainer = document.createElement('div');
   chartContainer.setAttribute('id', 'chart-container');
-  shotContainer.appendChild(chartWrapper).appendChild(chartContainer);
+  body.appendChild(shotContainer).appendChild(chartWrapper).appendChild(chartContainer);
 };
 var renderBody = function renderBody() {
+  var body = document.querySelector('body');
   var app = document.createElement('div');
   app.setAttribute('class', 'app');
-  var appTitle = document.createElement;
+  var appTitle = document.createElement('div');
+  appTitle.setAttribute('class', 'app-title');
+  appTitle.innerHTML = 'NBA Shot Crunch';
+  var player = document.createElement('div');
+  player.setAttribute('class', 'player');
+  var carouselWrapper = document.createElement('div');
+  carouselWrapper.setAttribute('class', 'carousel-wrapper');
+  var carousel = document.createElement('div');
+  carousel.setAttribute('class', 'carousel');
+  body.appendChild(app).appendChild(appTitle); // app.appendChild(appTitle);
+
+  app.appendChild(player).appendChild(carouselWrapper).appendChild(carousel);
+  var shotContainer = document.createElement('div');
+  shotContainer.setAttribute('class', 'shot-container');
+  app.appendChild(shotContainer);
 };
 var renderFooter = function renderFooter() {};
 
@@ -37263,6 +37281,7 @@ var courtContainer = {
 };
 document.addEventListener("DOMContentLoaded", function () {
   d3.selectAll(".lucky").append("input").property("type", "button").attr("class", "randombutton").on("click", function (d, i) {
+    Object(_helpers__WEBPACK_IMPORTED_MODULE_3__["renderBody"])();
     var firstName = 'Stephen';
     var lastName = 'Curry';
     var playerTeam = 'Golden State Warriors';
@@ -37271,36 +37290,18 @@ document.addEventListener("DOMContentLoaded", function () {
     var type = 'season'; // let currentPlayerNameHTML = document.querySelector('#current-player-name');
     // currentPlayerNameHTML.innerHTML = `${firstName} ${lastName}`;
 
-    var chartContainer = document.getElementById('chart-container');
-    var chart = d3.select(chartContainer).append('svg').attr('class', 'chart').attr("width", courtContainer.width).attr("height", courtContainer.height); // .attr('fill', 'blue');
-
+    var main = new _main__WEBPACK_IMPORTED_MODULE_2__["default"]();
+    main.displayChartFilter();
     Object(_helpers__WEBPACK_IMPORTED_MODULE_3__["renderCourt"])();
-    var court = new Court(chart);
-    court.render();
+    var chartContainer = document.getElementById('chart-container');
+    var chart = d3.select(chartContainer).append('svg').attr('class', 'chart').attr("width", courtContainer.width).attr("height", courtContainer.height); // const court = new Court(chart)
+    // court.render();
+
     var shots = new _shots__WEBPACK_IMPORTED_MODULE_1__["default"](chart);
     shots.parseShots(); // console.log(shots.parseShots());
 
-    var player = document.querySelector('.carousel');
-    player.addEventListener('click', function (e) {
-      shots.clearShots();
-      var playerName = e.target.alt.split(' ');
-      firstName = playerName[0];
-      lastName = playerName[1];
-      season = '2015-16';
-      team = '';
-      var currentPlayerNameHTML = document.querySelector('.current-player-name');
-      currentPlayerNameHTML.innerHTML = "".concat(firstName, " ").concat(lastName); //Resets filters to proper option when selecting new player
-
-      var iTagOne = document.createElement('i');
-      iTagOne.setAttribute('class', 'fa fa-angle-right');
-      document.querySelector('.title').innerHTML = '2015-16';
-      document.querySelector('.team').innerHTML = 'All';
-      document.querySelector('.team').appendChild(iTagOne.cloneNode(true));
-      document.querySelector('.title').appendChild(iTagOne.cloneNode(true));
-      shots.parseShots(firstName, lastName);
-    });
-    var main = new _main__WEBPACK_IMPORTED_MODULE_2__["default"]();
-    main.displayChartFilter();
+    var court = new Court(chart);
+    court.render();
     var seasonOption = document.querySelector('.title');
     seasonOption.addEventListener('change', function (e) {
       shots.clearShots();
@@ -37360,6 +37361,26 @@ document.addEventListener("DOMContentLoaded", function () {
         modal.style.display = "none";
       }
     };
+
+    var player = document.querySelector('.carousel');
+    player.addEventListener('click', function (e) {
+      shots.clearShots();
+      var playerName = e.target.alt.split(' ');
+      firstName = playerName[0];
+      lastName = playerName[1];
+      season = '2015-16';
+      team = '';
+      var currentPlayerNameHTML = document.querySelector('.current-player-name');
+      currentPlayerNameHTML.innerHTML = "".concat(firstName, " ").concat(lastName); //Resets filters to proper option when selecting new player
+
+      var iTagOne = document.createElement('i');
+      iTagOne.setAttribute('class', 'fa fa-angle-right');
+      document.querySelector('.title').innerHTML = '2015-16';
+      document.querySelector('.team').innerHTML = 'All';
+      document.querySelector('.team').appendChild(iTagOne.cloneNode(true));
+      document.querySelector('.title').appendChild(iTagOne.cloneNode(true));
+      shots.parseShots(firstName, lastName);
+    });
   }); // let firstName = 'Stephen';
   // let lastName = 'Curry';
   // let playerTeam = 'Golden State Warriors'
