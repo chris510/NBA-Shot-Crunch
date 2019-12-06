@@ -36,7 +36,7 @@
 
 .carousel__photo.prev {
   transform: translateX(-100%); /* Move 'prev' item to the left */
-}
+/* } */
 
 .carousel__photo.next {
   transform: translateX(100%); /* Move 'next' item to the right */
@@ -80,4 +80,4 @@
 .carousel__button--next::after {
   left: 47%;
   transform: translate(-50%, -50%) rotate(-45deg);
-} */
+} 

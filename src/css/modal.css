@@ -4,6 +4,7 @@
 
 #open-modal:hover {
   color: lightskyblue;
+  cursor: pointer;
 }
 
 .modal {
@@ -19,14 +20,21 @@
 }
 
 .modal-content {
-  background-color: lightskyblue;
+  /* display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; */
+  background-color: var(--sub-bg-color);
   margin: 15% auto;
   padding: 30px;
   border: 1px solid #888;
-  width: 50%;
+  width: 35%;
   min-height: 35%;
-  border: 5px solid lightblue;
+  box-shadow: 5px 5px 10px 5px rgba(0,0,0,0.5);
+  border: 2px solid white;
+  border-radius: 36px;
 }
+
 
 #modal-content-loaded {
   display: flex;
@@ -49,6 +57,7 @@
   margin: 20px 0;
   max-height: 25px;
   text-align: left;
+  font-size: 20px;
 }
 
 .modal-content img {

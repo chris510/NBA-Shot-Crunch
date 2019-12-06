@@ -88,9 +88,11 @@ export const renderFooter = () => {
   const footer = document.createElement('div');
   footer.setAttribute('class', 'footer');
   const footerWrapper = document.createElement('div');
-  footerWrapper.setAttribute('class', 'footer');
+  footerWrapper.setAttribute('class', 'footer-wrapper');
   const buttonModal = document.createElement('button');
   buttonModal.setAttribute('id', 'open-modal');
+  buttonModal.value = "How to Use";
+  buttonModal.innerText = "How to Use";
 
   body.appendChild(footer)
     .appendChild(footerWrapper)

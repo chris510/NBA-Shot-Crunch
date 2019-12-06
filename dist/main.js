@@ -37252,9 +37252,11 @@ var renderFooter = function renderFooter() {
   var footer = document.createElement('div');
   footer.setAttribute('class', 'footer');
   var footerWrapper = document.createElement('div');
-  footerWrapper.setAttribute('class', 'footer');
+  footerWrapper.setAttribute('class', 'footer-wrapper');
   var buttonModal = document.createElement('button');
   buttonModal.setAttribute('id', 'open-modal');
+  buttonModal.value = "How to Use";
+  buttonModal.innerText = "How to Use";
   body.appendChild(footer).appendChild(footerWrapper).appendChild(buttonModal);
   var github = document.createElement('div');
   github.setAttribute('class', 'github');
@@ -37380,6 +37382,9 @@ document.addEventListener("DOMContentLoaded", function () {
     var main = new _main__WEBPACK_IMPORTED_MODULE_2__["default"]();
     Object(_helpers__WEBPACK_IMPORTED_MODULE_3__["renderCourt"])();
     main.displayChartFilter();
+    main.getHeadshots();
+    main.seasonSelector();
+    Object(_helpers__WEBPACK_IMPORTED_MODULE_3__["teamSelector"])(playerTeam);
     var chartContainer = document.getElementById('chart-container');
     var chart = d3.select(chartContainer).append('svg').attr('class', 'chart').attr("width", courtContainer.width).attr("height", courtContainer.height); // const court = new Court(chart)
     // court.render();
@@ -37418,11 +37423,7 @@ document.addEventListener("DOMContentLoaded", function () {
       debugger;
       shotResult = e.target.innerHTML;
       shots.parseByShotResult(firstName, lastName, season, type, team, shotResult);
-    }); // main.render();
-
-    main.getHeadshots();
-    main.seasonSelector();
-    Object(_helpers__WEBPACK_IMPORTED_MODULE_3__["teamSelector"])(playerTeam);
+    });
     Object(_helpers__WEBPACK_IMPORTED_MODULE_3__["renderFooter"])(); //get elements
 
     var dropdownTitle = document.querySelector('.dropdown .title');
@@ -37949,11 +37950,11 @@ function () {
       if (shotOutcome === "Made Shot") {
         this.svg.append("g").selectAll(".hexagon").data(hexbin([playerPos])).enter().append("path").attr("d", function (d) {
           return "M" + d.x + "," + d.y + hexbin.hexagon();
-        }).attr("stroke", "white").attr('transform', 'translate(250, 52.5)').attr("fill", "skyblue").attr("fill-opacity", CONSTANTS.SHOT_OPACITY).attr("stroke-width", "0.1px").attr("transform", "rotate(180 125,208.5)");
+        }).attr('class', 'made-shot').attr("stroke", "white").attr('transform', 'translate(250, 52.5)').attr("fill", "skyblue").attr("fill-opacity", CONSTANTS.SHOT_OPACITY).attr("stroke-width", "0.1px").attr("transform", "rotate(180 125,208.5)");
       } else if (shotOutcome === "Missed Shot") {
         this.svg.append("g").selectAll(".hexagon").data(hexbin([playerPos])).enter().append("path").attr("d", function (d) {
           return "M" + d.x + "," + d.y + hexbin.hexagon();
-        }).attr("stroke", "white").attr('transform', 'translate(250, 52.5)').attr("fill", "darkred").attr("fill-opacity", CONSTANTS.SHOT_OPACITY).attr("stroke-width", "0.1px").attr("transform", "rotate(180 125,208.5)");
+        }).attr('class', 'missed-shot').attr("stroke", "white").attr('transform', 'translate(250, 52.5)').attr("fill", "darkred").attr("fill-opacity", CONSTANTS.SHOT_OPACITY).attr("stroke-width", "0.1px").attr("transform", "rotate(180 125,208.5)");
       }
     }
   }]);

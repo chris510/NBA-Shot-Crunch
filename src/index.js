@@ -39,9 +39,12 @@ document.addEventListener("DOMContentLoaded", () => {
   // let currentPlayerNameHTML = document.querySelector('#current-player-name');
   // currentPlayerNameHTML.innerHTML = `${firstName} ${lastName}`;
   
-  const main = new Main();
-  renderCourt();
-  main.displayChartFilter();
+    const main = new Main();
+    renderCourt();
+    main.displayChartFilter();
+    main.getHeadshots();
+    main.seasonSelector();
+    teamSelector(playerTeam);
 
   let chartContainer = document.getElementById('chart-container')
   let chart = d3.select(chartContainer)
@@ -92,11 +95,6 @@ document.addEventListener("DOMContentLoaded", () => {
     shotResult = e.target.innerHTML;
     shots.parseByShotResult(firstName, lastName, season, type, team, shotResult);
   })
-
-  // main.render();
-  main.getHeadshots();
-  main.seasonSelector();
-  teamSelector(playerTeam);
   
   renderFooter();
 

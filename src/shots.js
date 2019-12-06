@@ -166,6 +166,7 @@ class Shots {
           .attr("d", function (d) {
             return "M" + d.x + "," + d.y + hexbin.hexagon();
           })
+          .attr('class', 'made-shot')
           .attr("stroke", "white")
           .attr('transform', 'translate(250, 52.5)')
           .attr("fill", "skyblue")
@@ -180,6 +181,7 @@ class Shots {
           .attr("d", function (d) {
             return "M" + d.x + "," + d.y + hexbin.hexagon();
           })
+          .attr('class', 'missed-shot')
           .attr("stroke", "white")
           .attr('transform', 'translate(250, 52.5)')
           .attr("fill", "darkred")

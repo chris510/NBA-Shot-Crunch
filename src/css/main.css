@@ -18,17 +18,17 @@ body {
   height: 100%;
   width: 100%;
   background-color: black;
-  /* background-image: url("../../images/basketballcourt.jpeg"); */
-  background-size: 42% 100%;
-  /* background-repeat: space; */
-  background-position: right center;
+  /* background-image: url("../../images/court.jpg"); */
+  /* background-size: 50% 100%;
+  background-repeat: space; */
+  /* background-position: right center; */
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   margin: 0 auto;
   color: white;
-  padding-top: 40px;
+  padding-top: 30px;
 }
 
 .body > div {
@@ -36,8 +36,6 @@ body {
 }
 
 .app {
-  height: 80%;
-  width: 60%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -46,6 +44,11 @@ body {
   border: 2px solid black;
   border-radius: 8px;
   box-shadow: 5px 5px 10px 5px rgba(0,0,0,0.5);
+  -webkit-animation: fadein 0.25s; /* Safari, Chrome and Opera > 12.1 */
+  -moz-animation: fadein 0.25s; /* Firefox < 16 */
+   -ms-animation: fadein 0.25s; /* Internet Explorer */
+    -o-animation: fadein 0.25s; /* Opera < 12.1 */
+       animation: fadein 0.25s;
   /* font-size: 40px;
   align-items: center; */
 }
@@ -58,11 +61,16 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 55%;
+  width: 50%;
   /* margin-top: 20px; */
-  height: 100px;
+  /* height: 100px; */
   /* background-color: blue; */
   padding-top: 20px;
+  -webkit-animation: fadein 0.25s; /* Safari, Chrome and Opera > 12.1 */
+  -moz-animation: fadein 0.25s; /* Firefox < 16 */
+   -ms-animation: fadein 0.25s; /* Internet Explorer */
+    -o-animation: fadein 0.25s; /* Opera < 12.1 */
+       animation: fadein 0.25s;
 }
 
 
@@ -112,6 +120,7 @@ body {
 .shot-container {
   display: flex;
   justify-content: center;
+  width: 100%;
 }
 
 .shot-container > div {
@@ -132,16 +141,22 @@ body {
   border-radius: 8px;
   width: 95%;
   min-width: 300px;
+  animation-delay: 3s;
+  -webkit-animation: fadein 4s; /* Safari, Chrome and Opera > 12.1 */
+  -moz-animation: fadein 4s; /* Firefox < 16 */
+   -ms-animation: fadein 4s; /* Internet Explorer */
+    -o-animation: fadein 4s; /* Opera < 12.1 */
+       animation: fadein 4s;
 }
 
 .player-container {
   min-height: 150px;
   min-width: 150px;
   -webkit-animation: fadein 0.5s; /* Safari, Chrome and Opera > 12.1 */
-  -moz-animation: fadein 1s; /* Firefox < 16 */
-   -ms-animation: fadein 1s; /* Internet Explorer */
-    -o-animation: fadein 1s; /* Opera < 12.1 */
-       animation: fadein 1s;
+  -moz-animation: fadein 0.25s; /* Firefox < 16 */
+   -ms-animation: fadein 0.25s; /* Internet Explorer */
+    -o-animation: fadein 0.25s; /* Opera < 12.1 */
+       animation: fadein 0.25s;
 }
 
 .player-container:hover {
