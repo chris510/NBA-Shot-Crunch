@@ -1,5 +1,8 @@
 .hide {
-  max-height: 0 !important;
+  /* max-height: 0 !important; */
+  display: none;
+  visibility: hidden;
+  padding-right: 10px;
 }
 
 .dropdown{

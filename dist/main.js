@@ -37373,7 +37373,8 @@ document.addEventListener("DOMContentLoaded", function () {
     var playerTeam = 'Golden State Warriors';
     var season = '2015-16';
     var team = '';
-    var type = 'season'; // let currentPlayerNameHTML = document.querySelector('#current-player-name');
+    var type = 'season';
+    var shotResult = 'All'; // let currentPlayerNameHTML = document.querySelector('#current-player-name');
     // currentPlayerNameHTML.innerHTML = `${firstName} ${lastName}`;
 
     var main = new _main__WEBPACK_IMPORTED_MODULE_2__["default"]();
@@ -37400,14 +37401,23 @@ document.addEventListener("DOMContentLoaded", function () {
         shots.parseShots(firstName, lastName, seasonRange);
       }
 
+      var iTag = document.createElement('i');
+      iTag.setAttribute('class', 'fa fa-angle-right');
       var currentTeamHTML = document.querySelector('.team');
       currentTeamHTML.innerHTML = 'All';
+      currentTeamHTML.appendChild(iTag);
     });
     var teamOption = document.querySelector('.team');
     teamOption.addEventListener('change', function (e) {
       shots.clearShots();
       team = e.target.id;
       shots.parseShotsByTeam(firstName, lastName, season, team, type);
+    });
+    var shotResultOption = document.querySelector(".shot-result");
+    shotResultOption.addEventListener('change', function (e) {
+      debugger;
+      shotResult = e.target.innerHTML;
+      shots.parseByShotResult(firstName, lastName, season, type, team, shotResult);
     }); // main.render();
 
     main.getHeadshots();
@@ -37468,98 +37478,7 @@ document.addEventListener("DOMContentLoaded", function () {
       document.querySelector('.title').appendChild(iTagOne.cloneNode(true));
       shots.parseShots(firstName, lastName);
     });
-  }); // let firstName = 'Stephen';
-  // let lastName = 'Curry';
-  // let playerTeam = 'Golden State Warriors'
-  // let season = '2015-16';
-  // let team = '';
-  // let type = 'season'
-  // // let currentPlayerNameHTML = document.querySelector('#current-player-name');
-  // // currentPlayerNameHTML.innerHTML = `${firstName} ${lastName}`;
-  // let chartContainer = document.getElementById('chart-container')
-  // let chart = d3.select(chartContainer)
-  //   .append('svg')
-  //   .attr('class', 'chart')
-  //   .attr("width", courtContainer.width)
-  //   .attr("height", courtContainer.height)
-  //   // .attr('fill', 'blue');
-  // const court = new Court(chart)
-  // court.render();
-  // let shots = new Shots(chart);
-  // shots.parseShots();
-  // // console.log(shots.parseShots());
-  // const player = document.querySelector('.carousel');
-  // player.addEventListener('click', (e) => {
-  //   shots.clearShots();
-  //   let playerName = e.target.alt.split(' ');
-  //   firstName = playerName[0];
-  //   lastName = playerName[1];
-  //   season = '2015-16';
-  //   team = '';
-  //   let currentPlayerNameHTML = document.querySelector('.current-player-name');
-  //   currentPlayerNameHTML.innerHTML = `${firstName} ${lastName}`;
-  //   //Resets filters to proper option when selecting new player
-  //   let iTagOne = document.createElement('i');
-  //   iTagOne.setAttribute('class', 'fa fa-angle-right');
-  //   document.querySelector('.title').innerHTML = '2015-16';
-  //   document.querySelector('.team').innerHTML = 'All';
-  //   document.querySelector('.team').appendChild(iTagOne.cloneNode(true));
-  //   document.querySelector('.title').appendChild(iTagOne.cloneNode(true));
-  //   shots.parseShots(firstName, lastName)
-  // });
-  // const seasonOption = document.querySelector('.title');
-  // seasonOption.addEventListener('change', (e) => {
-  //   shots.clearShots();
-  //   let seasonRange = e.target.innerText;
-  //   if (seasonRange === 'Career') {
-  //     type = 'career';
-  //     shots.parseCareerShots(firstName, lastName);
-  //   } else {
-  //     shots.parseShots(firstName, lastName, seasonRange);
-  //   }
-  //   let currentTeamHTML = document.querySelector('.team');
-  //   currentTeamHTML.innerHTML = 'All';
-  // })
-  // const teamOption = document.querySelector('.team');
-  // teamOption.addEventListener('change', (e) => {
-  //   shots.clearShots();
-  //   team = e.target.id;
-  //   shots.parseShotsByTeam(firstName, lastName, season, team, type)
-  // })
-  // const main = new Main();
-  // // main.render();
-  // main.getHeadshots();
-  // main.seasonSelector();
-  // teamSelector(playerTeam);
-  // //get elements
-  // const dropdownTitle = document.querySelector('.dropdown .title');
-  // const dropdownOptions = document.querySelectorAll('.dropdown .option');
-  // const dropdownTeam = document.querySelector('.dropdown .team');
-  // const dropdownTeamOptions = document.querySelectorAll('.dropdown .team-menu')
-  // //bind listeners to these elements
-  // dropdownTitle.addEventListener('click', dropdown.toggleMenuDisplay);
-  // dropdownOptions.forEach(option => option.addEventListener('click', dropdown.handleOptionSelected));
-  // document.querySelector('.dropdown .title').addEventListener('change', dropdown.handleTitleChange);
-  // dropdownTeam.addEventListener('click', dropdown.toggleTeamMenuDisplay);
-  // dropdownTeamOptions.forEach(teamOption => teamOption.addEventListener('click', dropdown.handleTeamOptionSelected))
-  // // document.querySelector('.dropdown .team').addEventListener('change'. dropdownHandleTitleChange)
-  // // carousel.carouselListener();
-  // const openModal = document.getElementById("open-modal");
-  // const modal = document.getElementById('instructions');
-  // const exitButton = document.getElementById("modal-close");
-  // openModal.addEventListener('mousedown', (e) => {
-  //   e.preventDefault();
-  //   modal.style.display = "block";
-  // });
-  // exitButton.addEventListener('mousedown', (e) => {
-  //   e.preventDefault();
-  //   modal.style.display = "none";
-  // });
-  // window.onclick = (e) => {
-  //   if (e.target == modal) {
-  //     modal.style.display = "none";
-  //   }
-  // };
+  });
 });
 
 /***/ }),
@@ -37712,7 +37631,7 @@ function () {
       dropDownTwo.setAttribute('class', 'dropdown');
       var dropDownTeam = document.createElement('div');
       dropDownTeam.setAttribute('class', 'team pointerCursor');
-      dropDownTeam.innerHTML = 'Made';
+      dropDownTeam.innerHTML = 'All';
       var iFaFaAngleTwo = document.createElement('i');
       iFaFaAngleTwo.setAttribute('class', "fa fa-angle-right");
       var teamMenu = document.createElement('div');
@@ -37727,8 +37646,8 @@ function () {
       var AllCheckbox = document.createElement('input');
       AllCheckbox.type = "checkbox";
       AllCheckbox.name = "names";
-      AllCheckbox.value = "value";
-      AllCheckbox.id = "id";
+      AllCheckbox.checked = true;
+      AllCheckbox.setAttribute('class', 'shot-result');
       var labelAll = document.createElement('label');
       labelAll.htmlFor = "id";
       labelAll.appendChild(document.createTextNode('All'));
@@ -37737,8 +37656,8 @@ function () {
       var MadeCheckbox = document.createElement('input');
       MadeCheckbox.type = "checkbox";
       MadeCheckbox.name = "names";
-      MadeCheckbox.value = "value";
-      MadeCheckbox.id = "id";
+      MadeCheckbox.checked = false;
+      MadeCheckbox.setAttribute('class', 'shot-result');
       var labelMade = document.createElement('label');
       labelMade.htmlFor = "id";
       labelMade.appendChild(document.createTextNode('Made'));
@@ -37747,8 +37666,8 @@ function () {
       var MissedCheckbox = document.createElement('input');
       MissedCheckbox.type = "checkbox";
       MissedCheckbox.name = "names";
-      MissedCheckbox.value = "value";
-      MissedCheckbox.id = "id";
+      MissedCheckbox.checked = false;
+      MissedCheckbox.setAttribute('class', 'shot-result');
       var labelMissed = document.createElement('label');
       labelMissed.htmlFor = "id";
       labelMissed.appendChild(document.createTextNode('Missed'));
@@ -37874,8 +37793,8 @@ function () {
       var shotResult = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : 'all';
 
       if (type === 'career') {
-        for (var i = 2015; i < 2018; i++) {
-          var _season = "".concat(i, "-").concat(i + 1 - 2000);
+        for (var _i = 2015; _i < 2018; _i++) {
+          var _season = "".concat(_i, "-").concat(_i + 1 - 2000);
 
           d3.csv("./assets/".concat(firstName, "_").concat(lastName, "_").concat(_season, ".csv")).then(function (shots) {
             shots.forEach(function (shot) {
@@ -37931,8 +37850,8 @@ function () {
       var firstName = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'Stephen';
       var lastName = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "Curry";
 
-      for (var i = 2015; i < 2018; i++) {
-        var season = "".concat(i, "-").concat(i + 1 - 2000);
+      for (var _i2 = 2015; _i2 < 2018; _i2++) {
+        var season = "".concat(_i2, "-").concat(_i2 + 1 - 2000);
         d3.csv("./assets/".concat(firstName, "_").concat(lastName, "_").concat(season, ".csv")).then(function (shots) {
           shots.forEach(function (shot) {
             var shotOutcome = shot.event_type;
@@ -37984,8 +37903,8 @@ function () {
       var type = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : '';
 
       if (type === 'career') {
-        for (var i = 2015; i < 2018; i++) {
-          var _season2 = "".concat(i, "-").concat(i + 1 - 2000);
+        for (var _i3 = 2015; _i3 < 2018; _i3++) {
+          var _season2 = "".concat(_i3, "-").concat(_i3 + 1 - 2000);
 
           d3.csv("./assets/".concat(firstName, "_").concat(lastName, "_").concat(_season2, ".csv")).then(function (shots) {
             shots.forEach(function (shot) {
@@ -38020,7 +37939,8 @@ function () {
           });
         });
       }
-    }
+    } // g.animate({opacity: 1},200);
+
   }, {
     key: "renderShots",
     value: function renderShots(playerPos, shotOutcome) {
@@ -38041,6 +37961,18 @@ function () {
   return Shots;
 }();
 
+var delta = 0.001,
+    i = 0,
+    j,
+    n = 2000,
+    // Total number of random points.
+k = 20; // Number of points to replace per frame.
+
+var rx = d3.randomNormal(CONSTANTS.WIDTH / 2, 80),
+    ry = d3.randomNormal(CONSTANTS.HEIGHT / 2, 80),
+    points = d3.range(n).map(function () {
+  return [rx(), ry()];
+});
 /* harmony default export */ __webpack_exports__["default"] = (Shots);
 
 /***/ }),

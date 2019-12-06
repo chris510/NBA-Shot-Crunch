@@ -4,7 +4,7 @@
 
 .current-player-name {
   font-family: var(--font);
-  font-size: 30px;
+  font-size: 28px;
 
 }
 
@@ -38,7 +38,7 @@
 
 .select-result-container {
   display: flex;
-  flex-direction: column
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 }

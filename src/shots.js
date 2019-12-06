@@ -154,8 +154,10 @@ class Shots {
     }
   }
 
+  // g.animate({opacity: 1},200);
   renderShots(playerPos, shotOutcome) {
     const hexbin = d3.hexbin().radius(5);
+
       if(shotOutcome === "Made Shot") {
         this.svg.append("g")
           .selectAll(".hexagon")
@@ -169,7 +171,7 @@ class Shots {
           .attr("fill", "skyblue")
           .attr("fill-opacity", CONSTANTS.SHOT_OPACITY)
           .attr("stroke-width", "0.1px")
-          .attr("transform", "rotate(180 125,208.5)");
+          .attr("transform", "rotate(180 125,208.5)")
       } else if (shotOutcome === "Missed Shot") {
         this.svg.append("g")
           .selectAll(".hexagon")
@@ -187,5 +189,14 @@ class Shots {
       }
   }
 }
+
+var delta = 0.001,
+    i = 0, j,
+    n = 2000, // Total number of random points.
+    k = 20; // Number of points to replace per frame.
+
+var rx = d3.randomNormal(CONSTANTS.WIDTH / 2, 80),
+ry = d3.randomNormal(CONSTANTS.HEIGHT / 2, 80),
+points = d3.range(n).map(function() { return [rx(), ry()]; });
 
 export default Shots;

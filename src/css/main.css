@@ -1,9 +1,11 @@
 @import './reset.css';
+@import './animations.css';
 @import './splash.css';
 @import './dropdown.css';
 @import './carousel.css';
 @import './filters.css';
 @import './modal.css';
+@import './shots.css';
 
 html {
   --font-color: white;
@@ -135,6 +137,11 @@ body {
 .player-container {
   min-height: 150px;
   min-width: 150px;
+  -webkit-animation: fadein 0.5s; /* Safari, Chrome and Opera > 12.1 */
+  -moz-animation: fadein 1s; /* Firefox < 16 */
+   -ms-animation: fadein 1s; /* Internet Explorer */
+    -o-animation: fadein 1s; /* Opera < 12.1 */
+       animation: fadein 1s;
 }
 
 .player-container:hover {

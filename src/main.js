@@ -137,7 +137,7 @@ class Main {
 
     const dropDownTeam = document.createElement('div');
     dropDownTeam.setAttribute('class', 'team pointerCursor');
-    dropDownTeam.innerHTML = 'Made'
+    dropDownTeam.innerHTML = 'All'
 
     const iFaFaAngleTwo = document.createElement('i');
     iFaFaAngleTwo.setAttribute('class', "fa fa-angle-right");
@@ -159,8 +159,8 @@ class Main {
     let AllCheckbox = document.createElement('input');
     AllCheckbox.type = "checkbox";
     AllCheckbox.name = "names";
-    AllCheckbox.value = "value";
-    AllCheckbox.id = "id";
+    AllCheckbox.checked = true;
+    AllCheckbox.setAttribute('class', 'shot-result');
 
     let labelAll = document.createElement('label')
     labelAll.htmlFor = "id";
@@ -172,8 +172,8 @@ class Main {
     let MadeCheckbox = document.createElement('input');
     MadeCheckbox.type = "checkbox";
     MadeCheckbox.name = "names";
-    MadeCheckbox.value = "value";
-    MadeCheckbox.id = "id";
+    MadeCheckbox.checked = false;
+    MadeCheckbox.setAttribute('class', 'shot-result');
 
     let labelMade = document.createElement('label')
     labelMade.htmlFor = "id";
@@ -185,8 +185,8 @@ class Main {
     let MissedCheckbox = document.createElement('input');
     MissedCheckbox.type = "checkbox";
     MissedCheckbox.name = "names";
-    MissedCheckbox.value = "value";
-    MissedCheckbox.id = "id";
+    MissedCheckbox.checked = false;
+    MissedCheckbox.setAttribute('class', 'shot-result');
 
     let labelMissed = document.createElement('label')
     labelMissed.htmlFor = "id";
