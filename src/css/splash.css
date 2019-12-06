@@ -10,15 +10,26 @@
   box-shadow: 5px 5px 10px 5px rgba(0,0,0,0.5);
 }
 
+.splash > div {
+  padding: 30px;
+}
+
+.splash-title {
+  font-size: 36px;
+  font-weight: bold;
+  font-family: var(--font);
+}
 .randombutton {
   background-color: grey;
   width: 200px;
-  border-radius: 5px;
+  height: 50px;
+  border-radius: 8px;
   box-shadow: 5px 5px 10px 5px rgba(0,0,0,0.5);
 }
 
 .randombutton:hover {
   cursor: pointer;
+  background-color: lightgray;
 }
 
 .randombutton:active {

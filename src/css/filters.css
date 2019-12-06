@@ -35,3 +35,10 @@
   padding: 5px;
   font-size: 18px;
 }
+
+.select-result-container {
+  display: flex;
+  flex-direction: column
+  justify-content: center;
+  align-items: center;
+}

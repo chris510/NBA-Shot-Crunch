@@ -24,6 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   renderSplashPage();
 
+  
   d3.selectAll(".lucky")
     .on("click", function(d, i) {
       removeSplash();

@@ -37712,7 +37712,7 @@ function () {
       dropDownTwo.setAttribute('class', 'dropdown');
       var dropDownTeam = document.createElement('div');
       dropDownTeam.setAttribute('class', 'team pointerCursor');
-      dropDownTeam.innerHTML = 'All';
+      dropDownTeam.innerHTML = 'Made';
       var iFaFaAngleTwo = document.createElement('i');
       iFaFaAngleTwo.setAttribute('class', "fa fa-angle-right");
       var teamMenu = document.createElement('div');
@@ -37721,6 +37721,39 @@ function () {
       dropDownTwo.appendChild(dropDownTeam).appendChild(iFaFaAngleTwo);
       dropDownTwo.appendChild(teamMenu);
       selectTeamContainer.appendChild(dropDownTwo);
+      var resultContainer = document.createElement('div');
+      resultContainer.setAttribute('class', 'select-result-container');
+      filterContainer.appendChild(resultContainer);
+      var AllCheckbox = document.createElement('input');
+      AllCheckbox.type = "checkbox";
+      AllCheckbox.name = "names";
+      AllCheckbox.value = "value";
+      AllCheckbox.id = "id";
+      var labelAll = document.createElement('label');
+      labelAll.htmlFor = "id";
+      labelAll.appendChild(document.createTextNode('All'));
+      resultContainer.appendChild(AllCheckbox);
+      resultContainer.appendChild(labelAll);
+      var MadeCheckbox = document.createElement('input');
+      MadeCheckbox.type = "checkbox";
+      MadeCheckbox.name = "names";
+      MadeCheckbox.value = "value";
+      MadeCheckbox.id = "id";
+      var labelMade = document.createElement('label');
+      labelMade.htmlFor = "id";
+      labelMade.appendChild(document.createTextNode('Made'));
+      resultContainer.appendChild(MadeCheckbox);
+      resultContainer.appendChild(labelMade);
+      var MissedCheckbox = document.createElement('input');
+      MissedCheckbox.type = "checkbox";
+      MissedCheckbox.name = "names";
+      MissedCheckbox.value = "value";
+      MissedCheckbox.id = "id";
+      var labelMissed = document.createElement('label');
+      labelMissed.htmlFor = "id";
+      labelMissed.appendChild(document.createTextNode('Missed'));
+      resultContainer.appendChild(MissedCheckbox);
+      resultContainer.appendChild(labelMissed);
     }
   }]);
 
@@ -37812,6 +37845,7 @@ function () {
     this.parseCareerShots = this.parseCareerShots.bind(this);
     this.getTotalShots = this.getTotalShots.bind(this);
     this.getShotPercentage = this.getShotPercentage.bind(this);
+    this.parseByShotResult = this.parseByShotResult.bind(this);
   }
 
   _createClass(Shots, [{
@@ -37829,9 +37863,70 @@ function () {
     key: "getShotPercentage",
     value: function getShotPercentage(shots) {}
   }, {
+    key: "parseByShotResult",
+    value: function parseByShotResult() {
+      var _this = this;
+
+      var firstName = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'Stephen';
+      var lastName = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'Curry';
+      var season = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : '2015-16';
+      var type = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : '';
+      var shotResult = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : 'all';
+
+      if (type === 'career') {
+        for (var i = 2015; i < 2018; i++) {
+          var _season = "".concat(i, "-").concat(i + 1 - 2000);
+
+          d3.csv("./assets/".concat(firstName, "_").concat(lastName, "_").concat(_season, ".csv")).then(function (shots) {
+            shots.forEach(function (shot) {
+              if (shot.visiting_team === team) {
+                var shotOutcome = shot.event_type;
+                var shotX = shot.loc_x;
+                var shotY = shot.loc_y;
+
+                if (shotResult === 'all') {
+                  if (shotOutcome === 'Made Shot') {
+                    _this.renderShots([shotX, shotY], shotOutcome);
+                  } else if (shotOutcome === 'Missed Shot') {
+                    _this.renderShots([shotX, shotY], shotOutcome);
+                  }
+                } else if (shotResult === 'Made') {
+                  if (shotOutcome === 'Made Shot') _this.renderShots([shotX, shotY], shotOutcome);
+                } else if (shotResult === 'Missed') {
+                  if (shotOutcome === 'Missed Shot') _this.renderShots([shotX, shotY], shotOutcome);
+                }
+              }
+            });
+          });
+        }
+      } else {
+        d3.csv("./assets/".concat(firstName, "_").concat(lastName, "_").concat(season, ".csv")).then(function (shots) {
+          shots.forEach(function (shot) {
+            if (shot.visiting_team === team) {
+              var shotOutcome = shot.event_type;
+              var shotX = shot.loc_x;
+              var shotY = shot.loc_y;
+
+              if (shotResult === 'all') {
+                if (shotOutcome === 'Made Shot') {
+                  _this.renderShots([shotX, shotY], shotOutcome);
+                } else if (shotOutcome === 'Missed Shot') {
+                  _this.renderShots([shotX, shotY], shotOutcome);
+                }
+              } else if (shotResult === 'Made') {
+                if (shotOutcome === 'Made Shot') _this.renderShots([shotX, shotY], shotOutcome);
+              } else if (shotResult === 'Missed') {
+                if (shotOutcome === 'Missed Shot') _this.renderShots([shotX, shotY], shotOutcome);
+              }
+            }
+          });
+        });
+      }
+    }
+  }, {
     key: "parseCareerShots",
     value: function parseCareerShots() {
-      var _this = this;
+      var _this2 = this;
 
       var firstName = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'Stephen';
       var lastName = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "Curry";
@@ -37845,9 +37940,9 @@ function () {
             var shotY = shot.loc_y;
 
             if (shotOutcome === 'Made Shot') {
-              _this.renderShots([shotX, shotY], shotOutcome);
+              _this2.renderShots([shotX, shotY], shotOutcome);
             } else if (shotOutcome === 'Missed Shot') {
-              _this.renderShots([shotX, shotY], shotOutcome);
+              _this2.renderShots([shotX, shotY], shotOutcome);
             }
           });
         });
@@ -37856,7 +37951,7 @@ function () {
   }, {
     key: "parseShots",
     value: function parseShots() {
-      var _this2 = this;
+      var _this3 = this;
 
       var firstName = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'Stephen';
       var lastName = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'Curry';
@@ -37870,9 +37965,9 @@ function () {
           var shotY = shot.loc_y;
 
           if (shotOutcome === 'Made Shot') {
-            _this2.renderShots([shotX, shotY], shotOutcome);
+            _this3.renderShots([shotX, shotY], shotOutcome);
           } else if (shotOutcome === 'Missed Shot') {
-            _this2.renderShots([shotX, shotY], shotOutcome);
+            _this3.renderShots([shotX, shotY], shotOutcome);
           }
         });
       });
@@ -37880,7 +37975,7 @@ function () {
   }, {
     key: "parseShotsByTeam",
     value: function parseShotsByTeam() {
-      var _this3 = this;
+      var _this4 = this;
 
       var firstName = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'Stephen';
       var lastName = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'Curry';
@@ -37890,9 +37985,9 @@ function () {
 
       if (type === 'career') {
         for (var i = 2015; i < 2018; i++) {
-          var _season = "".concat(i, "-").concat(i + 1 - 2000);
+          var _season2 = "".concat(i, "-").concat(i + 1 - 2000);
 
-          d3.csv("./assets/".concat(firstName, "_").concat(lastName, "_").concat(_season, ".csv")).then(function (shots) {
+          d3.csv("./assets/".concat(firstName, "_").concat(lastName, "_").concat(_season2, ".csv")).then(function (shots) {
             shots.forEach(function (shot) {
               if (shot.visiting_team === team) {
                 var shotOutcome = shot.event_type;
@@ -37900,9 +37995,9 @@ function () {
                 var shotY = shot.loc_y;
 
                 if (shotOutcome === 'Made Shot') {
-                  _this3.renderShots([shotX, shotY], shotOutcome);
+                  _this4.renderShots([shotX, shotY], shotOutcome);
                 } else if (shotOutcome === 'Missed Shot') {
-                  _this3.renderShots([shotX, shotY], shotOutcome);
+                  _this4.renderShots([shotX, shotY], shotOutcome);
                 }
               }
             });
@@ -37917,9 +38012,9 @@ function () {
               var shotY = shot.loc_y;
 
               if (shotOutcome === 'Made Shot') {
-                _this3.renderShots([shotX, shotY], shotOutcome);
+                _this4.renderShots([shotX, shotY], shotOutcome);
               } else if (shotOutcome === 'Missed Shot') {
-                _this3.renderShots([shotX, shotY], shotOutcome);
+                _this4.renderShots([shotX, shotY], shotOutcome);
               }
             }
           });

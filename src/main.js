@@ -137,7 +137,7 @@ class Main {
 
     const dropDownTeam = document.createElement('div');
     dropDownTeam.setAttribute('class', 'team pointerCursor');
-    dropDownTeam.innerHTML = 'All'
+    dropDownTeam.innerHTML = 'Made'
 
     const iFaFaAngleTwo = document.createElement('i');
     iFaFaAngleTwo.setAttribute('class', "fa fa-angle-right");
@@ -150,6 +150,52 @@ class Main {
     dropDownTwo.appendChild(teamMenu);
 
     selectTeamContainer.appendChild(dropDownTwo);
+
+    let resultContainer = document.createElement('div');
+    resultContainer.setAttribute('class', 'select-result-container')
+
+    filterContainer.appendChild(resultContainer);
+
+    let AllCheckbox = document.createElement('input');
+    AllCheckbox.type = "checkbox";
+    AllCheckbox.name = "names";
+    AllCheckbox.value = "value";
+    AllCheckbox.id = "id";
+
+    let labelAll = document.createElement('label')
+    labelAll.htmlFor = "id";
+    labelAll.appendChild(document.createTextNode('All'));
+
+    resultContainer.appendChild(AllCheckbox);
+    resultContainer.appendChild(labelAll);
+
+    let MadeCheckbox = document.createElement('input');
+    MadeCheckbox.type = "checkbox";
+    MadeCheckbox.name = "names";
+    MadeCheckbox.value = "value";
+    MadeCheckbox.id = "id";
+
+    let labelMade = document.createElement('label')
+    labelMade.htmlFor = "id";
+    labelMade.appendChild(document.createTextNode('Made'));
+
+    resultContainer.appendChild(MadeCheckbox);
+    resultContainer.appendChild(labelMade);
+
+    let MissedCheckbox = document.createElement('input');
+    MissedCheckbox.type = "checkbox";
+    MissedCheckbox.name = "names";
+    MissedCheckbox.value = "value";
+    MissedCheckbox.id = "id";
+
+    let labelMissed = document.createElement('label')
+    labelMissed.htmlFor = "id";
+    labelMissed.appendChild(document.createTextNode('Missed'));
+
+    resultContainer.appendChild(MissedCheckbox);
+    resultContainer.appendChild(labelMissed);
+
+
   }
 
 }

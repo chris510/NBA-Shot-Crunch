@@ -16,6 +16,7 @@ class Shots {
     this.parseCareerShots = this.parseCareerShots.bind(this);
     this.getTotalShots = this.getTotalShots.bind(this);
     this.getShotPercentage = this.getShotPercentage.bind(this);
+    this.parseByShotResult = this.parseByShotResult.bind(this);
   }
 
   clearShots() {
@@ -29,6 +30,55 @@ class Shots {
 
   getShotPercentage(shots) {
 
+  }
+
+  parseByShotResult(firstName = 'Stephen', lastName = 'Curry', season = '2015-16', type = '', shotResult = 'all') {
+    if (type === 'career') {
+      for (let i = 2015; i < 2018; i++) {
+        let season = `${i}-${(i+1)-2000}`
+        d3.csv(`./assets/${firstName}_${lastName}_${season}.csv`).then(shots => {
+          shots.forEach( shot => {
+            if (shot.visiting_team === team) {
+              let shotOutcome = shot.event_type;
+              let shotX = shot.loc_x;
+              let shotY = shot.loc_y;
+              if (shotResult === 'all') {
+                if (shotOutcome === 'Made Shot') {
+                  this.renderShots([shotX, shotY], shotOutcome);
+                } else if (shotOutcome === 'Missed Shot') {
+                  this.renderShots([shotX, shotY], shotOutcome);
+                }
+              } else if (shotResult === 'Made') {
+                if (shotOutcome === 'Made Shot') this.renderShots([shotX, shotY], shotOutcome);
+              } else if (shotResult === 'Missed') {
+                if (shotOutcome === 'Missed Shot') this.renderShots([shotX, shotY], shotOutcome);
+              }
+            }
+          })
+        })
+      }
+    } else {
+      d3.csv(`./assets/${firstName}_${lastName}_${season}.csv`).then(shots => {
+        shots.forEach( shot => {
+          if (shot.visiting_team === team) {
+            let shotOutcome = shot.event_type;
+            let shotX = shot.loc_x;
+            let shotY = shot.loc_y;
+            if (shotResult === 'all') {
+              if (shotOutcome === 'Made Shot') {
+                this.renderShots([shotX, shotY], shotOutcome);
+              } else if (shotOutcome === 'Missed Shot') {
+                this.renderShots([shotX, shotY], shotOutcome);
+              }
+            } else if (shotResult === 'Made') {
+              if (shotOutcome === 'Made Shot') this.renderShots([shotX, shotY], shotOutcome);
+            } else if (shotResult === 'Missed') {
+              if (shotOutcome === 'Missed Shot') this.renderShots([shotX, shotY], shotOutcome);
+            }
+          }
+        })
+      })
+    }
   }
 
   parseCareerShots(firstName = 'Stephen', lastName = "Curry") {
@@ -106,14 +156,13 @@ class Shots {
 
   renderShots(playerPos, shotOutcome) {
     const hexbin = d3.hexbin().radius(5);
-
       if(shotOutcome === "Made Shot") {
         this.svg.append("g")
           .selectAll(".hexagon")
           .data(hexbin([playerPos]))
           .enter().append("path")
           .attr("d", function (d) {
-              return "M" + d.x + "," + d.y + hexbin.hexagon();
+            return "M" + d.x + "," + d.y + hexbin.hexagon();
           })
           .attr("stroke", "white")
           .attr('transform', 'translate(250, 52.5)')
@@ -127,7 +176,7 @@ class Shots {
           .data(hexbin([playerPos]))
           .enter().append("path")
           .attr("d", function (d) {
-              return "M" + d.x + "," + d.y + hexbin.hexagon();
+            return "M" + d.x + "," + d.y + hexbin.hexagon();
           })
           .attr("stroke", "white")
           .attr('transform', 'translate(250, 52.5)')
