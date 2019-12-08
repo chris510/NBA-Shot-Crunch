@@ -1,3 +1,15 @@
+.filter-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.filter-container > div {
+  padding: 5px;
+}
+
 .current-player-name-container {
   padding: 25px;
 }
@@ -41,4 +53,8 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.select-result-container > input {
+  padding: 5px;
 }

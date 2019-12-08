@@ -42,7 +42,6 @@ class Shots {
   }
 
   parseByShotResult(firstName = 'Stephen', lastName = 'Curry', season = '2015-16', type = '', team = 'All', shotResult = 'All') {
-    debugger
     if (type === 'career') {
       for (let i = 2015; i < 2018; i++) {
         let season = `${i}-${(i+1)-2000}`

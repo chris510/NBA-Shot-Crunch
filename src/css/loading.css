@@ -6,8 +6,11 @@
   z-index: 100;
   width: 100vw;
   height: 100vh;
-  background-color: rgba(192, 192, 192, 1);
-  background-image: url("../../spin.svg");
-  background-repeat: no-repeat;
-  background-position: center;
+  /* background-color: rgba(192, 192, 192, 0.2); */
+  /* background-color: black; */
+  background-image: url("../../spin.svg"), url("../../images/court-trees.jpg");
+  /* background-size: 50% 75%, 85% 90%; */
+  background-size: 50% 50%, 50% 100%;
+  background-repeat: no-repeat, space; 
+  background-position: center, right center;
 }

@@ -37200,19 +37200,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "renderFooter", function() { return renderFooter; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "renderSplashPage", function() { return renderSplashPage; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "removeSplash", function() { return removeSplash; });
-var GIF = ["../assets/gifs/anthony_davis.gif", "../assets/gifs/Blake-Griffin.gif", "../assets/gifs/Chris-Paul.gif", "../assets/gifs/Dwight-Howard.gif", "../assets/gifs/jamesharden.gif", "../assets/gifs/Kevin-Durant.gif" // "../assets/gifs/Kevin-Love.gif",
+var GIF = [// "../assets/gifs/anthony_davis.gif",
+"../assets/gifs/Blake-Griffin.gif", "../assets/gifs/Chris-Paul.gif", "../assets/gifs/Dwight-Howard.gif", "../assets/gifs/jamesharden.gif", "../assets/gifs/Kevin-Durant.gif", // "../assets/gifs/Kevin-Love.gif",
 // "../assets/gifs/lebron-james.gif",
 // "../assets/gifs/Russell-Westbrook.gif",
 // "../assets/gifs/anthony_davis_lakers.gif",
 // "../assets/gifs/derek_rose.gif",
 // "../assets/gifs/devin_booker.gif",
 // "../assets/gifs/draymond_green.gif",
-// "../assets/gifs/giannis.gif",
-// "../assets/gifs/hassan_whiteside.gif",
-// "../assets/gifs/james_harden_cook.gif",
-// "../assets/gifs/zion_williamson.gif",
-// "../assets/gifs/luka_doncic.gif",
-// "../assets/gifs/lebron_lal.gif",
+"../assets/gifs/giannis.gif", // "../assets/gifs/hassan_whiteside.gif",
+"../assets/gifs/james_harden_cook.gif", // "../assets/gifs/zion_williamson.gif",
+"../assets/gifs/luka_doncic.gif" // "../assets/gifs/lebron_lal.gif",
 ];
 var teamSelector = function teamSelector(playerTeam) {
   d3.csv('./assets/nba_teams.csv').then(function (teams) {
@@ -37380,24 +37378,7 @@ var courtContainer = {
   height: 450
 };
 document.addEventListener("DOMContentLoaded", function () {
-  Object(_helpers__WEBPACK_IMPORTED_MODULE_3__["renderSplashPage"])(); // const onReady = (callback) => {
-  //   let intervalID = setInterval(checkReady, 1000);
-  //   const checkReady = () => {
-  //     if (document.getElementsByTagName('app') !== undefined) {
-  //       clearInterval(intervalID);
-  //       callback.call(this);
-  //     }
-  //   }
-  // }
-  //   const show = (className, value) => {
-  //     document.getElementsByClassName(className).style.dispaly = value ? 'block' : 'none';
-  //   }
-  //   onReady(() => {
-  //     debugger
-  //     show('app', true);
-  //     show('loading', false);
-  //   });
-
+  Object(_helpers__WEBPACK_IMPORTED_MODULE_3__["renderSplashPage"])();
   d3.selectAll(".lucky").on("click", function (d, i) {
     Object(_helpers__WEBPACK_IMPORTED_MODULE_3__["removeSplash"])();
     Object(_helpers__WEBPACK_IMPORTED_MODULE_3__["renderBody"])();
@@ -37406,7 +37387,7 @@ document.addEventListener("DOMContentLoaded", function () {
     loadingContainer.innerHTML = loader;
     setTimeout(function () {
       loadingContainer.innerHTML = "";
-    }, 500);
+    }, 1500);
     var firstName = 'Stephen';
     var lastName = 'Curry';
     var playerTeam = 'Golden State Warriors';
@@ -37844,7 +37825,6 @@ function () {
       var type = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : '';
       var team = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : 'All';
       var shotResult = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : 'All';
-      debugger;
 
       if (type === 'career') {
         for (var _i = 2015; _i < 2018; _i++) {

@@ -1,10 +1,10 @@
 const GIF = [
-  "../assets/gifs/anthony_davis.gif",
+  // "../assets/gifs/anthony_davis.gif",
   "../assets/gifs/Blake-Griffin.gif",
   "../assets/gifs/Chris-Paul.gif",
   "../assets/gifs/Dwight-Howard.gif",
   "../assets/gifs/jamesharden.gif",
-  "../assets/gifs/Kevin-Durant.gif"
+  "../assets/gifs/Kevin-Durant.gif",
   // "../assets/gifs/Kevin-Love.gif",
   // "../assets/gifs/lebron-james.gif",
   // "../assets/gifs/Russell-Westbrook.gif",
@@ -12,11 +12,11 @@ const GIF = [
   // "../assets/gifs/derek_rose.gif",
   // "../assets/gifs/devin_booker.gif",
   // "../assets/gifs/draymond_green.gif",
-  // "../assets/gifs/giannis.gif",
+  "../assets/gifs/giannis.gif",
   // "../assets/gifs/hassan_whiteside.gif",
-  // "../assets/gifs/james_harden_cook.gif",
+  "../assets/gifs/james_harden_cook.gif",
   // "../assets/gifs/zion_williamson.gif",
-  // "../assets/gifs/luka_doncic.gif",
+  "../assets/gifs/luka_doncic.gif",
   // "../assets/gifs/lebron_lal.gif",
 ]
 

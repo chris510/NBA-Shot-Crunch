@@ -23,26 +23,6 @@ const courtContainer = {
 document.addEventListener("DOMContentLoaded", () => {
 
   renderSplashPage();
-
-  // const onReady = (callback) => {
-  //   let intervalID = setInterval(checkReady, 1000);
-
-  //   const checkReady = () => {
-  //     if (document.getElementsByTagName('app') !== undefined) {
-  //       clearInterval(intervalID);
-  //       callback.call(this);
-  //     }
-  //   }
-  // }
-  //   const show = (className, value) => {
-  //     document.getElementsByClassName(className).style.dispaly = value ? 'block' : 'none';
-  //   }
-  
-  //   onReady(() => {
-  //     debugger
-  //     show('app', true);
-  //     show('loading', false);
-  //   });
   
   d3.selectAll(".lucky")
     .on("click", function(d, i) {
@@ -55,7 +35,7 @@ document.addEventListener("DOMContentLoaded", () => {
       loadingContainer.innerHTML = loader;
       setTimeout( () => {
         loadingContainer.innerHTML = "";
-      }, 500)
+      }, 1500)
 
       let firstName = 'Stephen';
       let lastName = 'Curry';
@@ -115,6 +95,7 @@ document.addEventListener("DOMContentLoaded", () => {
     shots.clearShots();
     team = e.target.id;
     shots.parseShotsByTeam(firstName, lastName, season, team, type)
+
   })
 
   const shotResultOption = document.querySelector(".select-result-container");
