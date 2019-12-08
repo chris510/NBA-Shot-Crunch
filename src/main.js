@@ -159,7 +159,7 @@ class Main {
     let AllCheckbox = document.createElement('input');
     AllCheckbox.type = "checkbox";
     AllCheckbox.name = "All";
-    AllCheckbox.checked = true;
+    AllCheckbox.checked = false;
     AllCheckbox.setAttribute('class', 'shot-result');
 
     let labelAll = document.createElement('label')

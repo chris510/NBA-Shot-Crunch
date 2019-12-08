@@ -41,7 +41,7 @@ class Shots {
     }
   }
 
-  parseByShotResult(firstName = 'Stephen', lastName = 'Curry', season = '2015-16', type = '', team = 'all', shotResult = 'all') {
+  parseByShotResult(firstName = 'Stephen', lastName = 'Curry', season = '2015-16', type = '', team = 'All', shotResult = 'All') {
     debugger
     if (type === 'career') {
       for (let i = 2015; i < 2018; i++) {
@@ -51,7 +51,7 @@ class Shots {
               let shotOutcome = shot.event_type;
               let shotX = shot.loc_x;
               let shotY = shot.loc_y;
-              if (shotResult === 'all') {
+              if (shotResult === 'All') {
                 this.getMadeShots(shotX, shotY, shotOutcome);
               } else if (shotResult === 'Made' && shotOutcome === 'Made Shot') {
                 this.getMadeShots(shotX, shotY, shotOutcome)
@@ -67,12 +67,12 @@ class Shots {
           let shotOutcome = shot.event_type;
           let shotX = shot.loc_x;
           let shotY = shot.loc_y;
-          if (shotResult === 'all') {
+          if (shotResult === 'All') {
             this.getMadeShots(shotX, shotY, shotOutcome);
-          } else if (shotResult === 'Made') {
-            if (shotOutcome === 'Made Shot') this.renderShots([shotX, shotY], shotOutcome);
-          } else if (shotResult === 'Missed') {
-            if (shotOutcome === 'Missed Shot') this.renderShots([shotX, shotY], shotOutcome);
+          } else if (shotResult === 'Made' && shotOutcome === 'Made Shot') {
+            this.getMadeShots(shotX, shotY, shotOutcome)
+          } else if (shotResult === 'Missed' && shotOutcome === 'Missed Shot') {
+            this.getMadeShots(shotX, shotY, shotOutcome)
           }
         })
       })

@@ -37200,7 +37200,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "renderFooter", function() { return renderFooter; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "renderSplashPage", function() { return renderSplashPage; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "removeSplash", function() { return removeSplash; });
-var GIF = ["../assets/gifs/anthony_davis.gif", "../assets/gifs/Blake-Griffin.gif", "../assets/gifs/Chris-Paul.gif", "../assets/gifs/Dwight-Howard.gif", "../assets/gifs/jamesharden.gif", "../assets/gifs/Kevin-Durant.gif", "../assets/gifs/Kevin-Love.gif", "../assets/gifs/lebron-james.gif", "../assets/gifs/Russell-Westbrook.gif", "../assets/gifs/anthony_davis_lakers.gif", "../assets/gifs/derek_rose.gif", "../assets/gifs/devin_booker.gif", "../assets/gifs/draymond_green.gif", "../assets/gifs/giannis.gif", "../assets/gifs/hassan_whiteside.gif", "../assets/gifs/james_harden_cook.gif", "../assets/gifs/zion_williamson.gif", "../assets/gifs/luka_doncic.gif", "../assets/gifs/lebron_lal.gif"];
+var GIF = ["../assets/gifs/anthony_davis.gif", "../assets/gifs/Blake-Griffin.gif", "../assets/gifs/Chris-Paul.gif", "../assets/gifs/Dwight-Howard.gif", "../assets/gifs/jamesharden.gif", "../assets/gifs/Kevin-Durant.gif" // "../assets/gifs/Kevin-Love.gif",
+// "../assets/gifs/lebron-james.gif",
+// "../assets/gifs/Russell-Westbrook.gif",
+// "../assets/gifs/anthony_davis_lakers.gif",
+// "../assets/gifs/derek_rose.gif",
+// "../assets/gifs/devin_booker.gif",
+// "../assets/gifs/draymond_green.gif",
+// "../assets/gifs/giannis.gif",
+// "../assets/gifs/hassan_whiteside.gif",
+// "../assets/gifs/james_harden_cook.gif",
+// "../assets/gifs/zion_williamson.gif",
+// "../assets/gifs/luka_doncic.gif",
+// "../assets/gifs/lebron_lal.gif",
+];
 var teamSelector = function teamSelector(playerTeam) {
   d3.csv('./assets/nba_teams.csv').then(function (teams) {
     teams.forEach(function (team) {
@@ -37649,7 +37662,7 @@ function () {
       var AllCheckbox = document.createElement('input');
       AllCheckbox.type = "checkbox";
       AllCheckbox.name = "All";
-      AllCheckbox.checked = true;
+      AllCheckbox.checked = false;
       AllCheckbox.setAttribute('class', 'shot-result');
       var labelAll = document.createElement('label');
       labelAll.htmlFor = "id";
@@ -37803,8 +37816,8 @@ function () {
       var lastName = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'Curry';
       var season = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : '2015-16';
       var type = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : '';
-      var team = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : 'all';
-      var shotResult = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : 'all';
+      var team = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : 'All';
+      var shotResult = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : 'All';
       debugger;
 
       if (type === 'career') {
@@ -37817,7 +37830,7 @@ function () {
               var shotX = shot.loc_x;
               var shotY = shot.loc_y;
 
-              if (shotResult === 'all') {
+              if (shotResult === 'All') {
                 _this.getMadeShots(shotX, shotY, shotOutcome);
               } else if (shotResult === 'Made' && shotOutcome === 'Made Shot') {
                 _this.getMadeShots(shotX, shotY, shotOutcome);
@@ -37834,12 +37847,12 @@ function () {
             var shotX = shot.loc_x;
             var shotY = shot.loc_y;
 
-            if (shotResult === 'all') {
+            if (shotResult === 'All') {
               _this.getMadeShots(shotX, shotY, shotOutcome);
-            } else if (shotResult === 'Made') {
-              if (shotOutcome === 'Made Shot') _this.renderShots([shotX, shotY], shotOutcome);
-            } else if (shotResult === 'Missed') {
-              if (shotOutcome === 'Missed Shot') _this.renderShots([shotX, shotY], shotOutcome);
+            } else if (shotResult === 'Made' && shotOutcome === 'Made Shot') {
+              _this.getMadeShots(shotX, shotY, shotOutcome);
+            } else if (shotResult === 'Missed' && shotOutcome === 'Missed Shot') {
+              _this.getMadeShots(shotX, shotY, shotOutcome);
             }
           });
         });
