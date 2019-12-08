@@ -37228,18 +37228,17 @@ var renderCourt = function renderCourt() {
 var renderBody = function renderBody() {
   var body = document.querySelector('body');
   var app = document.createElement('div');
-  app.setAttribute('class', 'app');
-  var appTitle = document.createElement('div');
-  appTitle.setAttribute('class', 'app-title');
-  appTitle.innerHTML = 'NBA Shot Crunch';
+  app.setAttribute('class', 'app'); // const appTitle = document.createElement('div');
+  // appTitle.setAttribute('class', 'app-title');
+  // appTitle.innerHTML = 'NBA Shot Crunch';
+
   var player = document.createElement('div');
   player.setAttribute('class', 'player');
   var carouselWrapper = document.createElement('div');
   carouselWrapper.setAttribute('class', 'carousel-wrapper');
   var carousel = document.createElement('div');
   carousel.setAttribute('class', 'carousel');
-  body.appendChild(app).appendChild(appTitle); // app.appendChild(appTitle);
-
+  body.appendChild(app);
   app.appendChild(player).appendChild(carouselWrapper).appendChild(carousel);
   var shotContainer = document.createElement('div');
   shotContainer.setAttribute('class', 'shot-container');
@@ -37253,11 +37252,13 @@ var renderFooter = function renderFooter() {
   footer.setAttribute('class', 'footer');
   var footerWrapper = document.createElement('div');
   footerWrapper.setAttribute('class', 'footer-wrapper');
+  var buttonContainer = document.createElement('div');
+  buttonContainer.setAttribute('class', 'button-container');
   var buttonModal = document.createElement('button');
   buttonModal.setAttribute('id', 'open-modal');
   buttonModal.value = "How to Use";
   buttonModal.innerText = "How to Use";
-  body.appendChild(footer).appendChild(footerWrapper).appendChild(buttonModal);
+  body.appendChild(footer).appendChild(footerWrapper).appendChild(buttonContainer).appendChild(buttonModal);
   var github = document.createElement('div');
   github.setAttribute('class', 'github');
   var githubLink = document.createElement('a');
@@ -37374,7 +37375,7 @@ document.addEventListener("DOMContentLoaded", function () {
     var lastName = 'Curry';
     var playerTeam = 'Golden State Warriors';
     var season = '2015-16';
-    var team = '';
+    var team = 'All';
     var type = 'season';
     var shotResult = 'All'; // let currentPlayerNameHTML = document.querySelector('#current-player-name');
     // currentPlayerNameHTML.innerHTML = `${firstName} ${lastName}`;
@@ -37418,10 +37419,11 @@ document.addEventListener("DOMContentLoaded", function () {
       team = e.target.id;
       shots.parseShotsByTeam(firstName, lastName, season, team, type);
     });
-    var shotResultOption = document.querySelector(".shot-result");
-    shotResultOption.addEventListener('change', function (e) {
+    var shotResultOption = document.querySelector(".select-result-container");
+    shotResultOption.addEventListener('click', function (e) {
+      shots.clearShots();
+      shotResult = e.target.name;
       debugger;
-      shotResult = e.target.innerHTML;
       shots.parseByShotResult(firstName, lastName, season, type, team, shotResult);
     });
     Object(_helpers__WEBPACK_IMPORTED_MODULE_3__["renderFooter"])(); //get elements
@@ -37646,7 +37648,7 @@ function () {
       filterContainer.appendChild(resultContainer);
       var AllCheckbox = document.createElement('input');
       AllCheckbox.type = "checkbox";
-      AllCheckbox.name = "names";
+      AllCheckbox.name = "All";
       AllCheckbox.checked = true;
       AllCheckbox.setAttribute('class', 'shot-result');
       var labelAll = document.createElement('label');
@@ -37656,7 +37658,7 @@ function () {
       resultContainer.appendChild(labelAll);
       var MadeCheckbox = document.createElement('input');
       MadeCheckbox.type = "checkbox";
-      MadeCheckbox.name = "names";
+      MadeCheckbox.name = "Made";
       MadeCheckbox.checked = false;
       MadeCheckbox.setAttribute('class', 'shot-result');
       var labelMade = document.createElement('label');
@@ -37666,7 +37668,7 @@ function () {
       resultContainer.appendChild(labelMade);
       var MissedCheckbox = document.createElement('input');
       MissedCheckbox.type = "checkbox";
-      MissedCheckbox.name = "names";
+      MissedCheckbox.name = "Missed";
       MissedCheckbox.checked = false;
       MissedCheckbox.setAttribute('class', 'shot-result');
       var labelMissed = document.createElement('label');
@@ -37766,6 +37768,7 @@ function () {
     this.getTotalShots = this.getTotalShots.bind(this);
     this.getShotPercentage = this.getShotPercentage.bind(this);
     this.parseByShotResult = this.parseByShotResult.bind(this);
+    this.getMadeShots = this.getMadeShots.bind(this);
   }
 
   _createClass(Shots, [{
@@ -37783,6 +37786,15 @@ function () {
     key: "getShotPercentage",
     value: function getShotPercentage(shots) {}
   }, {
+    key: "getMadeShots",
+    value: function getMadeShots(shotX, shotY, shotOutcome) {
+      if (shotOutcome === 'Made Shot') {
+        this.renderShots([shotX, shotY], shotOutcome);
+      } else if (shotOutcome === 'Missed Shot') {
+        this.renderShots([shotX, shotY], shotOutcome);
+      }
+    }
+  }, {
     key: "parseByShotResult",
     value: function parseByShotResult() {
       var _this = this;
@@ -37791,7 +37803,9 @@ function () {
       var lastName = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'Curry';
       var season = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : '2015-16';
       var type = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : '';
-      var shotResult = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : 'all';
+      var team = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : 'all';
+      var shotResult = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : 'all';
+      debugger;
 
       if (type === 'career') {
         for (var _i = 2015; _i < 2018; _i++) {
@@ -37799,45 +37813,33 @@ function () {
 
           d3.csv("./assets/".concat(firstName, "_").concat(lastName, "_").concat(_season, ".csv")).then(function (shots) {
             shots.forEach(function (shot) {
-              if (shot.visiting_team === team) {
-                var shotOutcome = shot.event_type;
-                var shotX = shot.loc_x;
-                var shotY = shot.loc_y;
-
-                if (shotResult === 'all') {
-                  if (shotOutcome === 'Made Shot') {
-                    _this.renderShots([shotX, shotY], shotOutcome);
-                  } else if (shotOutcome === 'Missed Shot') {
-                    _this.renderShots([shotX, shotY], shotOutcome);
-                  }
-                } else if (shotResult === 'Made') {
-                  if (shotOutcome === 'Made Shot') _this.renderShots([shotX, shotY], shotOutcome);
-                } else if (shotResult === 'Missed') {
-                  if (shotOutcome === 'Missed Shot') _this.renderShots([shotX, shotY], shotOutcome);
-                }
-              }
-            });
-          });
-        }
-      } else {
-        d3.csv("./assets/".concat(firstName, "_").concat(lastName, "_").concat(season, ".csv")).then(function (shots) {
-          shots.forEach(function (shot) {
-            if (shot.visiting_team === team) {
               var shotOutcome = shot.event_type;
               var shotX = shot.loc_x;
               var shotY = shot.loc_y;
 
               if (shotResult === 'all') {
-                if (shotOutcome === 'Made Shot') {
-                  _this.renderShots([shotX, shotY], shotOutcome);
-                } else if (shotOutcome === 'Missed Shot') {
-                  _this.renderShots([shotX, shotY], shotOutcome);
-                }
-              } else if (shotResult === 'Made') {
-                if (shotOutcome === 'Made Shot') _this.renderShots([shotX, shotY], shotOutcome);
-              } else if (shotResult === 'Missed') {
-                if (shotOutcome === 'Missed Shot') _this.renderShots([shotX, shotY], shotOutcome);
+                _this.getMadeShots(shotX, shotY, shotOutcome);
+              } else if (shotResult === 'Made' && shotOutcome === 'Made Shot') {
+                _this.getMadeShots(shotX, shotY, shotOutcome);
+              } else if (shotResult === 'Missed' && shotOutcome === 'Missed Shot') {
+                _this.getMadeShots(shotX, shotY, shotOutcome);
               }
+            });
+          });
+        }
+      } else if (type === 'season') {
+        d3.csv("./assets/".concat(firstName, "_").concat(lastName, "_").concat(season, ".csv")).then(function (shots) {
+          shots.forEach(function (shot) {
+            var shotOutcome = shot.event_type;
+            var shotX = shot.loc_x;
+            var shotY = shot.loc_y;
+
+            if (shotResult === 'all') {
+              _this.getMadeShots(shotX, shotY, shotOutcome);
+            } else if (shotResult === 'Made') {
+              if (shotOutcome === 'Made Shot') _this.renderShots([shotX, shotY], shotOutcome);
+            } else if (shotResult === 'Missed') {
+              if (shotOutcome === 'Missed Shot') _this.renderShots([shotX, shotY], shotOutcome);
             }
           });
         });
@@ -37859,11 +37861,7 @@ function () {
             var shotX = shot.loc_x;
             var shotY = shot.loc_y;
 
-            if (shotOutcome === 'Made Shot') {
-              _this2.renderShots([shotX, shotY], shotOutcome);
-            } else if (shotOutcome === 'Missed Shot') {
-              _this2.renderShots([shotX, shotY], shotOutcome);
-            }
+            _this2.getMadeShots(shotX, shotY, shotOutcome);
           });
         });
       }
@@ -37876,19 +37874,13 @@ function () {
       var firstName = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'Stephen';
       var lastName = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'Curry';
       var season = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : '2015-16';
-      var totalShots = 0;
       d3.csv("./assets/".concat(firstName, "_").concat(lastName, "_").concat(season, ".csv")).then(function (shots) {
         shots.forEach(function (shot) {
-          totalShots++;
           var shotOutcome = shot.event_type;
           var shotX = shot.loc_x;
           var shotY = shot.loc_y;
 
-          if (shotOutcome === 'Made Shot') {
-            _this3.renderShots([shotX, shotY], shotOutcome);
-          } else if (shotOutcome === 'Missed Shot') {
-            _this3.renderShots([shotX, shotY], shotOutcome);
-          }
+          _this3.getMadeShots(shotX, shotY, shotOutcome);
         });
       });
     }
@@ -37914,11 +37906,7 @@ function () {
                 var shotX = shot.loc_x;
                 var shotY = shot.loc_y;
 
-                if (shotOutcome === 'Made Shot') {
-                  _this4.renderShots([shotX, shotY], shotOutcome);
-                } else if (shotOutcome === 'Missed Shot') {
-                  _this4.renderShots([shotX, shotY], shotOutcome);
-                }
+                _this4.getMadeShots(shotX, shotY, shotOutcome);
               }
             });
           });
@@ -37931,17 +37919,12 @@ function () {
               var shotX = shot.loc_x;
               var shotY = shot.loc_y;
 
-              if (shotOutcome === 'Made Shot') {
-                _this4.renderShots([shotX, shotY], shotOutcome);
-              } else if (shotOutcome === 'Missed Shot') {
-                _this4.renderShots([shotX, shotY], shotOutcome);
-              }
+              _this4.getMadeShots(shotX, shotY, shotOutcome);
             }
           });
         });
       }
-    } // g.animate({opacity: 1},200);
-
+    }
   }, {
     key: "renderShots",
     value: function renderShots(playerPos, shotOutcome) {

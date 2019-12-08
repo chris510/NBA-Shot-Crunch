@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
       let lastName = 'Curry';
       let playerTeam = 'Golden State Warriors'
       let season = '2015-16';
-      let team = '';
+      let team = 'All';
       let type = 'season';
       let shotResult = 'All';
   // let currentPlayerNameHTML = document.querySelector('#current-player-name');
@@ -89,10 +89,11 @@ document.addEventListener("DOMContentLoaded", () => {
     shots.parseShotsByTeam(firstName, lastName, season, team, type)
   })
 
-  const shotResultOption = document.querySelector(".shot-result");
-  shotResultOption.addEventListener('change', (e) => {
+  const shotResultOption = document.querySelector(".select-result-container");
+  shotResultOption.addEventListener('click', (e) => {
+    shots.clearShots();
+    shotResult = e.target.name;
     debugger
-    shotResult = e.target.innerHTML;
     shots.parseByShotResult(firstName, lastName, season, type, team, shotResult);
   })
   

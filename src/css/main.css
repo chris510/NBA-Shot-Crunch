@@ -15,13 +15,13 @@ html {
 }
 
 body {
-  height: 100%;
+  height: 100vh;
   width: 100%;
   background-color: black;
-  /* background-image: url("../../images/court.jpg"); */
-  /* background-size: 50% 100%;
-  background-repeat: space; */
-  /* background-position: right center; */
+  background-image: url("../../images/court-trees.jpg");
+  background-size: 50% 100%;
+  background-repeat: space;
+  background-position: right center;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -54,7 +54,8 @@ body {
 }
 
 .app > div {
-  margin: 5px;
+  padding: 10px;
+  padding-top: 15px;
 }
 
 .footer {
@@ -63,7 +64,7 @@ body {
   align-items: center;
   width: 50%;
   /* margin-top: 20px; */
-  /* height: 100px; */
+  height: 100px;
   /* background-color: blue; */
   padding-top: 20px;
   -webkit-animation: fadein 0.25s; /* Safari, Chrome and Opera > 12.1 */

@@ -158,7 +158,7 @@ class Main {
 
     let AllCheckbox = document.createElement('input');
     AllCheckbox.type = "checkbox";
-    AllCheckbox.name = "names";
+    AllCheckbox.name = "All";
     AllCheckbox.checked = true;
     AllCheckbox.setAttribute('class', 'shot-result');
 
@@ -171,7 +171,7 @@ class Main {
 
     let MadeCheckbox = document.createElement('input');
     MadeCheckbox.type = "checkbox";
-    MadeCheckbox.name = "names";
+    MadeCheckbox.name = "Made";
     MadeCheckbox.checked = false;
     MadeCheckbox.setAttribute('class', 'shot-result');
 
@@ -184,7 +184,7 @@ class Main {
 
     let MissedCheckbox = document.createElement('input');
     MissedCheckbox.type = "checkbox";
-    MissedCheckbox.name = "names";
+    MissedCheckbox.name = "Missed";
     MissedCheckbox.checked = false;
     MissedCheckbox.setAttribute('class', 'shot-result');
 

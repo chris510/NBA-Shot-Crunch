@@ -54,9 +54,10 @@ export const renderBody = () => {
   const body = document.querySelector('body');
   const app = document.createElement('div');
   app.setAttribute('class', 'app');
-  const appTitle = document.createElement('div');
-  appTitle.setAttribute('class', 'app-title');
-  appTitle.innerHTML = 'NBA Shot Crunch';
+
+  // const appTitle = document.createElement('div');
+  // appTitle.setAttribute('class', 'app-title');
+  // appTitle.innerHTML = 'NBA Shot Crunch';
   
   const player = document.createElement('div');
   player.setAttribute('class', 'player');
@@ -68,8 +69,7 @@ export const renderBody = () => {
   carousel.setAttribute('class', 'carousel');
   
   
-  body.appendChild(app).appendChild(appTitle)
-  // app.appendChild(appTitle);
+  body.appendChild(app);
   app.appendChild(player)
   .appendChild(carouselWrapper)
   .appendChild(carousel);
@@ -89,6 +89,10 @@ export const renderFooter = () => {
   footer.setAttribute('class', 'footer');
   const footerWrapper = document.createElement('div');
   footerWrapper.setAttribute('class', 'footer-wrapper');
+
+  const buttonContainer = document.createElement('div');
+  buttonContainer.setAttribute('class', 'button-container')
+
   const buttonModal = document.createElement('button');
   buttonModal.setAttribute('id', 'open-modal');
   buttonModal.value = "How to Use";
@@ -96,6 +100,7 @@ export const renderFooter = () => {
 
   body.appendChild(footer)
     .appendChild(footerWrapper)
+    .appendChild(buttonContainer)
     .appendChild(buttonModal);
 
   const github = document.createElement('div');
