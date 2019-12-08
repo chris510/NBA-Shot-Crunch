@@ -37436,7 +37436,10 @@ document.addEventListener("DOMContentLoaded", function () {
     shotResultOption.addEventListener('click', function (e) {
       shots.clearShots();
       shotResult = e.target.name;
-      debugger;
+      var checkboxes = document.querySelectorAll('input');
+      checkboxes.forEach(function (checkbox) {
+        if (checkbox.checked && checkbox.name !== shotResult) checkbox.checked = false;
+      });
       shots.parseByShotResult(firstName, lastName, season, type, team, shotResult);
     });
     Object(_helpers__WEBPACK_IMPORTED_MODULE_3__["renderFooter"])(); //get elements
@@ -37662,7 +37665,7 @@ function () {
       var AllCheckbox = document.createElement('input');
       AllCheckbox.type = "checkbox";
       AllCheckbox.name = "All";
-      AllCheckbox.checked = false;
+      AllCheckbox.checked = true;
       AllCheckbox.setAttribute('class', 'shot-result');
       var labelAll = document.createElement('label');
       labelAll.htmlFor = "id";

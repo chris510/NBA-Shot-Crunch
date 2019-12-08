@@ -93,7 +93,10 @@ document.addEventListener("DOMContentLoaded", () => {
   shotResultOption.addEventListener('click', (e) => {
     shots.clearShots();
     shotResult = e.target.name;
-    debugger
+    let checkboxes = document.querySelectorAll('input');
+    checkboxes.forEach(checkbox => {
+      if (checkbox.checked && checkbox.name !== shotResult) checkbox.checked = false;
+    })
     shots.parseByShotResult(firstName, lastName, season, type, team, shotResult);
   })
   
