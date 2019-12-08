@@ -23,11 +23,39 @@ const courtContainer = {
 document.addEventListener("DOMContentLoaded", () => {
 
   renderSplashPage();
+
+  // const onReady = (callback) => {
+  //   let intervalID = setInterval(checkReady, 1000);
+
+  //   const checkReady = () => {
+  //     if (document.getElementsByTagName('app') !== undefined) {
+  //       clearInterval(intervalID);
+  //       callback.call(this);
+  //     }
+  //   }
+  // }
+  //   const show = (className, value) => {
+  //     document.getElementsByClassName(className).style.dispaly = value ? 'block' : 'none';
+  //   }
+  
+  //   onReady(() => {
+  //     debugger
+  //     show('app', true);
+  //     show('loading', false);
+  //   });
   
   d3.selectAll(".lucky")
     .on("click", function(d, i) {
+
       removeSplash();
       renderBody();
+
+      let loader = `<div class="loading"></div>`;
+      let loadingContainer = document.querySelector('.loading-container');
+      loadingContainer.innerHTML = loader;
+      setTimeout( () => {
+        loadingContainer.innerHTML = "";
+      }, 500)
 
       let firstName = 'Stephen';
       let lastName = 'Curry';

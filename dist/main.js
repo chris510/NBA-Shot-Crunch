@@ -37380,10 +37380,33 @@ var courtContainer = {
   height: 450
 };
 document.addEventListener("DOMContentLoaded", function () {
-  Object(_helpers__WEBPACK_IMPORTED_MODULE_3__["renderSplashPage"])();
+  Object(_helpers__WEBPACK_IMPORTED_MODULE_3__["renderSplashPage"])(); // const onReady = (callback) => {
+  //   let intervalID = setInterval(checkReady, 1000);
+  //   const checkReady = () => {
+  //     if (document.getElementsByTagName('app') !== undefined) {
+  //       clearInterval(intervalID);
+  //       callback.call(this);
+  //     }
+  //   }
+  // }
+  //   const show = (className, value) => {
+  //     document.getElementsByClassName(className).style.dispaly = value ? 'block' : 'none';
+  //   }
+  //   onReady(() => {
+  //     debugger
+  //     show('app', true);
+  //     show('loading', false);
+  //   });
+
   d3.selectAll(".lucky").on("click", function (d, i) {
     Object(_helpers__WEBPACK_IMPORTED_MODULE_3__["removeSplash"])();
     Object(_helpers__WEBPACK_IMPORTED_MODULE_3__["renderBody"])();
+    var loader = "<div class=\"loading\"></div>";
+    var loadingContainer = document.querySelector('.loading-container');
+    loadingContainer.innerHTML = loader;
+    setTimeout(function () {
+      loadingContainer.innerHTML = "";
+    }, 500);
     var firstName = 'Stephen';
     var lastName = 'Curry';
     var playerTeam = 'Golden State Warriors';

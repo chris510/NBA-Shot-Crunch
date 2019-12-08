@@ -6,6 +6,7 @@
 @import './filters.css';
 @import './modal.css';
 @import './shots.css';
+@import './loading.css';
 
 html {
   --font-color: white;
@@ -36,6 +37,7 @@ body {
 }
 
 .app {
+  display: none;
   display: flex;
   justify-content: center;
   align-items: center;
