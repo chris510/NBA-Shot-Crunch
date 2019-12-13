@@ -28,6 +28,23 @@ Hexagonal binning(d3-hexbin) was used to reflect the shots taken with missed sho
 
 Among the players that are listed, filters were created to parse a player's shots according to the user's indicated shots of shot made/missed, season, or team against.
 
+```
+ parseCareerShots(firstName = 'Stephen', lastName = "Curry") {
+    for (let i = 2015; i < 2018; i++) {
+      let season = `${i}-${(i+1)-2000}`
+      d3.csv(`./assets/${firstName}_${lastName}_${season}.csv`).then(shots => {
+        shots.forEach( shot => {
+          let shotOutcome = shot.event_type;
+          let shotX = shot.loc_x;
+          let shotY = shot.loc_y;
+          this.getMadeShots(shotX, shotY, shotOutcome);
+        })
+      })
+    }
+  }
+```
+
+
 ## Future Implementations
 
 * Show a users Shot chart percentage at a given spot as well as a total percentage according to the filters.
