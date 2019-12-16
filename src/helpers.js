@@ -37,8 +37,6 @@ export const teamSelector = (playerTeam) => {
 export const renderCourt = () => {
   const body = document.querySelector('body');
   const shotContainer = document.querySelector('.shot-container');
-  // shotContainer.setAttribute('class', 'shot-container');
-  // let shotContainer = document.querySelector('.shot-container');
   let chartWrapper = document.createElement('div');
   chartWrapper.setAttribute('class', 'chart-wrapper')
 
@@ -54,10 +52,6 @@ export const renderBody = () => {
   const body = document.querySelector('body');
   const app = document.createElement('div');
   app.setAttribute('class', 'app');
-
-  // const appTitle = document.createElement('div');
-  // appTitle.setAttribute('class', 'app-title');
-  // appTitle.innerHTML = 'NBA Shot Crunch';
   
   const player = document.createElement('div');
   player.setAttribute('class', 'player');

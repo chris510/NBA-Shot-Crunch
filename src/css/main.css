@@ -109,6 +109,7 @@ body {
 
 .chart-filter {
   width: 40%;
+  height: 425px;
   display: flex;
   align-items: center;
   flex-direction: column;

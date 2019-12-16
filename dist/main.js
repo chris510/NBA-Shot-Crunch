@@ -37227,9 +37227,7 @@ var teamSelector = function teamSelector(playerTeam) {
 };
 var renderCourt = function renderCourt() {
   var body = document.querySelector('body');
-  var shotContainer = document.querySelector('.shot-container'); // shotContainer.setAttribute('class', 'shot-container');
-  // let shotContainer = document.querySelector('.shot-container');
-
+  var shotContainer = document.querySelector('.shot-container');
   var chartWrapper = document.createElement('div');
   chartWrapper.setAttribute('class', 'chart-wrapper');
   var chartContainer = document.createElement('div');
@@ -37239,10 +37237,7 @@ var renderCourt = function renderCourt() {
 var renderBody = function renderBody() {
   var body = document.querySelector('body');
   var app = document.createElement('div');
-  app.setAttribute('class', 'app'); // const appTitle = document.createElement('div');
-  // appTitle.setAttribute('class', 'app-title');
-  // appTitle.innerHTML = 'NBA Shot Crunch';
-
+  app.setAttribute('class', 'app');
   var player = document.createElement('div');
   player.setAttribute('class', 'player');
   var carouselWrapper = document.createElement('div');
@@ -37666,6 +37661,15 @@ function () {
       var resultContainer = document.createElement('div');
       resultContainer.setAttribute('class', 'select-result-container');
       filterContainer.appendChild(resultContainer);
+      var allDiv = document.createElement('div');
+      allDiv.setAttribute('class', 'shot-choice');
+      var madeDiv = document.createElement('div');
+      madeDiv.setAttribute('class', 'shot-choice');
+      var missedDiv = document.createElement('div');
+      missedDiv.setAttribute('class', 'shot-choice');
+      resultContainer.appendChild(allDiv);
+      resultContainer.appendChild(madeDiv);
+      resultContainer.appendChild(missedDiv);
       var AllCheckbox = document.createElement('input');
       AllCheckbox.type = "checkbox";
       AllCheckbox.name = "All";
@@ -37674,8 +37678,8 @@ function () {
       var labelAll = document.createElement('label');
       labelAll.htmlFor = "id";
       labelAll.appendChild(document.createTextNode('All'));
-      resultContainer.appendChild(AllCheckbox);
-      resultContainer.appendChild(labelAll);
+      allDiv.appendChild(AllCheckbox);
+      allDiv.appendChild(labelAll);
       var MadeCheckbox = document.createElement('input');
       MadeCheckbox.type = "checkbox";
       MadeCheckbox.name = "Made";
@@ -37684,8 +37688,8 @@ function () {
       var labelMade = document.createElement('label');
       labelMade.htmlFor = "id";
       labelMade.appendChild(document.createTextNode('Made'));
-      resultContainer.appendChild(MadeCheckbox);
-      resultContainer.appendChild(labelMade);
+      madeDiv.appendChild(MadeCheckbox);
+      madeDiv.appendChild(labelMade);
       var MissedCheckbox = document.createElement('input');
       MissedCheckbox.type = "checkbox";
       MissedCheckbox.name = "Missed";
@@ -37694,8 +37698,8 @@ function () {
       var labelMissed = document.createElement('label');
       labelMissed.htmlFor = "id";
       labelMissed.appendChild(document.createTextNode('Missed'));
-      resultContainer.appendChild(MissedCheckbox);
-      resultContainer.appendChild(labelMissed);
+      missedDiv.appendChild(MissedCheckbox);
+      missedDiv.appendChild(labelMissed);
     }
   }]);
 

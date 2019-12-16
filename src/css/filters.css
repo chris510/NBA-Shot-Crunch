@@ -3,7 +3,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100%;
+  height: 70%;
 }
 
 .filter-container > div {
@@ -16,7 +16,7 @@
 
 .current-player-name {
   font-family: var(--font);
-  font-size: 20px;
+  font-size: 26px;
 
 }
 
@@ -31,7 +31,7 @@
 #select-season-container > div {
   font-family: var(--font);
   padding: 5px;
-  font-size: 18px;
+  font-size: 20px;
 }
 
 #select-team-container {
@@ -45,16 +45,27 @@
 #select-team-container > div {
   font-family: var(--font);
   padding: 5px;
-  font-size: 18px;
+  font-size: 20px;
 }
 
 .select-result-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
 }
 
-.select-result-container > input {
+.select-result-container > div {
   padding: 5px;
+}
+
+.shot-choice {
+  display: flex;
+}
+
+.shot-choice > div {
+  padding: 5px;
+}
+
+.shot-choice > label {
+  font-size: 18px;
 }

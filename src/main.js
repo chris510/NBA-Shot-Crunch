@@ -156,6 +156,18 @@ class Main {
 
     filterContainer.appendChild(resultContainer);
 
+    let allDiv = document.createElement('div');
+    allDiv.setAttribute('class', 'shot-choice')
+    let madeDiv = document.createElement('div');
+    madeDiv.setAttribute('class', 'shot-choice')
+    let missedDiv = document.createElement('div');
+    missedDiv.setAttribute('class', 'shot-choice')
+
+
+    resultContainer.appendChild(allDiv);
+    resultContainer.appendChild(madeDiv);
+    resultContainer.appendChild(missedDiv);
+
     let AllCheckbox = document.createElement('input');
     AllCheckbox.type = "checkbox";
     AllCheckbox.name = "All";
@@ -166,8 +178,9 @@ class Main {
     labelAll.htmlFor = "id";
     labelAll.appendChild(document.createTextNode('All'));
 
-    resultContainer.appendChild(AllCheckbox);
-    resultContainer.appendChild(labelAll);
+
+    allDiv.appendChild(AllCheckbox);
+    allDiv.appendChild(labelAll);
 
     let MadeCheckbox = document.createElement('input');
     MadeCheckbox.type = "checkbox";
@@ -179,8 +192,8 @@ class Main {
     labelMade.htmlFor = "id";
     labelMade.appendChild(document.createTextNode('Made'));
 
-    resultContainer.appendChild(MadeCheckbox);
-    resultContainer.appendChild(labelMade);
+    madeDiv.appendChild(MadeCheckbox);
+    madeDiv.appendChild(labelMade);
 
     let MissedCheckbox = document.createElement('input');
     MissedCheckbox.type = "checkbox";
@@ -192,8 +205,8 @@ class Main {
     labelMissed.htmlFor = "id";
     labelMissed.appendChild(document.createTextNode('Missed'));
 
-    resultContainer.appendChild(MissedCheckbox);
-    resultContainer.appendChild(labelMissed);
+    missedDiv.appendChild(MissedCheckbox);
+    missedDiv.appendChild(labelMissed);
 
 
   }
