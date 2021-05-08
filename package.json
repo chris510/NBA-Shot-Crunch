@@ -9,7 +9,7 @@
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
-    "handlebars": "^4.5.3",
+    "handlebars": "^4.7.7",
     "pg": "^7.14.0",
     "pg-native": "^3.0.0",
     "simple-icons": "^1.20.0",
